@@ -6,6 +6,7 @@
     "dev": "gcloud config configurations activate econ && nodemon index.ts"
   },
   "devDependencies": {
+    "@types/node": "^20.12.12",
     "nodemon": "^3.1.0"
   }
 }
