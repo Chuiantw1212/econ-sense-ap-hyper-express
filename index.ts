@@ -1,12 +1,28 @@
 const time = new Date().getTime()
+require('dotenv').config();
+console.log(process.env)
 import HyperExpress from 'hyper-express';
-import rootRouter from './controllers/root'
+// plugins
+import firebase from './plugins/firebase'
+import googleCloud from './plugins/googleCloud'
 import corsRouter from './plugins/cors'
-
+// controllers
+import rootRouter from './controllers/root'
 (async () => {
-    const webserver = new HyperExpress.Server();
-    webserver.use('/', rootRouter)
+    const webserver = new HyperExpress.Server()
+    firebase.initialize({
+        googleCloud
+    })
+    Object.assign(webserver.locals, {
+        firebase
+    })
+    // webserver.locals.firebase
+    // plugins
+
+    // webserver.use('/', corsRouter)
     webserver.use('/', corsRouter)
+    // controllers
+    webserver.use('/', rootRouter)
     // Activate webserver by calling .listen(port, callback);
     try {
         await webserver.listen(8080)
