@@ -1,21 +1,23 @@
-import fp from 'fastify-plugin'
-import type { extendsFastifyInstance } from '../types/fastify'
 import type { IOptionsItem, ISelectMap, ISelectDocData } from '../types/select'
 import { Query, QuerySnapshot, CollectionReference, DocumentReference, DocumentData } from 'firebase-admin/firestore'
 
 export class SelectModel {
-    collection: CollectionReference
+    collection: CollectionReference = null as any
     options: ISelectMap = {}
     optionKeys: string[] = ['floorSizes', 'buildingAges', 'buildingTypes', 'genders', 'retirementQuartile', 'insuranceTypes']
-    constructor(fastify: extendsFastifyInstance) {
-        const { firestore } = fastify.firebase
+    async initializeSync(payload: any) {
+        const { firestore } = payload.firebase
         this.collection = firestore.collection('selects')
-        this.setOptions()
+        await this.setOptions()
     }
-    setOptions() {
-        this.optionKeys.forEach(async key => {
+    async setOptions() {
+        const optionPromisess = this.optionKeys.map(async key => {
             const options = await this.getOptionsByKey(key)
-            this.options[key] = options
+            return options
+        })
+        const mutipleOptions = await Promise.all(optionPromisess)
+        this.optionKeys.forEach((key, index) => {
+            this.options[key] = mutipleOptions[index]
         })
     }
     async getOptionsMap() {
@@ -75,6 +77,5 @@ export class SelectModel {
         }
     }
 }
-export default fp(async function (fastify: any) {
-    fastify.decorate('SelectModel', new SelectModel(fastify))
-})
+const selectModel = new SelectModel()
+export default selectModel

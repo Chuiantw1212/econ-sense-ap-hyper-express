@@ -7,7 +7,7 @@ export class FirebasePlugin {
     firestore: Firestore | any
     bucketPublic: ReturnType<Storage['bucket']> | any
     googleCloud: GoogleCloudPlugin = null as any
-    async initialize({ googleCloud }: any) {
+    async initializeSync({ googleCloud }: any) {
         try {
             /**
              * 使用Secret Manager拉service account key，
