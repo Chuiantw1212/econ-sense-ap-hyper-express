@@ -62,8 +62,6 @@ import userController from './controllers/user'
     const timeEnd = new Date().getTime()
     const timeDiff = (timeEnd - time) / 1000
     Object.assign(webserver.locals, { // 將locals當作decorate使用
-        firebase,
-        chatGpt,
         startupTime: timeDiff,
     })
     console.log(`Webserver started in ${timeDiff}s`)

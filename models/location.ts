@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { Firestore, CollectionReference, DocumentSnapshot, DocumentData } from 'firebase-admin/firestore'
 import type { IOptionsItem, ICounty, ITown, ISelectMap, } from '../types/select'
-const { XMLParser, } = require("fast-xml-parser");
+import XMLParser from "fast-xml-parser"
 
 export class LocationModel {
     counties: IOptionsItem[] = []
