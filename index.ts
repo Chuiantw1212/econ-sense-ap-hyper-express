@@ -1,5 +1,6 @@
 const time = new Date().getTime()
-require('dotenv').config();
+require('dotenv').config()
+console.log(process.env.MODE)
 import HyperExpress from 'hyper-express';
 // plugins
 import firebase from './plugins/firebase'
@@ -12,13 +13,11 @@ import selectModel from './models/select';
 import rootRouter from './controllers/root'
 (async () => {
     const webserver = new HyperExpress.Server()
+    const OPENAI_API_KEY = await googleCloud.accessLatestSecretVersion('OPENAI_API_KEY')
+    const FIREBASE_SERVICE_ACCOUNT_KEY_JSON = await googleCloud.accessLatestSecretVersion('FIREBASE_SERVICE_ACCOUNT_KEY_JSON')
     // plugins
-    await firebase.initializeSync({
-        googleCloud
-    })
-    chatGpt.initializeSync({
-        googleCloud
-    })
+    await firebase.initializeSync(FIREBASE_SERVICE_ACCOUNT_KEY_JSON)
+    chatGpt.initializeSync(OPENAI_API_KEY)
     // models
     await selectModel.initializeSync({
         firebase
@@ -35,7 +34,11 @@ import rootRouter from './controllers/root'
         Object.assign(webserver.locals, {
             firebase,
             chatGpt,
-            startupTime: timeDiff
+            startupTime: timeDiff,
+            // env: {
+            //     NODE_ENV: 'development',
+            //     ORIGIN: 'localhost:5173',
+            // }
         })
     } catch (error) {
         console.log('Failed to start webserver on port 80')

@@ -2,22 +2,18 @@ import admin, { type ServiceAccount } from "firebase-admin"
 import { getAuth, } from 'firebase-admin/auth'
 import { getFirestore, Firestore } from 'firebase-admin/firestore'
 import { getStorage, Storage, } from 'firebase-admin/storage'
-import { GoogleCloudPlugin } from './googleCloud'
 export class FirebasePlugin {
     firestore: Firestore | any
     bucketPublic: ReturnType<Storage['bucket']> | any
-    googleCloud: GoogleCloudPlugin = null as any
-    async initializeSync({ googleCloud }: any) {
+    async initializeSync(apiKey: string) {
         try {
             /**
              * 使用Secret Manager拉service account key，
              * 直得注意的是透過secret managert會抓回完整的object，
              * 如果是cloud run的secret則會是回傳JSON.stringify(object)
              */
-            this.googleCloud = googleCloud
             if (process.env.MODE === 'development') {
-                const FIREBASE_SERVICE_ACCOUNT_KEY_JSON = await this.googleCloud.accessLatestSecretVersion('FIREBASE_SERVICE_ACCOUNT_KEY_JSON')
-                const credential = admin.credential.cert(FIREBASE_SERVICE_ACCOUNT_KEY_JSON)
+                const credential = admin.credential.cert(apiKey)
                 admin.initializeApp({
                     credential
                 })

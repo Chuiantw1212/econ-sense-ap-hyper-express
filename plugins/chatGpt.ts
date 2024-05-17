@@ -1,12 +1,8 @@
-import { GoogleCloudPlugin } from './googleCloud'
 export class ChatGptPlugin {
     instance: any
-    googleCloud: GoogleCloudPlugin = null as any
-    async initializeSync(googleCloud: any) {
+    async initializeSync(apiKey: string) {
         try {
-            this.googleCloud = googleCloud
             const { ChatGPTAPI } = await import('chatgpt')
-            const apiKey = await this.googleCloud.accessLatestSecretVersion('OPENAI_API_KEY')
             const instance: any = new ChatGPTAPI({
                 apiKey,
             })
