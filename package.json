@@ -1,17 +1,16 @@
 {
+  "scripts": {
+    "dev": "gcloud config configurations activate econ && nodemon index.ts"
+  },
   "dependencies": {
     "@google-cloud/secret-manager": "^5.5.0",
     "axios": "^1.6.8",
-    "body-parser": "^1.20.2",
     "chatgpt": "^5.2.5",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "firebase-admin": "^12.1.0",
     "hyper-express": "^6.16.1",
     "jsdom": "^24.0.0"
-  },
-  "scripts": {
-    "dev": "gcloud config configurations activate econ && nodemon index.ts"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
