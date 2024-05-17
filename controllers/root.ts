@@ -20,9 +20,9 @@ rootController.get('/', async (request, response, abc) => {
         })
     }
     const locals: ILocals = request.app.locals
-    response.send(JSON.stringify({
+    response.json({
         memoryUsage: memoryUsageInMB,
         startupTime: `${locals.startupTime}s`,
-    }))
+    })
 })
 export default rootController
