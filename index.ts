@@ -30,8 +30,8 @@ import userController from './controllers/user'
     chatGpt.initializeSync(OPENAI_API_KEY)
     const firestore = firebase.firestore
     // models
-    await selectModel.initializeSync(firestore)
-    await locationModel.initializeSync(firestore)
+    const selectPromise = selectModel.initializeSync(firestore)
+    const locationPromise = locationModel.initializeSync(firestore)
     bankModel.initialize({
         selectModel
     })
@@ -54,6 +54,10 @@ import userController from './controllers/user'
     webserver.use('/', selectController)
     webserver.use('/', userController)
     // start listening
+    await Promise.all([
+        selectPromise,
+        locationPromise
+    ])
     await webserver.listen(8080)
     const timeEnd = new Date().getTime()
     const timeDiff = (timeEnd - time) / 1000
