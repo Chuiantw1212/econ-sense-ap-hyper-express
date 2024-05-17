@@ -1,6 +1,11 @@
 {
   "scripts": {
-    "dev": "gcloud config configurations activate econ && nodemon index.ts"
+    "dev": "gcloud config configurations activate econ && nodemon index.ts",
+    "start": "node dist/index.js",
+    "build": "tsc -p tsconfig.json",
+    "copy-secrets": "cp -r secrets dist",
+    "predeploy": "tsc -p tsconfig.json",
+    "deploy": "gcloud config configurations activate econ && gcloud app deploy"
   },
   "dependencies": {
     "@google-cloud/secret-manager": "^5.5.0",
@@ -16,6 +21,7 @@
     "@types/cors": "^2.8.17",
     "@types/jsdom": "^21.1.6",
     "@types/node": "^20.12.12",
-    "nodemon": "^3.1.0"
+    "nodemon": "^3.1.0",
+    "typescript": "^5.4.5"
   }
 }
