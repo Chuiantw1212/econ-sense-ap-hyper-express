@@ -112,7 +112,7 @@ router.post('/user/new', async function (req, res) {
         if (userForm.estate) {
             userForm.estate.interestRate = interestRate
         }
-        res.send(JSON.stringify(userForm))
+        res.json(userForm)
     } catch (error: any) {
         res.send(error.message || error)
     }
@@ -120,7 +120,7 @@ router.post('/user/new', async function (req, res) {
 router.get('/user/type', async function (req, res) {
     try {
         const userForm = await userModel.getUserForm()
-        res.send(JSON.stringify(userForm))
+        res.json(userForm)
     } catch (error: any) {
         res.send(error.message || error)
     }
@@ -130,8 +130,7 @@ router.get('/user', async function (req, res) {
         const idToken = req.headers.authorization || ''
         const user = await firebase.verifyIdToken(idToken)
         const userForm = await userModel.getUser(user.uid)
-
-        res.send(JSON.stringify(userForm))
+        res.json(userForm)
     } catch (error: any) {
         res.send(error.message || error)
     }

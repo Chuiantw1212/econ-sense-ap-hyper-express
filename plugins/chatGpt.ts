@@ -23,6 +23,7 @@ export class ChatGptPlugin {
         let text = res.text
         text = text.replaceAll('```html', '')
         text = text.replaceAll('```', '')
+        text = text.replaceAll('\n', '')
         text = text.trim()
         return text
     }

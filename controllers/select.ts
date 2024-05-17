@@ -10,7 +10,7 @@ router.get('/select', async function (req, res) {
             ...countiesAndTownMap,
             ...selectOptionsMap,
         }
-        res.send(JSON.stringify(result))
+        res.json(result)
     } catch (error: any) {
         res.send(error.message || error)
     }

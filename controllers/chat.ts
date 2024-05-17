@@ -5,7 +5,7 @@ router.post('/chat/story', async function (req, res) {
     try {
         const input = await req.text()
         const output = await chatGpt.makeStory(input)
-        res.send(JSON.stringify(output))
+        res.send(output)
     } catch (error: any) {
         console.log(error.message || error)
         res.send(error.message || error)
