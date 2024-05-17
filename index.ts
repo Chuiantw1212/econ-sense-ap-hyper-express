@@ -14,6 +14,7 @@ import jcicModel from './models/jcic'
 import locationModel from './models/location'
 // controllers
 import rootRouter from './controllers/root'
+import ndcModel from './models/ndc';
 (async () => {
     const webserver = new HyperExpress.Server()
     const OPENAI_API_KEY = await googleCloud.accessLatestSecretVersion('OPENAI_API_KEY')
@@ -33,6 +34,7 @@ import rootRouter from './controllers/root'
         firestore,
         locationModel
     })
+    ndcModel.initialize(firestore)
     // register routers
     webserver.use('/', corsRouter)
     webserver.use('/', rootRouter)
