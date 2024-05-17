@@ -1,6 +1,5 @@
 const time = new Date().getTime()
 require('dotenv').config()
-console.log(process.env.MODE)
 import HyperExpress from 'hyper-express';
 // plugins
 import firebase from './plugins/firebase'
@@ -12,9 +11,11 @@ import selectModel from './models/select'
 import bankModel from './models/bank'
 import jcicModel from './models/jcic'
 import locationModel from './models/location'
+import userModel from './models/user';
 // controllers
 import rootRouter from './controllers/root'
 import ndcModel from './models/ndc';
+// 初始化server
 (async () => {
     const webserver = new HyperExpress.Server()
     const OPENAI_API_KEY = await googleCloud.accessLatestSecretVersion('OPENAI_API_KEY')
@@ -28,6 +29,7 @@ import ndcModel from './models/ndc';
     bankModel.initialize({
         selectModel
     })
+    userModel.initialize(firestore)
     locationModel.initialize(firestore)
     jcicModel.initialize({
         selectModel,
