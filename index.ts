@@ -13,6 +13,7 @@ import jcicModel from './models/jcic'
 import locationModel from './models/location'
 import userModel from './models/user';
 import ndcModel from './models/ndc';
+import sitcaModel from './models/sitca';
 // controllers
 import rootController from './controllers/root'
 import bankController from './controllers/bank'
@@ -42,6 +43,7 @@ import userController from './controllers/user'
         locationModel
     })
     ndcModel.initialize(firestore)
+    sitcaModel.initialize()
     // controllers
     const corsConfig: CorsOptions = {
         origin: process.env.ORIGIN || 'http://localhost:5173',
