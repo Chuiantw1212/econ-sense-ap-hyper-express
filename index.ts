@@ -17,6 +17,7 @@ import ndcModel from './models/ndc';
 import rootController from './controllers/root'
 import bankController from './controllers/bank'
 import calculateController from './controllers/calculate'
+import chatController from './controllers/chat'
 // 初始化server
 (async () => {
     const webserver = new HyperExpress.Server()
@@ -44,6 +45,7 @@ import calculateController from './controllers/calculate'
     webserver.use('/', rootController)
     webserver.use('/', bankController)
     webserver.use('/', calculateController)
+    webserver.use('/', chatController)
     try {
         await webserver.listen(8080)
         const timeEnd = new Date().getTime()
@@ -53,10 +55,6 @@ import calculateController from './controllers/calculate'
             firebase,
             chatGpt,
             startupTime: timeDiff,
-            // env: {
-            //     NODE_ENV: 'development',
-            //     ORIGIN: 'localhost:5173',
-            // }
         })
         console.log(`Webserver started in ${timeDiff}s`)
     } catch (error) {
