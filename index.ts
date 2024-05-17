@@ -12,9 +12,10 @@ import bankModel from './models/bank'
 import jcicModel from './models/jcic'
 import locationModel from './models/location'
 import userModel from './models/user';
-// controllers
-import rootRouter from './controllers/root'
 import ndcModel from './models/ndc';
+// controllers
+import rootController from './controllers/root'
+import bankController from './controllers/bank'
 // 初始化server
 (async () => {
     const webserver = new HyperExpress.Server()
@@ -39,7 +40,8 @@ import ndcModel from './models/ndc';
     ndcModel.initialize(firestore)
     // register routers
     webserver.use('/', corsRouter)
-    webserver.use('/', rootRouter)
+    webserver.use('/', rootController)
+    webserver.use('/', bankController)
     try {
         await webserver.listen(8080)
         const timeEnd = new Date().getTime()
