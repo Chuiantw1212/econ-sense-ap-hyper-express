@@ -30,6 +30,8 @@ Hyper-Express 是一個基於 Node.js 的高性能 Web 框架，專為建立快�
 
 Jsdom 是一個在 Node.js 環境中實現的 DOM 解析器，它使得在後端代碼中模擬瀏覽器行為變得容易。通過 Jsdom，我們可以編寫爬蟲來抓取外部網站的數據，例如金融市場的即時行情等。
 
+更多信息請參考 [Jsdom 的 GitHub 頁面](https://github.com/jsdom/jsdom)。
+
 ### 5. Google Cloud Run
 
 Google Cloud Run 是一個無需管理伺服器即可運行容器化應用程式的平台。通過將您的應用程式容器化，您可以在 Google Cloud Run 上輕鬆部署並獲得自動擴展、支付使用量的好處。這使您可以專注於編寫程式碼，而不必擔心基礎架構的管理。
