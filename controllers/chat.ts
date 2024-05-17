@@ -3,7 +3,7 @@ import chatGpt from '../plugins/chatGpt'
 const router = new HyperExpress.Router()
 router.post('/chat/story', async function (req, res) {
     try {
-        const input = req.body as any
+        const input = await req.text()
         const output = await chatGpt.makeStory(input)
         res.send(JSON.stringify(output))
     } catch (error: any) {

@@ -19,6 +19,7 @@ import bankController from './controllers/bank'
 import calculateController from './controllers/calculate'
 import chatController from './controllers/chat'
 import selectController from './controllers/select'
+import userController from './controllers/user'
 // 初始化server
 (async () => {
     const webserver = new HyperExpress.Server()
@@ -51,6 +52,7 @@ import selectController from './controllers/select'
     webserver.use('/', calculateController)
     webserver.use('/', chatController)
     webserver.use('/', selectController)
+    webserver.use('/', userController)
     // start listening
     await webserver.listen(8080)
     const timeEnd = new Date().getTime()

@@ -8,7 +8,7 @@ router.put('/user/profile', async function (req, res) {
     try {
         const idToken = req.headers.authorization || ''
         const user = await firebase.verifyIdToken(idToken)
-        const userPart = req.body as any
+        const userPart = await req.json()
         await userModel.mergeProfile(user.uid, userPart)
         res.send()
     } catch (error: any) {
@@ -19,7 +19,7 @@ router.put('/user/career', async function (req, res) {
     try {
         const idToken = req.headers.authorization || ''
         const user = await firebase.verifyIdToken(idToken)
-        const userPart = req.body as any
+        const userPart = await req.json()
         await userModel.mergeCareer(user.uid, userPart)
         res.send()
     } catch (error: any) {
@@ -30,7 +30,7 @@ router.put('/user/retirement', async function (req, res) {
     try {
         const idToken = req.headers.authorization || ''
         const user = await firebase.verifyIdToken(idToken)
-        const userPart = req.body as any
+        const userPart = await req.json()
         await userModel.mergeRetirement(user.uid, userPart)
         res.send()
     } catch (error: any) {
@@ -41,7 +41,7 @@ router.put('/user/estatePrice', async function (req, res) {
     try {
         const idToken = req.headers.authorization || ''
         const user = await firebase.verifyIdToken(idToken)
-        const userPart = req.body as any
+        const userPart = await req.json()
         await userModel.mergeEstatePrice(user.uid, userPart)
         res.send()
     } catch (error: any) {
@@ -52,7 +52,7 @@ router.put('/user/estateSize', async function (req, res) {
     try {
         const idToken = req.headers.authorization || ''
         const user = await firebase.verifyIdToken(idToken)
-        const userPart = req.body as any
+        const userPart = await req.json()
         await userModel.mergeEstateSize(user.uid, userPart)
         res.send()
     } catch (error: any) {
@@ -63,7 +63,7 @@ router.put('/user/estate', async function (req, res) {
     try {
         const idToken = req.headers.authorization || ''
         const user = await firebase.verifyIdToken(idToken)
-        const userPart = req.body as any
+        const userPart = await req.json()
         await userModel.mergeMortgage(user.uid, userPart)
         res.send()
     } catch (error: any) {
@@ -74,7 +74,7 @@ router.put('/user/spouse', async function (req, res) {
     try {
         const idToken = req.headers.authorization || ''
         const user = await firebase.verifyIdToken(idToken)
-        const userPart = req.body as any
+        const userPart = await req.json()
         await userModel.mergeSpouse(user.uid, userPart)
         res.send()
     } catch (error: any) {
@@ -85,7 +85,7 @@ router.put('/user/parenting', async function (req, res) {
     try {
         const idToken = req.headers.authorization || ''
         const user = await firebase.verifyIdToken(idToken)
-        const userPart = req.body as any
+        const userPart = await req.json()
         await userModel.mergeParenting(user.uid, userPart)
         res.send()
     } catch (error: any) {
@@ -96,7 +96,7 @@ router.put('/user/security', async function (req, res) {
     try {
         const idToken = req.headers.authorization || ''
         const user = await firebase.verifyIdToken(idToken)
-        const userPart = req.body as any
+        const userPart = await req.json()
         await userModel.mergeInvestment(user.uid, userPart)
         res.send()
     } catch (error: any) {
@@ -125,8 +125,7 @@ router.get('/user/type', async function (req, res) {
         res.send(error.message || error)
     }
 })
-// 不確定如果改成get, cache後會不會造成不驗證直接回傳的狀況
-router.post('/user/:uid', async function (req, res) {
+router.get('/user', async function (req, res) {
     try {
         const idToken = req.headers.authorization || ''
         const user = await firebase.verifyIdToken(idToken)
