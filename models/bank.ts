@@ -4,16 +4,11 @@ import type { IOptionsItem, } from '../types/select'
 import { SelectModel } from './select'
 
 export class BankModel {
-    selectModel: SelectModel
-    // constructor(fastify: extendsFastifyInstance) {
-    //     this.selectModel = fastify.SelectModel
-    //     this.fetchInterestRate()
-    //     this.fetchCoreSeriesIRR()
-    // }
+    selectModel: SelectModel = null as any
     initialize(payload: any) {
         this.selectModel = payload.selectModel
-        this.fetchInterestRate()
-        this.fetchCoreSeriesIRR()
+        // this.fetchInterestRate()
+        // this.fetchCoreSeriesIRR()
     }
     async getInterestRate(): Promise<number> {
         const interestRateOptions: IOptionsItem[] = await this.getConfigByKey('interestRate')

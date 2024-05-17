@@ -1,12 +1,11 @@
 import type { IOptionsItem, ISelectMap, ISelectDocData } from '../types/select'
-import { Query, QuerySnapshot, CollectionReference, DocumentReference, DocumentData } from 'firebase-admin/firestore'
+import { Query, QuerySnapshot, CollectionReference, DocumentReference, DocumentData, Firestore } from 'firebase-admin/firestore'
 
 export class SelectModel {
     collection: CollectionReference = null as any
     options: ISelectMap = {}
     optionKeys: string[] = ['floorSizes', 'buildingAges', 'buildingTypes', 'genders', 'retirementQuartile', 'insuranceTypes']
-    async initializeSync(payload: any) {
-        const { firestore } = payload.firebase
+    async initializeSync(firestore: Firestore) {
         this.collection = firestore.collection('selects')
         await this.setOptions()
     }

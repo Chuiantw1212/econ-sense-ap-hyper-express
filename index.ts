@@ -8,7 +8,10 @@ import googleCloud from './plugins/googleCloud'
 import corsRouter from './plugins/cors'
 import chatGpt from './plugins/chatGpt'
 // models
-import selectModel from './models/select';
+import selectModel from './models/select'
+import bankModel from './models/bank'
+import jcicModel from './models/jcic'
+import locationModel from './models/location'
 // controllers
 import rootRouter from './controllers/root'
 (async () => {
@@ -18,16 +21,23 @@ import rootRouter from './controllers/root'
     // plugins
     await firebase.initializeSync(FIREBASE_SERVICE_ACCOUNT_KEY_JSON)
     chatGpt.initializeSync(OPENAI_API_KEY)
+    const firestore = firebase.firestore
     // models
-    await selectModel.initializeSync({
-        firebase
+    await selectModel.initializeSync(firestore)
+    bankModel.initialize({
+        selectModel
+    })
+    locationModel.initialize(firestore)
+    jcicModel.initialize({
+        selectModel,
+        firestore,
+        locationModel
     })
     // register routers
     webserver.use('/', corsRouter)
     webserver.use('/', rootRouter)
     try {
         await webserver.listen(8080)
-        console.log('Webserver started on port 80')
         const timeEnd = new Date().getTime()
         const timeDiff = (timeEnd - time) / 1000
         // 將locals當作decorate使用
@@ -40,6 +50,7 @@ import rootRouter from './controllers/root'
             //     ORIGIN: 'localhost:5173',
             // }
         })
+        console.log(`Webserver started in ${timeDiff}s`)
     } catch (error) {
         console.log('Failed to start webserver on port 80')
     }
