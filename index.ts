@@ -1,10 +1,10 @@
 const time = new Date().getTime()
 require('dotenv').config()
 import HyperExpress from 'hyper-express';
+import cors, { type CorsOptions } from 'cors'
 // plugins
 import firebase from './plugins/firebase'
 import googleCloud from './plugins/googleCloud'
-import corsRouter from './plugins/cors'
 import chatGpt from './plugins/chatGpt'
 // models
 import selectModel from './models/select'
@@ -28,14 +28,13 @@ import selectController from './controllers/select'
     await firebase.initializeSync(FIREBASE_SERVICE_ACCOUNT_KEY_JSON)
     chatGpt.initializeSync(OPENAI_API_KEY)
     const firestore = firebase.firestore
-    webserver.use('/', corsRouter)
     // models
     await selectModel.initializeSync(firestore)
+    await locationModel.initializeSync(firestore)
     bankModel.initialize({
         selectModel
     })
     userModel.initialize(firestore)
-    locationModel.initialize(firestore)
     jcicModel.initialize({
         selectModel,
         firestore,
@@ -43,23 +42,23 @@ import selectController from './controllers/select'
     })
     ndcModel.initialize(firestore)
     // controllers
+    const corsConfig: CorsOptions = {
+        origin: process.env.ORIGIN || 'http://localhost:5173',
+    }
+    webserver.use(cors(corsConfig))
     webserver.use('/', rootController)
     webserver.use('/', bankController)
     webserver.use('/', calculateController)
     webserver.use('/', chatController)
     webserver.use('/', selectController)
-    try {
-        await webserver.listen(8080)
-        const timeEnd = new Date().getTime()
-        const timeDiff = (timeEnd - time) / 1000
-        // 將locals當作decorate使用
-        Object.assign(webserver.locals, {
-            firebase,
-            chatGpt,
-            startupTime: timeDiff,
-        })
-        console.log(`Webserver started in ${timeDiff}s`)
-    } catch (error) {
-        console.log('Failed to start webserver on port 80')
-    }
+    // start listening
+    await webserver.listen(8080)
+    const timeEnd = new Date().getTime()
+    const timeDiff = (timeEnd - time) / 1000
+    Object.assign(webserver.locals, { // 將locals當作decorate使用
+        firebase,
+        chatGpt,
+        startupTime: timeDiff,
+    })
+    console.log(`Webserver started in ${timeDiff}s`)
 })()

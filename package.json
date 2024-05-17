@@ -3,6 +3,7 @@
     "@google-cloud/secret-manager": "^5.5.0",
     "axios": "^1.6.8",
     "chatgpt": "^5.2.5",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "firebase-admin": "^12.1.0",
     "hyper-express": "^6.16.1",
@@ -12,6 +13,7 @@
     "dev": "gcloud config configurations activate econ && nodemon index.ts"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.17",
     "@types/jsdom": "^21.1.6",
     "@types/node": "^20.12.12",
     "nodemon": "^3.1.0"

@@ -7,9 +7,9 @@ export class LocationModel {
     counties: IOptionsItem[] = []
     townMap: ISelectMap = {}
     collection: CollectionReference = null as any
-    initialize(firestore: Firestore) {
+    async initializeSync(firestore: Firestore) {
         this.collection = firestore.collection('locations')
-        this.setCountiesAndTowns()
+        await this.setCountiesAndTowns()
     }
     getTownLabel(countyValue: string, townValue: string) {
         const matchedItem = this.townMap[countyValue].find(item => item.value === townValue)
