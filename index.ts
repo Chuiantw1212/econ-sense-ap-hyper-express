@@ -28,6 +28,7 @@ import selectController from './controllers/select'
     await firebase.initializeSync(FIREBASE_SERVICE_ACCOUNT_KEY_JSON)
     chatGpt.initializeSync(OPENAI_API_KEY)
     const firestore = firebase.firestore
+    webserver.use('/', corsRouter)
     // models
     await selectModel.initializeSync(firestore)
     bankModel.initialize({
@@ -41,8 +42,7 @@ import selectController from './controllers/select'
         locationModel
     })
     ndcModel.initialize(firestore)
-    // register routers
-    webserver.use('/', corsRouter)
+    // controllers
     webserver.use('/', rootController)
     webserver.use('/', bankController)
     webserver.use('/', calculateController)
