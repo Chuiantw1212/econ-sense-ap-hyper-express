@@ -16,6 +16,7 @@ import ndcModel from './models/ndc';
 // controllers
 import rootController from './controllers/root'
 import bankController from './controllers/bank'
+import calculateController from './controllers/calculate'
 // 初始化server
 (async () => {
     const webserver = new HyperExpress.Server()
@@ -42,6 +43,7 @@ import bankController from './controllers/bank'
     webserver.use('/', corsRouter)
     webserver.use('/', rootController)
     webserver.use('/', bankController)
+    webserver.use('/', calculateController)
     try {
         await webserver.listen(8080)
         const timeEnd = new Date().getTime()
