@@ -199,12 +199,13 @@ export class UserModel {
     }
     async getUser(uid: string) {
         const targetQuery = this.collection.where('uid', '==', uid)
-        const countData = await targetQuery.count().get()
-        const count: number = countData.data().count
-        if (count === 1) {
-            const docData = (await targetQuery.get()).docs[0].data()
-            return docData
-        }
+        const snapshot = await targetQuery.get()
+        const docs = snapshot.docs
+        const docData = docs.pop()?.data()
+        docs.forEach(doc => {
+            this.collection.doc(doc.id).delete()
+        })
+        return docData
     }
     async addNewUser(uid: string) {
         const targetQuery = this.collection.where('uid', '==', uid)

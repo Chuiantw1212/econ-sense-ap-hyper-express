@@ -2,7 +2,7 @@ import HyperExpress from 'hyper-express'
 import { memoryUsage } from 'node:process'
 import { ILocals } from '../types/app'
 const rootController = new HyperExpress.Router()
-rootController.get('/', async (request, response, abc) => {
+rootController.get('/', async (request, response) => {
     const memoryUsageInMB: ReturnType<typeof memoryUsage> = {
         rss: 0,
         heapTotal: 0,
