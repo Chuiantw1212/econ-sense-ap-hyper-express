@@ -1,5 +1,4 @@
 const time = new Date().getTime()
-require('dotenv').config()
 import HyperExpress from 'hyper-express';
 import cors, { type CorsOptions } from 'cors'
 // plugins
