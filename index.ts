@@ -23,12 +23,11 @@ import userController from './controllers/user'
 // 初始化server
 (async () => {
     const webserver = new HyperExpress.Server()
-    const OPENAI_API_KEY = await googleCloud.accessLatestSecretVersion('OPENAI_API_KEY')
-    const FIREBASE_SERVICE_ACCOUNT_KEY_JSON = await googleCloud.accessLatestSecretVersion('FIREBASE_SERVICE_ACCOUNT_KEY_JSON')
     // plugins
-    await firebase.initializeSync(FIREBASE_SERVICE_ACCOUNT_KEY_JSON)
+    const OPENAI_API_KEY = await googleCloud.accessSecret('OPENAI_API_KEY')
     chatGpt.initializeSync(OPENAI_API_KEY)
-    const firestore = firebase.firestore
+    const FIREBASE_SERVICE_ACCOUNT_KEY_JSON = await googleCloud.accessSecret('FIREBASE_SERVICE_ACCOUNT_KEY_JSON')
+    const firestore = await firebase.initializeSync(FIREBASE_SERVICE_ACCOUNT_KEY_JSON)
     // models
     const selectPromise = selectModel.initializeSync(firestore)
     const locationPromise = locationModel.initializeSync(firestore)

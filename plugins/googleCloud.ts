@@ -9,7 +9,7 @@ export class GoogleCloudPlugin {
         const client = new SecretManagerServiceClient()
         this.sercertManagerServiceClient = client
     }
-    async accessLatestSecretVersion(name: string = '') {
+    async accessSecret(name: string = '') {
         const [version] = await this.sercertManagerServiceClient.accessSecretVersion({
             name: `projects/449033690264/secrets/${name}/versions/latest`,
         })

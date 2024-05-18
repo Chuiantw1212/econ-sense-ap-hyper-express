@@ -11,7 +11,6 @@ export class FirebasePlugin {
         admin.initializeApp({
             credential
         })
-        this.firestore = getFirestore();
         /**
          * 使用public storage
          * https://firebase.google.com/docs/storage/admin/start
@@ -21,8 +20,14 @@ export class FirebasePlugin {
         /**
          * 管理Firebase使用者
          * https://firebase.google.com/docs/auth/admin/manage-users
-         */
+        */
         this.auth = getAuth()
+        /**
+         * 使用Firestore(noSQL)
+         * https://firebase.google.com/docs/firestore/quickstart
+         */
+        const firestore = getFirestore();
+        return firestore
     }
     async verifyIdToken(idToken: string) {
         try {
