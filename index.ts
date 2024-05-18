@@ -29,8 +29,8 @@ import userController from './controllers/user'
     const FIREBASE_SERVICE_ACCOUNT_KEY_JSON = await googleCloud.accessSecret('FIREBASE_SERVICE_ACCOUNT_KEY_JSON')
     const firestore = await firebase.initializeSync(FIREBASE_SERVICE_ACCOUNT_KEY_JSON)
     // models
-    const selectPromise = selectModel.initializeSync(firestore)
-    const locationPromise = locationModel.initializeSync(firestore)
+    selectModel.initialize(firestore)
+    locationModel.initialize(firestore)
     bankModel.initialize({
         selectModel
     })
@@ -53,10 +53,6 @@ import userController from './controllers/user'
     webserver.use('/', selectController)
     webserver.use('/', userController)
     // start listening
-    await Promise.all([
-        selectPromise,
-        locationPromise
-    ])
     await webserver.listen(8080)
     const timeEnd = new Date().getTime()
     const timeDiff = (timeEnd - time) / 1000

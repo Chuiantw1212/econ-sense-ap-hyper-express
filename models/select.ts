@@ -3,27 +3,18 @@ import { Query, QuerySnapshot, CollectionReference, DocumentReference, DocumentD
 
 export class SelectModel {
     collection: CollectionReference = null as any
-    options: ISelectMap = {}
+    optionsMap: ISelectMap = {}
     optionKeys: string[] = ['floorSizes', 'buildingAges', 'buildingTypes', 'genders', 'retirementQuartile', 'insuranceTypes']
-    async initializeSync(firestore: Firestore) {
+    initialize(firestore: Firestore) {
         this.collection = firestore.collection('selects')
-        await this.setOptions()
-    }
-    async setOptions() {
-        const optionPromisess = this.optionKeys.map(async key => {
-            const options = await this.getOptionsByKey(key)
-            return options
-        })
-        const mutipleOptions = await Promise.all(optionPromisess)
-        this.optionKeys.forEach((key, index) => {
-            this.options[key] = mutipleOptions[index]
-        })
     }
     async getOptionsMap() {
+        // 如有現成就用現成
         const promises = this.optionKeys.map(async (key: string) => {
-            let options = this.options[key]
+            let options = this.optionsMap[key]
             if (!options?.length) {
                 options = await this.getOptionsByKey(key)
+                this.optionsMap[key] = options
             }
             const selectDocData: ISelectDocData = {
                 key: key,
