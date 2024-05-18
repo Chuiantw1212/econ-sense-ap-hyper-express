@@ -23,15 +23,14 @@ import userController from './controllers/user'
 // 初始化server
 (async () => {
     const webserver = new HyperExpress.Server()
-    const OPENAI_API_KEY = await googleCloud.accessLatestSecretVersion('OPENAI_API_KEY')
-    const FIREBASE_SERVICE_ACCOUNT_KEY_JSON = await googleCloud.accessLatestSecretVersion('FIREBASE_SERVICE_ACCOUNT_KEY_JSON')
     // plugins
-    await firebase.initializeSync(FIREBASE_SERVICE_ACCOUNT_KEY_JSON)
+    const OPENAI_API_KEY = await googleCloud.accessSecret('OPENAI_API_KEY')
     chatGpt.initializeSync(OPENAI_API_KEY)
-    const firestore = firebase.firestore
+    const FIREBASE_SERVICE_ACCOUNT_KEY_JSON = await googleCloud.accessSecret('FIREBASE_SERVICE_ACCOUNT_KEY_JSON')
+    const firestore = await firebase.initializeSync(FIREBASE_SERVICE_ACCOUNT_KEY_JSON)
     // models
-    const selectPromise = selectModel.initializeSync(firestore)
-    const locationPromise = locationModel.initializeSync(firestore)
+    selectModel.initialize(firestore)
+    locationModel.initialize(firestore)
     bankModel.initialize({
         selectModel
     })
@@ -54,10 +53,6 @@ import userController from './controllers/user'
     webserver.use('/', selectController)
     webserver.use('/', userController)
     // start listening
-    await Promise.all([
-        selectPromise,
-        locationPromise
-    ])
     await webserver.listen(8080)
     const timeEnd = new Date().getTime()
     const timeDiff = (timeEnd - time) / 1000

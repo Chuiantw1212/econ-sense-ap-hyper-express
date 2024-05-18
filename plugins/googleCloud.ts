@@ -1,16 +1,15 @@
+/**
+ * Google Cloud Run自動加載container上綁定的service account去執行
+ * https://cloud.google.com/run/docs/configuring/services/service-identity
+ */
 import { SecretManagerServiceClient } from '@google-cloud/secret-manager'
 export class GoogleCloudPlugin {
     sercertManagerServiceClient: SecretManagerServiceClient
     constructor() {
-        // Instantiates a client
         const client = new SecretManagerServiceClient()
         this.sercertManagerServiceClient = client
-        // this.grantAccess({
-        //     GOOGLE_APPLICATION_CREDENTIALS: 'projects/449033690264/secrets/GOOGLE_APPLICATION_CREDENTIALS',
-        //     OPENAI_API_KEY: 'projects/449033690264/secrets/OPENAI_API_KEY'
-        // })
     }
-    async accessLatestSecretVersion(name: string = '') {
+    async accessSecret(name: string = '') {
         const [version] = await this.sercertManagerServiceClient.accessSecretVersion({
             name: `projects/449033690264/secrets/${name}/versions/latest`,
         })

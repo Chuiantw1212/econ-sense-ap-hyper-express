@@ -1,15 +1,14 @@
 import axios from 'axios'
 import { Firestore, CollectionReference, DocumentSnapshot, DocumentData } from 'firebase-admin/firestore'
 import type { IOptionsItem, ICounty, ITown, ISelectMap, } from '../types/select'
-import { XMLParser } from "fast-xml-parser"
+const { XMLParser, } = require("fast-xml-parser"); // 是這行導致cloud build失敗嗎？
 
 export class LocationModel {
     counties: IOptionsItem[] = []
     townMap: ISelectMap = {}
     collection: CollectionReference = null as any
-    async initializeSync(firestore: Firestore) {
+    initialize(firestore: Firestore) {
         this.collection = firestore.collection('locations')
-        await this.setCountiesAndTowns()
     }
     getTownLabel(countyValue: string, townValue: string) {
         const matchedItem = this.townMap[countyValue].find(item => item.value === townValue)
