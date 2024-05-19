@@ -100,11 +100,14 @@ export class JcicModel {
         try {
             resultData = require('./ContractPrice_TABLE_C_2023')
             if (!resultData) {
-                const result = await fetch('https://www.jcic.org.tw/openapi/api/ContractPriceTableC2023')
+                const result = await fetch('https://www.jcic.org.tw/openapi/api/ContractPriceTableC2023', {
+                    signal: AbortSignal.timeout(300)
+                })
                 const resultJson = await result.json()
                 resultData = resultJson
             }
-        } catch (error) {
+        } catch (error: any) {
+            console.log(`getMortgageLocation`, error.message || error)
             throw error
         }
     }
@@ -113,11 +116,14 @@ export class JcicModel {
         try {
             resultData = require('./ContractPrice_TABLE_C_2023')
             if (!resultData) {
-                const result = await fetch('https://www.jcic.org.tw/openapi/api/ContractPriceTableC2023')
+                const result = await fetch('https://www.jcic.org.tw/openapi/api/ContractPriceTableC2023', {
+                    signal: AbortSignal.timeout(300)
+                })
                 const resultJson = await result.json()
                 resultData = resultJson
             }
-        } catch (error) {
+        } catch (error: any) {
+            console.log(`getContractPriceTable`, error.message || error)
             throw error
         }
 
