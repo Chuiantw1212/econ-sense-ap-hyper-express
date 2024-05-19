@@ -67,7 +67,7 @@ export class BankModel {
     async fetchInterestRate(): Promise<IOptionsItem[]> {
         try {
             const result = await fetch('https://cpx.cbc.gov.tw/api/OpenData/OAS?set_id=6022', {
-                signal: AbortSignal.timeout(300)
+                signal: AbortSignal.timeout(15000)
             })
             const resultJson = await result.json()
             const data: string = resultJson.paths['/api/OpenData/DataSet'].get.responses['200'].content['application/json'].example.Data.value
