@@ -42,10 +42,8 @@ export class BankModel {
             }
             const coreKeys = Object.keys(urlMap)
             const promiese = coreKeys.map(async key => {
-                const crawlResult = await axios.request({
-                    url: urlMap[key],
-                })
-                const pageHtml = crawlResult.data
+                const crawlResult = await fetch(urlMap[key])
+                const pageHtml = await crawlResult.arrayBuffer()
                 const dom = new JSDOM(pageHtml)
                 const document = dom.window.document
                 const tds = document.getElementsByClassName("sinceInceptionAnnualized ")
