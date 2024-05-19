@@ -1,3 +1,15 @@
+interface SendMessageOptions {
+    /** The name of a user in a multi-user chat. */
+    name?: string;
+    parentMessageId?: string;
+    conversationId?: string;
+    messageId?: string;
+    stream?: boolean;
+    systemMessage?: string;
+    timeoutMs?: number;
+    abortSignal?: AbortSignal;
+};
+
 export class ChatGptPlugin {
     instance: any
     async initializeSync(apiKey: string) {
@@ -16,10 +28,13 @@ export class ChatGptPlugin {
         if (!this.instance) {
             throw 'ChatGpt初始化失敗！'
         }
+        const sendMessageOptions: SendMessageOptions = {
+            timeoutMs: 15 * 1000
+        }
         const res = await this.instance.sendMessage(`
             請用中文，以第二人稱視角，將以下的故事內容擴充到至少500字，並且用p標籤分段。\n\n
             ${story}
-        `)
+        `, sendMessageOptions)
         let text = res.text
         text = text.replaceAll('```html', '')
         text = text.replaceAll('```', '')
