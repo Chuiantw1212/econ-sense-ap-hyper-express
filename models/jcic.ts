@@ -106,7 +106,8 @@ export class JcicModel {
                 const resultJson = await result.json()
                 resultData = resultJson
             }
-        } catch (error) {
+        } catch (error: any) {
+            console.log(`getMortgageLocation`, error.message || error)
             throw error
         }
     }
@@ -121,7 +122,8 @@ export class JcicModel {
                 const resultJson = await result.json()
                 resultData = resultJson
             }
-        } catch (error) {
+        } catch (error: any) {
+            console.log(`getContractPriceTable`, error.message || error)
             throw error
         }
 
