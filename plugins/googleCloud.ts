@@ -2,6 +2,10 @@
  * Google Cloud Run自動加載container上綁定的service account去執行
  * https://cloud.google.com/run/docs/configuring/services/service-identity
  */
+/**
+ * 如果是本地就要運行gcloud auth application-default login來指派ADC
+ * https://cloud.google.com/docs/authentication/provide-credentials-adc
+ */
 import { SecretManagerServiceClient } from '@google-cloud/secret-manager'
 export class GoogleCloudPlugin {
     sercertManagerServiceClient: SecretManagerServiceClient

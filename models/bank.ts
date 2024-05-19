@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { JSDOM } from 'jsdom'
 import type { IOptionsItem, } from '../types/select'
 import { SelectModel } from './select'
@@ -42,10 +41,8 @@ export class BankModel {
             }
             const coreKeys = Object.keys(urlMap)
             const promiese = coreKeys.map(async key => {
-                const crawlResult = await axios.request({
-                    url: urlMap[key],
-                })
-                const pageHtml = crawlResult.data
+                const crawlResult = await fetch(urlMap[key])
+                const pageHtml = await crawlResult.arrayBuffer()
                 const dom = new JSDOM(pageHtml)
                 const document = dom.window.document
                 const tds = document.getElementsByClassName("sinceInceptionAnnualized ")
@@ -67,10 +64,9 @@ export class BankModel {
     }
     async fetchInterestRate(): Promise<IOptionsItem[]> {
         try {
-            const test = await axios.request({
-                url: 'https://cpx.cbc.gov.tw/api/OpenData/OAS?set_id=6022',
-            })
-            const data: string = test.data.paths['/api/OpenData/DataSet'].get.responses['200'].content['application/json'].example.Data.value
+            const result = await fetch('https://cpx.cbc.gov.tw/api/OpenData/OAS?set_id=6022')
+            const resultJson = await result.json()
+            const data: string = resultJson.paths['/api/OpenData/DataSet'].get.responses['200'].content['application/json'].example.Data.value
             const labelAndValues: string[] = data.split(',')
             const keys = ['調整日期', '重貼現率', '擔保放款融通利率', '短期融通利率']
             const interestRateMap: {
@@ -104,11 +100,9 @@ export class BankModel {
         }
     }
     async crawlInterestRateFromCbc(): Promise<number> {
-        const crawlResult = await axios.request({
-            url: 'https://www.cbc.gov.tw/tw/lp-370-1.html',
-        })
-        const pageHtml = crawlResult.data
-        const dom = new JSDOM(pageHtml)
+        const result = await fetch('https://www.cbc.gov.tw/tw/lp-370-1.html')
+        const resultbuffer = await result.arrayBuffer()
+        const dom = new JSDOM(resultbuffer)
         const document = dom.window.document
         const tds = document.getElementsByTagName('td')
         const filteredItems: any[] = Array.from(tds).filter((item: any) => {

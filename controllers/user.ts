@@ -128,12 +128,8 @@ router.get('/user/type', async function (req, res) {
 router.get('/user', async function (req, res) {
     try {
         const idToken = req.headers.authorization || ''
-        console.time('verifyIdToken')
         const user = await firebase.verifyIdToken(idToken)
-        console.timeEnd('verifyIdToken')
-        console.time('getUser')
         const userForm = await userModel.getUser(user.uid)
-        console.timeEnd('getUser')
         res.json(userForm)
     } catch (error: any) {
         res.send(error.message || error)
