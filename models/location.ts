@@ -20,7 +20,9 @@ export class LocationModel {
     async fetchCountiesAndTowns() {
         const parser = new XMLParser();
         // Set counties from https://data.gov.tw/dataset/101905
-        const result = await fetch('https://api.nlsc.gov.tw/other/ListCounty')
+        const result = await fetch('https://api.nlsc.gov.tw/other/ListCounty', {
+            signal: AbortSignal.timeout(300)
+        })
         const resultText = await result.text()
         const jsonResult = parser.parse(resultText);
         const countyItems = jsonResult.countyItems.countyItem
@@ -33,7 +35,9 @@ export class LocationModel {
         // Set townMap from https://data.gov.tw/dataset/102011
         const promises = this.counties.map(async (county: IOptionsItem) => {
             console.log(county.value)
-            const promise = await fetch(`https://api.nlsc.gov.tw/other/ListTown1/${county.value}`)
+            const promise = await fetch(`https://api.nlsc.gov.tw/other/ListTown1/${county.value}`, {
+                signal: AbortSignal.timeout(300)
+            })
             const promiseText = await promise.text()
             const jsonResult = parser.parse(promiseText).townItems.townItem
             return jsonResult

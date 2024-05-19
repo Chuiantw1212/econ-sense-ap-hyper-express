@@ -41,7 +41,9 @@ export class BankModel {
             }
             const coreKeys = Object.keys(urlMap)
             const promiese = coreKeys.map(async key => {
-                const crawlResult = await fetch(urlMap[key])
+                const crawlResult = await fetch(urlMap[key], {
+                    signal: AbortSignal.timeout(300)
+                })
                 const pageHtml = await crawlResult.arrayBuffer()
                 const dom = new JSDOM(pageHtml)
                 const document = dom.window.document
@@ -64,7 +66,9 @@ export class BankModel {
     }
     async fetchInterestRate(): Promise<IOptionsItem[]> {
         try {
-            const result = await fetch('https://cpx.cbc.gov.tw/api/OpenData/OAS?set_id=6022')
+            const result = await fetch('https://cpx.cbc.gov.tw/api/OpenData/OAS?set_id=6022', {
+                signal: AbortSignal.timeout(300)
+            })
             const resultJson = await result.json()
             const data: string = resultJson.paths['/api/OpenData/DataSet'].get.responses['200'].content['application/json'].example.Data.value
             const labelAndValues: string[] = data.split(',')
@@ -100,7 +104,9 @@ export class BankModel {
         }
     }
     async crawlInterestRateFromCbc(): Promise<number> {
-        const result = await fetch('https://www.cbc.gov.tw/tw/lp-370-1.html')
+        const result = await fetch('https://www.cbc.gov.tw/tw/lp-370-1.html', {
+            signal: AbortSignal.timeout(300)
+        })
         const resultbuffer = await result.arrayBuffer()
         const dom = new JSDOM(resultbuffer)
         const document = dom.window.document
