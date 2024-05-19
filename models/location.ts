@@ -1,7 +1,6 @@
-import axios from 'axios'
 import { Firestore, CollectionReference, DocumentSnapshot, DocumentData } from 'firebase-admin/firestore'
 import type { IOptionsItem, ICounty, ITown, ISelectMap, } from '../types/select'
-const { XMLParser, } = require("fast-xml-parser"); // 是這行導致cloud build失敗嗎？
+import { XMLParser } from 'fast-xml-parser'
 
 export class LocationModel {
     counties: IOptionsItem[] = []
@@ -19,10 +18,11 @@ export class LocationModel {
         return matchedItem?.label
     }
     async fetchCountiesAndTowns() {
-        // Set counties from https://data.gov.tw/dataset/101905
-        const result = await axios.get('https://api.nlsc.gov.tw/other/ListCounty')
         const parser = new XMLParser();
-        const jsonResult = parser.parse(result.data);
+        // Set counties from https://data.gov.tw/dataset/101905
+        const result = await fetch('https://api.nlsc.gov.tw/other/ListCounty')
+        const resultText = await result.text()
+        const jsonResult = parser.parse(resultText);
         const countyItems = jsonResult.countyItems.countyItem
         this.counties = countyItems.map((item: ICounty) => {
             return {
@@ -31,13 +31,16 @@ export class LocationModel {
             }
         })
         // Set townMap from https://data.gov.tw/dataset/102011
-        const promises = this.counties.map((county: IOptionsItem) => {
-            const promise = axios.get(`https://api.nlsc.gov.tw/other/ListTown1/${county.value}`)
-            return promise
+        const promises = this.counties.map(async (county: IOptionsItem) => {
+            console.log(county.value)
+            const promise = await fetch(`https://api.nlsc.gov.tw/other/ListTown1/${county.value}`)
+            const promiseText = await promise.text()
+            const jsonResult = parser.parse(promiseText).townItems.townItem
+            return jsonResult
         })
         const townResults = await Promise.all(promises)
         this.counties.forEach((county: IOptionsItem, index) => {
-            this.townMap[county.value] = townResults[index].data.map((item: ITown) => {
+            this.townMap[county.value] = townResults[index].map((item: ITown) => {
                 return {
                     label: item.townname,
                     value: item.towncode,
