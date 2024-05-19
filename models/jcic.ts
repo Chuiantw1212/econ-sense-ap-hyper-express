@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { Firestore, Query, QuerySnapshot, CollectionReference, DocumentData, AggregateField, } from 'firebase-admin/firestore'
 import { SelectModel } from './select'
 import { LocationModel } from './location'
@@ -101,8 +100,9 @@ export class JcicModel {
         try {
             resultData = require('./ContractPrice_TABLE_C_2023')
             if (!resultData) {
-                const result = await axios.get('https://www.jcic.org.tw/openapi/api/ContractPriceTableC2023')
-                resultData = result.data
+                const result = await fetch('https://www.jcic.org.tw/openapi/api/ContractPriceTableC2023')
+                const resultJson = await result.json()
+                resultData = resultJson
             }
         } catch (error) {
             throw error
@@ -113,8 +113,9 @@ export class JcicModel {
         try {
             resultData = require('./ContractPrice_TABLE_C_2023')
             if (!resultData) {
-                const result = await axios.get('https://www.jcic.org.tw/openapi/api/ContractPriceTableC2023')
-                resultData = result.data
+                const result = await fetch('https://www.jcic.org.tw/openapi/api/ContractPriceTableC2023')
+                const resultJson = await result.json()
+                resultData = resultJson
             }
         } catch (error) {
             throw error
@@ -151,7 +152,3 @@ export class JcicModel {
 }
 const jcicModel = new JcicModel()
 export default jcicModel
-
-// export default fp(async function (fastify: any) {
-//     fastify.decorate('JcicModel', new JcicModel(fastify))
-// })
