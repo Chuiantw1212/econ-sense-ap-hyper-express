@@ -2,6 +2,14 @@
 
 這是常識經濟學的 AP Server，主要開源希望能做為參考讓有需要的工程師可以學到模組的用法。
 
+## 開發登入須知
+
+<https://cloud.google.com/docs/authentication/provide-credentials-adc>
+
+```js
+gcloud auth application-default login
+```
+
 ## 核心模組
 
 ### 1. Firebase
