@@ -6,8 +6,8 @@ export class BankModel {
     selectModel: SelectModel = null as any
     initialize(payload: any) {
         this.selectModel = payload.selectModel
-        this.fetchInterestRate()
-        this.fetchCoreSeriesIRR()
+        // this.fetchInterestRate()
+        // this.fetchCoreSeriesIRR()
     }
     async getInterestRate(): Promise<number> {
         const interestRateOptions: IOptionsItem[] = await this.getConfigByKey('interestRate')
