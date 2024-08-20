@@ -26,9 +26,20 @@ import userController from './controllers/user'
 (async () => {
     const webserver = new HyperExpress.Server()
     // plugins
-    const OPENAI_API_KEY = await googleCloud.accessSecret('OPENAI_API_KEY')
-    chatGpt.initializeSync(OPENAI_API_KEY)
-    const FIREBASE_SERVICE_ACCOUNT_KEY_JSON = await googleCloud.accessSecret('FIREBASE_SERVICE_ACCOUNT_KEY_JSON')
+    try {
+        const OPENAI_API_KEY = await googleCloud.accessSecret('OPENAI_API_KEY')
+        chatGpt.initializeSync(OPENAI_API_KEY)
+    } catch (error: any) {
+        // 這段讀不到就算了
+        console.log(error.message || error)
+    }
+    let FIREBASE_SERVICE_ACCOUNT_KEY_JSON = null
+    try {
+        FIREBASE_SERVICE_ACCOUNT_KEY_JSON = await googleCloud.accessSecret('FIREBASE_SERVICE_ACCOUNT_KEY_JSON')
+    } catch (error) {
+        FIREBASE_SERVICE_ACCOUNT_KEY_JSON = require("./FIREBASE_SERVICE_ACCOUNT_KEY_JSON.json");
+    }
+
     const firestore = await firebase.initializeSync(FIREBASE_SERVICE_ACCOUNT_KEY_JSON)
     // models
     selectModel.initialize(firestore)

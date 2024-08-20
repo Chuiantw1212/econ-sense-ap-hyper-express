@@ -128,3 +128,6 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# 會出人命的資料
+FIREBASE_SERVICE_ACCOUNT_KEY_JSON.json
