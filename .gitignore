@@ -1,3 +1,7 @@
+# 會出人命的資料
+FIREBASE_SERVICE_ACCOUNT_KEY_JSON.json
+OPEN_API_KEY.json
+
 # Logs
 logs
 *.log
@@ -128,6 +132,3 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
-
-# 會出人命的資料
-FIREBASE_SERVICE_ACCOUNT_KEY_JSON.json
