@@ -20,33 +20,47 @@ export class LocationModel {
     async fetchCountiesAndTowns() {
         const parser = new XMLParser();
         // Set counties from https://data.gov.tw/dataset/101905
-        const result = await fetch('https://api.nlsc.gov.tw/other/ListCounty')
-        const resultText = await result.text()
-        const jsonResult = parser.parse(resultText);
-        const countyItems = jsonResult.countyItems.countyItem
-        this.counties = countyItems.map((item: ICounty) => {
-            return {
-                value: item.countycode,
-                label: item.countyname,
-            }
-        })
-        // Set townMap from https://data.gov.tw/dataset/102011
-        const promises = this.counties.map(async (county: IOptionsItem) => {
-            console.log(county.value)
-            const promise = await fetch(`https://api.nlsc.gov.tw/other/ListTown1/${county.value}`)
-            const promiseText = await promise.text()
-            const jsonResult = parser.parse(promiseText).townItems.townItem
-            return jsonResult
-        })
-        const townResults = await Promise.all(promises)
-        this.counties.forEach((county: IOptionsItem, index) => {
-            this.townMap[county.value] = townResults[index].map((item: ITown) => {
+        try {
+            const result = await fetch('https://api.nlsc.gov.tw/other/ListCounty', {
+                signal: AbortSignal.timeout(300)
+            })
+            const resultText = await result.text()
+            const jsonResult = parser.parse(resultText);
+            const countyItems = jsonResult.countyItems.countyItem
+            this.counties = countyItems.map((item: ICounty) => {
                 return {
-                    label: item.townname,
-                    value: item.towncode,
+                    value: item.countycode,
+                    label: item.countyname,
                 }
             })
-        })
+        } catch (error: any) {
+            console.log(`fetchCountiesAndTowns`, error.message || error)
+            throw error
+        }
+        // Set townMap from https://data.gov.tw/dataset/102011
+        try {
+            const promises = this.counties.map(async (county: IOptionsItem) => {
+                console.log(county.value)
+                const promise = await fetch(`https://api.nlsc.gov.tw/other/ListTown1/${county.value}`, {
+                    signal: AbortSignal.timeout(300)
+                })
+                const promiseText = await promise.text()
+                const jsonResult = parser.parse(promiseText).townItems.townItem
+                return jsonResult
+            })
+            const townResults = await Promise.all(promises)
+            this.counties.forEach((county: IOptionsItem, index) => {
+                this.townMap[county.value] = townResults[index].map((item: ITown) => {
+                    return {
+                        label: item.townname,
+                        value: item.towncode,
+                    }
+                })
+            })
+        } catch (error: any) {
+            console.log(`fetchCountiesAndTowns`, error.message || error)
+            throw error
+        }
     }
     async getCountiesAndTowns() {
         if (!this.counties.length) {

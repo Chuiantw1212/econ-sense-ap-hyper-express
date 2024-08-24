@@ -41,7 +41,9 @@ export class BankModel {
             }
             const coreKeys = Object.keys(urlMap)
             const promiese = coreKeys.map(async key => {
-                const crawlResult = await fetch(urlMap[key])
+                const crawlResult = await fetch(urlMap[key], {
+                    signal: AbortSignal.timeout(150000)
+                })
                 const pageHtml = await crawlResult.arrayBuffer()
                 const dom = new JSDOM(pageHtml)
                 const document = dom.window.document
@@ -58,13 +60,15 @@ export class BankModel {
             this.selectModel.replaceByKey('ishareCoreETF', portfolioOptions)
             return portfolioOptions
         } catch (error: any) {
-            console.log(error.message || error)
+            console.log(`fetchCoreSeriesIRR:`, error.message || error)
             return []
         }
     }
     async fetchInterestRate(): Promise<IOptionsItem[]> {
         try {
-            const result = await fetch('https://cpx.cbc.gov.tw/api/OpenData/OAS?set_id=6022')
+            const result = await fetch('https://cpx.cbc.gov.tw/api/OpenData/OAS?set_id=6022', {
+                signal: AbortSignal.timeout(300)
+            })
             const resultJson = await result.json()
             const data: string = resultJson.paths['/api/OpenData/DataSet'].get.responses['200'].content['application/json'].example.Data.value
             const labelAndValues: string[] = data.split(',')
@@ -95,23 +99,30 @@ export class BankModel {
             }
             return options
         } catch (error: any) {
-            console.log(error.message || error)
-            return []
+            console.log(`fetchInterestRate`, error.message || error)
+            throw error
         }
     }
     async crawlInterestRateFromCbc(): Promise<number> {
-        const result = await fetch('https://www.cbc.gov.tw/tw/lp-370-1.html')
-        const resultbuffer = await result.arrayBuffer()
-        const dom = new JSDOM(resultbuffer)
-        const document = dom.window.document
-        const tds = document.getElementsByTagName('td')
-        const filteredItems: any[] = Array.from(tds).filter((item: any) => {
-            return item.dataset.th === '擔保放款融通利率'
-        })
-        const mostRecentItem: HTMLElement = filteredItems[0]
-        const interestRate = mostRecentItem.innerHTML.replaceAll(/(<[^>]*>|\n)/g, '')
-        if (!Number.isNaN(Number(interestRate))) {
-            return Number(interestRate)
+        try {
+            const result = await fetch('https://www.cbc.gov.tw/tw/lp-370-1.html', {
+                signal: AbortSignal.timeout(300)
+            })
+            const resultbuffer = await result.arrayBuffer()
+            const dom = new JSDOM(resultbuffer)
+            const document = dom.window.document
+            const tds = document.getElementsByTagName('td')
+            const filteredItems: any[] = Array.from(tds).filter((item: any) => {
+                return item.dataset.th === '擔保放款融通利率'
+            })
+            const mostRecentItem: HTMLElement = filteredItems[0]
+            const interestRate = mostRecentItem.innerHTML.replaceAll(/(<[^>]*>|\n)/g, '')
+            if (!Number.isNaN(Number(interestRate))) {
+                return Number(interestRate)
+            }
+        } catch (error: any) {
+            console.log(`crawlInterestRateFromCbc:`, error.message || error)
+            throw error
         }
         return 0
     }
