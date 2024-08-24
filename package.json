@@ -4,6 +4,7 @@
     "start": "node dist/index.js",
     "build": "tsc -p tsconfig.json",
     "copy-secrets": "cp -r secrets dist",
+    "login": "firebase login:use chuiantw1212@gmail.com",
     "predeploy": "tsc -p tsconfig.json",
     "deploy": "gcloud config configurations activate econ && gcloud app deploy"
   },
