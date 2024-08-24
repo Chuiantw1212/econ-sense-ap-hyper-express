@@ -9,7 +9,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "firebase-admin": "^12.1.0",
-    "hyper-express": "^6.16.1",
+    "hyper-express": "^6.16.4",
     "jsdom": "^24.0.0"
   },
   "devDependencies": {
