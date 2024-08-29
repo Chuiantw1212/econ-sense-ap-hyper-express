@@ -21,10 +21,15 @@ export class ChatModel {
     }
     async translate(labels: string[]) {
         const labelStrings = labels.join('||')
-        const res = await this.chatGptInstance.sendMessage(`請用zh-TW為我翻譯以下英文。\n\n
+        const res: string = await this.chatGptInstance.sendMessage(`Translate english by Taiwanese. \n\n
             ${labelStrings}`
         )
-        console.log(res)
+        const options = res.split('||')
+        if (labels.length !== options.length) {
+            const emptyResult = labels.map(() => '')
+            return emptyResult
+        }
+        return options
     }
 }
 export default new ChatModel()
