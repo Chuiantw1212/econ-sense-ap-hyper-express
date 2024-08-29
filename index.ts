@@ -9,6 +9,7 @@ import firebase from './plugins/firebase'
 import googleCloud from './plugins/googleCloud'
 import chatGpt from './plugins/chatGpt'
 // models
+import chatModel from './models/chat'
 import selectModel from './models/select'
 import bankModel from './models/bank'
 import jcicModel from './models/jcic'
@@ -47,6 +48,7 @@ import userController from './controllers/user'
     const firestore = await firebase.initializeSync(FIREBASE_SERVICE_ACCOUNT_KEY_JSON)
 
     // models
+    chatModel.initialize(chatGpt)
     selectModel.initialize(firestore)
     locationModel.initialize(firestore)
     bankModel.initialize({
