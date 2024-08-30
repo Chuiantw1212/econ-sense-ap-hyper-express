@@ -21,7 +21,7 @@ export class ChatModel {
     }
     async translate(labels: string[]) {
         const labelStrings = labels.join('||')
-        const res: string = await this.chatGptInstance.sendMessage(`Translate english by Taiwanese. \n\n
+        const res: string = await this.chatGptInstance.sendMessage(`Translate english by Taiwanese. Ensure translations contains only the common naming convention in Taiwan and fully translated into zh-TW. \n\n
             ${labelStrings}`
         )
         const options = res.split('||')
@@ -29,7 +29,9 @@ export class ChatModel {
             const emptyResult = labels.map(() => '')
             return emptyResult
         }
-        return options
+        return options.map(label=>{
+            return String(label).trim()
+        })
     }
 }
 export default new ChatModel()
