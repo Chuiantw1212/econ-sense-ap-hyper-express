@@ -9,6 +9,7 @@ import firebase from './plugins/firebase'
 import googleCloud from './plugins/googleCloud'
 import chatGpt from './plugins/chatGpt'
 // models
+import chatModel from './models/chat'
 import selectModel from './models/select'
 import bankModel from './models/bank'
 import jcicModel from './models/jcic'
@@ -25,12 +26,29 @@ import userController from './controllers/user'
 // 初始化server
 (async () => {
     const webserver = new HyperExpress.Server()
-    // plugins
-    const OPENAI_API_KEY = await googleCloud.accessSecret('OPENAI_API_KEY')
+    /**
+     * plugins
+     */
+    // Load chatGpt
+    let OPENAI_API_KEY: string = ''
+    try {
+        OPENAI_API_KEY = await googleCloud.accessSecret('OPENAI_API_KEY')
+    } catch (error: any) {
+        // 這段讀不到就算了
+        OPENAI_API_KEY = require("./OPEN_API_KEY.json");
+    }
     chatGpt.initializeSync(OPENAI_API_KEY)
-    const FIREBASE_SERVICE_ACCOUNT_KEY_JSON = await googleCloud.accessSecret('FIREBASE_SERVICE_ACCOUNT_KEY_JSON')
+    // Load firebase
+    let FIREBASE_SERVICE_ACCOUNT_KEY_JSON = null
+    try {
+        FIREBASE_SERVICE_ACCOUNT_KEY_JSON = await googleCloud.accessSecret('FIREBASE_SERVICE_ACCOUNT_KEY_JSON')
+    } catch (error) {
+        FIREBASE_SERVICE_ACCOUNT_KEY_JSON = require("./FIREBASE_SERVICE_ACCOUNT_KEY_JSON.json");
+    }
     const firestore = await firebase.initializeSync(FIREBASE_SERVICE_ACCOUNT_KEY_JSON)
+
     // models
+    chatModel.initialize(chatGpt)
     selectModel.initialize(firestore)
     locationModel.initialize(firestore)
     bankModel.initialize({
