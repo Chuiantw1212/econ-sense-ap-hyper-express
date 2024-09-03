@@ -217,7 +217,7 @@ export class UserModel {
         const docRef = this.collection.doc()
         const userForm: IUser = this.getUserForm()
         userForm.id = docRef.id
-        userForm.uid = userForm.uid
+        userForm.uid = uid // IMPORTANT 否則新資料會是null
         this.collection.doc(userForm.id).set(userForm)
         return userForm
     }
