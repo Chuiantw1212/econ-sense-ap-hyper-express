@@ -28,9 +28,9 @@ export class ChatGptPlugin {
             const { ChatGPTAPI } = await import('chatgpt')
             const instance: any = new ChatGPTAPI({
                 apiKey,
-                completionParams: {
-                    "model": "gpt-4o",
-                }
+                // completionParams: {
+                //     "model": "gpt-4o",
+                // }
             })
             this.instance = instance
         } catch (error: any) {
