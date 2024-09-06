@@ -1,32 +1,32 @@
 import { Firestore, CollectionReference, Query, DocumentSnapshot, DocumentData } from 'firebase-admin/firestore'
 import type {
-    IUserProfile,
-    IUserCareer,
-    IUserRetirement,
-    IUserSecurity,
-    IUserSpouse,
-    IUserParenting,
-    IUserEstatePrice,
-    IUserEstateSize,
-    IUserMortgage,
-    IUser,
-} from '../types/user'
+    IPlanProfile,
+    IPlanCareer,
+    IPlanRetirement,
+    IPlanSecurity,
+    IPlanSpouse,
+    IPlanParenting,
+    IPlanEstatePrice,
+    IPlanEstateSize,
+    IPlanMortgage,
+    IPlan,
+} from '../types/plan'
 
-export class UserModel {
+export class PlanModel {
     collection: CollectionReference = null as any
     initialize(firestore: Firestore) {
-        this.collection = firestore.collection('users')
+        this.collection = firestore.collection('plans')
     }
     async mergeProfile(uid: string, data: any = {}) {
         const singleDocSnapshot = await this.checkSingleDoc(uid)
-        const profile: IUserProfile = {
+        const profile: IPlanProfile = {
             gender: data.gender || '',
             yearOfBirth: data.yearOfBirth || '',
             careerInsuranceType: data.careerInsuranceType || '',
             yearOfMarriage: data.yearOfMarriage || '',
             story: data.story || '',
         }
-        const user: IUser = {
+        const user: IPlan = {
             id: singleDocSnapshot.id,
             uid,
             profile,
@@ -35,7 +35,7 @@ export class UserModel {
     }
     async mergeSpouse(uid: string, data: any = {}) {
         const singleDocSnapshot = await this.checkSingleDoc(uid)
-        const spouse: IUserSpouse = {
+        const spouse: IPlanSpouse = {
             yearOfBirth: data.yearOfBirth || '',
             yearOfMarriage: data.yearOfMarriage || '',
             marriageLength: data.marriageLength || 0,
@@ -43,7 +43,7 @@ export class UserModel {
             monthlyNetPay: data.monthlyNetPay || 0,
             monthlyExpense: data.monthlyExpense || 0,
         }
-        const user: IUser = {
+        const user: IPlan = {
             id: singleDocSnapshot.id,
             uid,
             spouse,
@@ -52,7 +52,7 @@ export class UserModel {
     }
     async mergeCareer(uid: string, data: any = {}) {
         const singleDocSnapshot = await this.checkSingleDoc(uid)
-        const career: IUserCareer = {
+        const career: IPlanCareer = {
             // 勞保
             headCount: data.headCount || 0,
             insuredUnit: data.insuredUnit || '',
@@ -70,7 +70,7 @@ export class UserModel {
             monthlyNetPay: data.monthlyNetPay || 0,
             monthlyExpense: data.monthlyExpense || 0
         }
-        const user: IUser = {
+        const user: IPlan = {
             id: singleDocSnapshot.id,
             uid,
             career,
@@ -79,7 +79,7 @@ export class UserModel {
     }
     async mergeRetirement(uid: string, data: any = {}) {
         const singleDocSnapshot = await this.checkSingleDoc(uid)
-        const retirement: IUserRetirement = {
+        const retirement: IPlanRetirement = {
             age: data.age || 0,
             insurance: {
                 presentSeniority: data.insurance.presentSeniority || 0,
@@ -95,7 +95,7 @@ export class UserModel {
             qualityLevel: data.qualityLevel,
             percentileRank: data.percentileRank,
         }
-        const user: IUser = {
+        const user: IPlan = {
             id: singleDocSnapshot.id,
             uid,
             retirement,
@@ -104,7 +104,7 @@ export class UserModel {
     }
     async mergeEstatePrice(uid: string, data: any = {}) {
         const singleDocSnapshot = await this.checkSingleDoc(uid)
-        const estatePrice: IUserEstatePrice = {
+        const estatePrice: IPlanEstatePrice = {
             county: data.county || '',
             town: data.town || '',
             buildingType: data.buildingType || '',
@@ -112,7 +112,7 @@ export class UserModel {
             hasParking: data.hasParking || '',
             unitPrice: data.unitPrice || 0,
         }
-        const user: IUser = {
+        const user: IPlan = {
             id: singleDocSnapshot.id,
             uid,
             estatePrice,
@@ -121,7 +121,7 @@ export class UserModel {
     }
     async mergeEstateSize(uid: string, data: any = {}) {
         const singleDocSnapshot = await this.checkSingleDoc(uid)
-        const estateSize: IUserEstateSize = {
+        const estateSize: IPlanEstateSize = {
             doubleBedRoom: data.doubleBedRoom || 0,
             singleBedRoom: data.singleBedRoom || 0,
             livingRoom: data.livingRoom || 0,
@@ -131,7 +131,7 @@ export class UserModel {
             parkingSpace: data.parkingSpace || 0,
             floorSize: data.floorSize || 0,
         }
-        const user: IUser = {
+        const user: IPlan = {
             id: singleDocSnapshot.id,
             uid,
             estateSize,
@@ -140,7 +140,7 @@ export class UserModel {
     }
     async mergeMortgage(uid: string, data: any = {}) {
         const singleDocSnapshot = await this.checkSingleDoc(uid)
-        const estate: IUserMortgage = {
+        const estate: IPlanMortgage = {
             downpayYear: data.downpayYear || 0,
             downpayPercent: data.downpayPercent || 0,
             interestRate: data.interestRate || 0,
@@ -151,7 +151,7 @@ export class UserModel {
             downpayGoal: data.downpayGoal || 0,
 
         }
-        const user: IUser = {
+        const user: IPlan = {
             id: singleDocSnapshot.id,
             uid,
             estate,
@@ -160,7 +160,7 @@ export class UserModel {
     }
     async mergeParenting(uid: string, data: any = {}) {
         const singleDocSnapshot = await this.checkSingleDoc(uid)
-        const parenting: IUserParenting = {
+        const parenting: IPlanParenting = {
             childAnnualExpense: data.childAnnualExpense || 0,
             independantAge: data.independantAge || 0,
             firstBornYear: data.firstBornYear || 0,
@@ -168,7 +168,7 @@ export class UserModel {
             spouseMonthlyContribution: data.spouseMonthlyContribution || 0,
             lifeInsurance: data.lifeInsurance || 0,
         }
-        const user: IUser = {
+        const user: IPlan = {
             id: singleDocSnapshot.id,
             uid,
             parenting,
@@ -177,11 +177,11 @@ export class UserModel {
     }
     async mergeInvestment(uid: string, data: any = {}) {
         const singleDocSnapshot = await this.checkSingleDoc(uid)
-        const security: IUserSecurity = {
+        const security: IPlanSecurity = {
             allocationETF: data.allocationETF || '',
             presentAsset: data.presentAsset || 0,
         }
-        const user: IUser = {
+        const user: IPlan = {
             id: singleDocSnapshot.id,
             uid,
             security,
@@ -197,7 +197,7 @@ export class UserModel {
         }
         return (await targetQuery.get()).docs[0]
     }
-    async getUser(uid: string) {
+    async getPlan(uid: string) {
         const targetQuery = this.collection.where('uid', '==', uid)
         const snapshot = await targetQuery.get()
         const docs = snapshot.docs
@@ -207,7 +207,7 @@ export class UserModel {
         })
         return docData
     }
-    async addNewUser(uid: string) {
+    async addNewPlan(uid: string) {
         const targetQuery = this.collection.where('uid', '==', uid)
         const countData = await targetQuery.count().get()
         const count: number = countData.data().count
@@ -215,14 +215,14 @@ export class UserModel {
             throw '資料重複'
         }
         const docRef = this.collection.doc()
-        const userForm: IUser = this.getUserForm()
+        const userForm: IPlan = this.getPlanForm()
         userForm.id = docRef.id
         userForm.uid = uid // IMPORTANT 否則新資料會是null
         this.collection.doc(userForm.id).set(userForm)
         return userForm
     }
-    getUserForm() {
-        const userForm: IUser = {
+    getPlanForm() {
+        const userForm: IPlan = {
             id: '',
             uid: '',
             profile: {
@@ -319,5 +319,5 @@ export class UserModel {
     }
 }
 
-const userModel = new UserModel()
-export default userModel
+const planModel = new PlanModel()
+export default planModel

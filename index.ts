@@ -14,7 +14,7 @@ import selectModel from './models/select'
 import bankModel from './models/bank'
 import jcicModel from './models/jcic'
 import locationModel from './models/location'
-import userModel from './models/user';
+import planModel from './models/plan';
 import ndcModel from './models/ndc';
 // controllers
 import rootController from './controllers/root'
@@ -22,7 +22,7 @@ import bankController from './controllers/bank'
 import calculateController from './controllers/calculate'
 import chatController from './controllers/chat'
 import selectController from './controllers/select'
-import userController from './controllers/user'
+import planController from './controllers/plan'
 // 初始化server
 (async () => {
     const webserver = new HyperExpress.Server()
@@ -54,7 +54,7 @@ import userController from './controllers/user'
     bankModel.initialize({
         selectModel
     })
-    userModel.initialize(firestore)
+    planModel.initialize(firestore)
     jcicModel.initialize({
         selectModel,
         firestore,
@@ -71,7 +71,7 @@ import userController from './controllers/user'
     webserver.use('/', calculateController)
     webserver.use('/', chatController)
     webserver.use('/', selectController)
-    webserver.use('/', userController)
+    webserver.use('/', planController)
     // start listening
     await webserver.listen(8080)
     const timeEnd = new Date().getTime()
