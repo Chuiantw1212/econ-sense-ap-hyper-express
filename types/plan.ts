@@ -1,4 +1,4 @@
-export interface IUserProfile {
+export interface IPlanProfile {
     yearOfBirth: string,
     gender: string,
     careerInsuranceType: string,
@@ -6,7 +6,7 @@ export interface IUserProfile {
     story: string,
 }
 
-export interface IUserCareer {
+export interface IPlanCareer {
     // 勞保
     headCount: number,
     insuredUnit: string,
@@ -25,7 +25,7 @@ export interface IUserCareer {
     monthlyExpense: number,
 }
 
-export interface IUserRetirement {
+export interface IPlanRetirement {
     age: number,
     insurance: {
         presentSeniority: number,
@@ -44,12 +44,12 @@ export interface IUserRetirement {
     percentileRank: number,
 }
 
-export interface IUserSecurity {
+export interface IPlanSecurity {
     allocationETF: string,
     presentAsset: number,
 }
 
-export interface IUserSpouse {
+export interface IPlanSpouse {
     yearOfMarriage: string,
     marriageLength: number,
     monthlyNetPay: number,
@@ -58,7 +58,7 @@ export interface IUserSpouse {
     yearOfBirth: number,
 }
 
-export interface IUserParenting {
+export interface IPlanParenting {
     childAnnualExpense: number,
     independantAge: number,
     firstBornYear: number,
@@ -67,7 +67,7 @@ export interface IUserParenting {
     lifeInsurance: number,
 }
 
-export interface IUserEstatePrice {
+export interface IPlanEstatePrice {
     county: string,
     town: string,
     buildingType: string,
@@ -76,7 +76,7 @@ export interface IUserEstatePrice {
     unitPrice: number,
 }
 
-export interface IUserEstateSize {
+export interface IPlanEstateSize {
     doubleBedRoom: number,
     singleBedRoom: number,
     livingRoom: number,
@@ -87,7 +87,7 @@ export interface IUserEstateSize {
     floorSize: number,
 }
 
-export interface IUserMortgage {
+export interface IPlanMortgage {
     totalPrice: number,
     totalPriceEstimated: number,
     downpay: number, // 自備款
@@ -98,16 +98,16 @@ export interface IUserMortgage {
     interestRate: number,
 }
 
-export interface IUser {
+export interface IPlan {
     uid: string,
     id: string, // document id
-    profile?: IUserProfile,
-    career?: IUserCareer,
-    retirement?: IUserRetirement,
-    spouse?: IUserSpouse,
-    estatePrice?: IUserEstatePrice,
-    estateSize?: IUserEstateSize,
-    estate?: IUserMortgage,
-    parenting?: IUserParenting,
-    security?: IUserSecurity,
+    profile?: IPlanProfile,
+    career?: IPlanCareer,
+    retirement?: IPlanRetirement,
+    spouse?: IPlanSpouse,
+    estatePrice?: IPlanEstatePrice,
+    estateSize?: IPlanEstateSize,
+    estate?: IPlanMortgage,
+    parenting?: IPlanParenting,
+    security?: IPlanSecurity,
 }
