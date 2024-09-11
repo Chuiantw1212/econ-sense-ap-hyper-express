@@ -1,5 +1,5 @@
 import HyperExpress from 'hyper-express'
-import chatModel from '../models/chat'
+import chatModel from '../drivers/models/chat'
 const router = new HyperExpress.Router()
 router.post('/chat/story', async function (req, res) {
     try {

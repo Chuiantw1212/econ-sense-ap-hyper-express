@@ -5,24 +5,25 @@ config()
 import HyperExpress from 'hyper-express';
 import cors, { type CorsOptions } from 'cors'
 // plugins
-import firebase from './plugins/firebase'
-import googleCloud from './plugins/googleCloud'
-import chatGpt from './plugins/chatGpt'
+import firebase from './drivers/plugins/firebase'
+import googleCloud from './drivers/plugins/googleCloud'
+import chatGpt from './drivers/plugins/chatGpt'
 // models
-import chatModel from './models/chat'
-import selectModel from './models/select'
-import bankModel from './models/bank'
-import jcicModel from './models/jcic'
-import locationModel from './models/location'
-import planModel from './models/plan';
-import ndcModel from './models/ndc';
+import chatModel from './drivers/models/chat'
+import selectModel from './drivers/models/select'
+import bankModel from './drivers/models/bank'
+import jcicModel from './drivers/models/jcic'
+import locationModel from './drivers/models/location'
+import planModel from './drivers/models/plan';
+import ndcModel from './drivers/models/ndc';
 // controllers
-import rootController from './controllers/root'
-import bankController from './controllers/bank'
-import calculateController from './controllers/calculate'
-import chatController from './controllers/chat'
-import selectController from './controllers/select'
-import planController from './controllers/plan'
+import rootController from './controllers/root.ctrl'
+import bankController from './controllers/bank.ctrl'
+import calculateController from './controllers/calculate.ctrl'
+import chatController from './controllers/chat.ctrl'
+import selectController from './controllers/select.ctrl'
+import planController from './controllers/plan.ctrl'
+import interfaceController from './controllers/interface.ctrl'
 // 初始化server
 (async () => {
     const webserver = new HyperExpress.Server()
@@ -72,6 +73,7 @@ import planController from './controllers/plan'
     webserver.use('/', chatController)
     webserver.use('/', selectController)
     webserver.use('/', planController)
+    webserver.use('/', interfaceController)
     // start listening
     await webserver.listen(8080)
     const timeEnd = new Date().getTime()

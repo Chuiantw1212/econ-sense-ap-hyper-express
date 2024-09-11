@@ -1,6 +1,6 @@
 import HyperExpress from 'hyper-express'
-import locationModel from '../models/location'
-import selectModel from '../models/select'
+import locationModel from '../drivers/models/location'
+import selectModel from '../drivers/models/select'
 const router = new HyperExpress.Router()
 router.get('/select', async function (req, res) {
     try {

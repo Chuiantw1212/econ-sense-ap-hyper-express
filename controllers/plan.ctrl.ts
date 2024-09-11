@@ -1,0 +1,140 @@
+import HyperExpress from 'hyper-express'
+import planModel from '../drivers/models/plan'
+import firebase from '../drivers/plugins/firebase'
+import bankModel from '../drivers/models/bank'
+import type { IPlan } from '../drivers/interfaces/plan'
+const router = new HyperExpress.Router()
+router.put('/plan/profile', async function (req, res) {
+    try {
+        const idToken = req.headers.authorization || ''
+        const user = await firebase.verifyIdToken(idToken)
+        const userPart = await req.json()
+        await planModel.mergeProfile(user.uid, userPart)
+        res.send()
+    } catch (error: any) {
+        res.send(error.message || error)
+    }
+})
+router.put('/plan/career', async function (req, res) {
+    try {
+        const idToken = req.headers.authorization || ''
+        const user = await firebase.verifyIdToken(idToken)
+        const userPart = await req.json()
+        await planModel.mergeCareer(user.uid, userPart)
+        res.send()
+    } catch (error: any) {
+        res.send(error.message || error)
+    }
+})
+router.put('/plan/retirement', async function (req, res) {
+    try {
+        const idToken = req.headers.authorization || ''
+        const user = await firebase.verifyIdToken(idToken)
+        const userPart = await req.json()
+        await planModel.mergeRetirement(user.uid, userPart)
+        res.send()
+    } catch (error: any) {
+        res.send(error.message || error)
+    }
+})
+router.put('/plan/estatePrice', async function (req, res) {
+    try {
+        const idToken = req.headers.authorization || ''
+        const user = await firebase.verifyIdToken(idToken)
+        const userPart = await req.json()
+        await planModel.mergeEstatePrice(user.uid, userPart)
+        res.send()
+    } catch (error: any) {
+        res.send(error.message || error)
+    }
+})
+router.put('/plan/estateSize', async function (req, res) {
+    try {
+        const idToken = req.headers.authorization || ''
+        const user = await firebase.verifyIdToken(idToken)
+        const userPart = await req.json()
+        await planModel.mergeEstateSize(user.uid, userPart)
+        res.send()
+    } catch (error: any) {
+        res.send(error.message || error)
+    }
+})
+router.put('/plan/estate', async function (req, res) {
+    try {
+        const idToken = req.headers.authorization || ''
+        const user = await firebase.verifyIdToken(idToken)
+        const userPart = await req.json()
+        await planModel.mergeMortgage(user.uid, userPart)
+        res.send()
+    } catch (error: any) {
+        res.send(error.message || error)
+    }
+})
+router.put('/plan/spouse', async function (req, res) {
+    try {
+        const idToken = req.headers.authorization || ''
+        const user = await firebase.verifyIdToken(idToken)
+        const userPart = await req.json()
+        await planModel.mergeSpouse(user.uid, userPart)
+        res.send()
+    } catch (error: any) {
+        res.send(error.message || error)
+    }
+})
+router.put('/plan/parenting', async function (req, res) {
+    try {
+        const idToken = req.headers.authorization || ''
+        const user = await firebase.verifyIdToken(idToken)
+        const userPart = await req.json()
+        await planModel.mergeParenting(user.uid, userPart)
+        res.send()
+    } catch (error: any) {
+        res.send(error.message || error)
+    }
+})
+router.put('/plan/security', async function (req, res) {
+    try {
+        const idToken = req.headers.authorization || ''
+        const user = await firebase.verifyIdToken(idToken)
+        const userPart = await req.json()
+        await planModel.mergeInvestment(user.uid, userPart)
+        res.send()
+    } catch (error: any) {
+        res.send(error.message || error)
+    }
+})
+router.post('/plan/new', async function (req, res) {
+    try {
+        const idToken = req.headers.authorization || ''
+        const user = await firebase.verifyIdToken(idToken)
+        const planForm: IPlan = await planModel.addNewPlan(user.uid)
+        const interestRate = await bankModel.getInterestRate()
+        if (planForm.estate) {
+            planForm.estate.interestRate = interestRate
+        }
+        res.json(planForm)
+    } catch (error: any) {
+        res.send(error.message || error)
+    }
+})
+
+// Deprecated
+router.get('/plan/type', async function (req, res) {
+    try {
+        const planForm = await planModel.getPlanForm()
+        res.json(planForm)
+    } catch (error: any) {
+        res.send(error.message || error)
+    }
+})
+router.get('/plan', async function (req, res) {
+    try {
+        const idToken = req.headers.authorization || ''
+        const user = await firebase.verifyIdToken(idToken)
+        const planForm = await planModel.getPlan(user.uid)
+        res.json(planForm)
+    } catch (error: any) {
+        res.send(error.message || error)
+    }
+})
+export default router
