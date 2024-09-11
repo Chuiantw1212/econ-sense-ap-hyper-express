@@ -9,13 +9,13 @@ import firebase from './drivers/plugins/firebase'
 import googleCloud from './drivers/plugins/googleCloud'
 import chatGpt from './drivers/plugins/chatGpt'
 // models
-import chatModel from './models/chat'
-import selectModel from './models/select'
-import bankModel from './models/bank'
-import jcicModel from './models/jcic'
-import locationModel from './models/location'
-import planModel from './models/plan';
-import ndcModel from './models/ndc';
+import chatModel from './drivers/models/chat'
+import selectModel from './drivers/models/select'
+import bankModel from './drivers/models/bank'
+import jcicModel from './drivers/models/jcic'
+import locationModel from './drivers/models/location'
+import planModel from './drivers/models/plan';
+import ndcModel from './drivers/models/ndc';
 // controllers
 import rootController from './controllers/root.ctrl'
 import bankController from './controllers/bank.ctrl'
