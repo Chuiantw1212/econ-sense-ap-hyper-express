@@ -8,14 +8,12 @@
 
 ### 框架效能比較
 
-| Language | Framework      | Latency (ms) | Throughput (RPS) | Memory Usage (MB) | CPU Usage (%) | References                                                                                      |
-|----------|----------------|--------------|------------------|-------------------|---------------|-------------------------------------------------------------------------------------------------|
-| Node.js  | Hyper-Express  | 8.0          | 40,000           | 65                | 35            | [TechEmpower](https://www.techempower.com/benchmarks/), [Okami Blog](https://blog.okami101.io/)  |
-| C#       | ASP.NET Core   | 10.0         | 37,500           | 125               | 40            | [ASP.NET Benchmarks](https://github.com/aspnet/Benchmarks), [TechEmpower](https://www.techempower.com/benchmarks/) |
-| Java     | Vert.x         | 15.0         | 32,500           | 75                | 50            | [TechEmpower](https://www.techempower.com/benchmarks/), [Okami Blog](https://blog.okami101.io/)  |
-| Python   | FastAPI        | 30.0         | 4,831            | 83                | ~40           | [Okami Blog](https://blog.okami101.io/), [FastAPI Benchmarks](https://fastapi.tiangolo.com/)     |
-
-
+| 語言     | 框架            | 延遲 (毫秒) | 吞吐量 (RPS)    | 記憶體使用 (MB)  | CPU 使用 (%) | 參考資料                                                                                       |
+|----------|-----------------|--------------|-----------------|------------------|---------------|-------------------------------------------------------------------------------------------------|
+| Node.js  | Hyper-Express    | 8.0          | 40,000          | 65               | 35            | [TechEmpower](https://www.techempower.com/benchmarks/), [Okami Blog](https://blog.okami101.io/)  |
+| C#       | ASP.NET Core     | 10.0         | 37,500          | 125              | 40            | [ASP.NET Benchmarks](https://github.com/aspnet/Benchmarks), [TechEmpower](https://www.techempower.com/benchmarks/) |
+| Java     | Vert.x           | 15.0         | 32,500          | 75               | 50            | [TechEmpower](https://www.techempower.com/benchmarks/), [Okami Blog](https://blog.okami101.io/)  |
+| Python   | FastAPI          | 30.0         | 4,831           | 83               | ~40           | [Okami Blog](https://blog.okami101.io/), [FastAPI Benchmarks](https://fastapi.tiangolo.com/)     |
 
 ### 評語
 
