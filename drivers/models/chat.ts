@@ -1,4 +1,4 @@
-import { ChatGptPlugin } from "../plugins/chatGpt"
+import { ChatGptPlugin } from "../drivers/plugins/chatGpt"
 export class ChatModel {
     chatGptInstance: ChatGptPlugin | any = null
     initialize(chatGptInstance: any) {

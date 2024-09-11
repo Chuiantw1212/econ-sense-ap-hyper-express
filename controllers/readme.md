@@ -1,4 +1,4 @@
-# 資料格式轉換
+# 資料交換與格式轉換
 可能的資料夾名稱有 controllers/gateways/presenters
 
 # Interface Adapters
