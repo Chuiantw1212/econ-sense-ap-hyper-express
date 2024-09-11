@@ -8,12 +8,14 @@
 
 ### 框架效能比較
 
-| 框架             | 語言    | 每秒請求數 | 延遲（Latency） | 吞吐量（Bytes/Sec） | 適合場景                          |
-| ---------------- | ------- | ---------- | --------------- | ------------------- | --------------------------------- |
-| **Hyper-Express**| Node.js | ~93,000    | 127 ms          | 29.9 MB/s            | 高併發、I/O 密集型操作            |
-| **FastAPI**      | Python  | ~50,000    | 150-200 ms      | 20-25 MB/s           | API 應用、非同步任務處理           |
-| **ASP.NET Core** | C#      | ~90,000    | 100-120 ms      | 30 MB/s              | 企業應用、大規模系統               |
-| **Spring Boot**  | Java    | ~80,000    | 110-150 ms      | 28 MB/s              | 大型企業應用、複雜後端服務         |
+| Language | Framework      | Latency (ms) | Throughput (RPS) | Memory Usage (MB) | CPU Usage (%) | References                                                                                      |
+|----------|----------------|--------------|------------------|-------------------|---------------|-------------------------------------------------------------------------------------------------|
+| Node.js  | Hyper-Express  | 8.0          | 40,000           | 65                | 35            | [TechEmpower](https://www.techempower.com/benchmarks/), [Okami Blog](https://blog.okami101.io/)  |
+| C#       | ASP.NET Core   | 10.0         | 37,500           | 125               | 40            | [ASP.NET Benchmarks](https://github.com/aspnet/Benchmarks), [TechEmpower](https://www.techempower.com/benchmarks/) |
+| Java     | Vert.x         | 15.0         | 32,500           | 75                | 50            | [TechEmpower](https://www.techempower.com/benchmarks/), [Okami Blog](https://blog.okami101.io/)  |
+| Python   | FastAPI        | 30.0         | 4,831            | 83                | ~40           | [Okami Blog](https://blog.okami101.io/), [FastAPI Benchmarks](https://fastapi.tiangolo.com/)     |
+
+
 
 ### 評語
 
