@@ -215,14 +215,14 @@ export class PlanModel {
             throw '資料重複'
         }
         const docRef = this.collection.doc()
-        const userForm: IPlan = this.getPlanForm()
-        userForm.id = docRef.id
-        userForm.uid = uid // IMPORTANT 否則新資料會是null
-        this.collection.doc(userForm.id).set(userForm)
-        return userForm
+        const planForm: IPlan = this.getPlanForm()
+        planForm.id = docRef.id
+        planForm.uid = uid // IMPORTANT 否則新資料會是null
+        this.collection.doc(planForm.id).set(planForm)
+        return planForm
     }
     getPlanForm() {
-        const userForm: IPlan = {
+        const planForm: IPlan = {
             id: '',
             uid: '',
             profile: {
@@ -315,7 +315,7 @@ export class PlanModel {
                 loanTerm: 0,
             },
         }
-        return userForm
+        return planForm
     }
 }
 
