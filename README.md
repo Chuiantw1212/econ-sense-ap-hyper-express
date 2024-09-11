@@ -32,14 +32,6 @@
 
 這種分層設計確保了高內聚、低耦合，並且達到框架獨立性和高測試性。
 
-## 開發登入須知
-
-<https://cloud.google.com/docs/authentication/provide-credentials-adc>
-
-```js
-gcloud auth application-default login
-```
-
 ## 核心模組
 
 ### Hyper-Express
@@ -69,3 +61,11 @@ gcloud auth application-default login
 ### Jsdom 爬蟲
 
 [JSDOM](https://github.com/jsdom/jsdom) 是一個模擬瀏覽器 DOM 的 JavaScript 環境，使得我們能夠在伺服器端操作 HTML 文件和執行 DOM 操作。這在需要抓取或解析網頁資料、或是對 HTML 進行動態渲染時特別有用。本 API 伺服器利用 JSDOM 進行資料抓取與處理，為部落格提供必要的資料。
+
+## 開發登入須知
+
+<https://cloud.google.com/docs/authentication/provide-credentials-adc>
+
+```js
+gcloud auth application-default login
+```
