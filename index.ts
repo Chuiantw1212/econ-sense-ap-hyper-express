@@ -48,7 +48,9 @@ import interfaceController from './controllers/interface.ctrl'
     }
     const firestore = await firebase.initializeSync(FIREBASE_SERVICE_ACCOUNT_KEY_JSON)
 
-    // models
+    /**
+     * models
+     */
     chatModel.initialize(chatGpt)
     selectModel.initialize(firestore)
     locationModel.initialize(firestore)
@@ -62,25 +64,18 @@ import interfaceController from './controllers/interface.ctrl'
         locationModel
     })
     ndcModel.initialize(firestore)
-    // middlewares
+
+    /**
+     * middlewares
+     */
     const corsConfig: CorsOptions = {
         origin: process.env.ORIGIN || 'http://localhost:5173',
     }
     webserver.use(cors(corsConfig))
-    // webserver.use('/plan', async (req, res, next) => {
-    //     try {
-    //         console.log('executed')
-    //         const idToken = req.headers.authorization || ''
-    //         const user = await firebase.verifyIdToken(idToken)
-    //         req.locals.user = user
-    //         next()
-    //     } catch (error: any) {
-    //         console.log(error.message || error)
-    //         next(error)
-    //     }
-    // });
 
-    // controllers
+    /**
+     * controllers
+     */
     webserver.use('/', rootController)
     webserver.use('/', bankController)
     webserver.use('/', calculateController)
@@ -88,7 +83,10 @@ import interfaceController from './controllers/interface.ctrl'
     webserver.use('/', selectController)
     webserver.use('/', planController)
     webserver.use('/', interfaceController)
-    // start listening
+
+    /**
+     * start listening
+     */
     await webserver.listen(8080)
     const timeEnd = new Date().getTime()
     const timeDiff = (timeEnd - time) / 1000
