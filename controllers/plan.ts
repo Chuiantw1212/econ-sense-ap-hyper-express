@@ -2,7 +2,7 @@ import HyperExpress from 'hyper-express'
 import planModel from '../models/plan'
 import firebase from '../plugins/firebase'
 import bankModel from '../models/bank'
-import type { IPlan } from '../types/plan'
+import type { IPlan } from '../entities/plan'
 const router = new HyperExpress.Router()
 router.put('/plan/profile', async function (req, res) {
     try {
