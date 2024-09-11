@@ -1,5 +1,5 @@
 import { JSDOM } from 'jsdom'
-import type { IOptionsItem, } from '../types/select'
+import type { IOptionsItem, } from '../interfaces/select'
 import { SelectModel } from './select'
 
 export class BankModel {
