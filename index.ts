@@ -62,11 +62,25 @@ import interfaceController from './controllers/interface.ctrl'
         locationModel
     })
     ndcModel.initialize(firestore)
-    // controllers
+    // middlewares
     const corsConfig: CorsOptions = {
         origin: process.env.ORIGIN || 'http://localhost:5173',
     }
     webserver.use(cors(corsConfig))
+    // webserver.use('/plan', async (req, res, next) => {
+    //     try {
+    //         console.log('executed')
+    //         const idToken = req.headers.authorization || ''
+    //         const user = await firebase.verifyIdToken(idToken)
+    //         req.locals.user = user
+    //         next()
+    //     } catch (error: any) {
+    //         console.log(error.message || error)
+    //         next(error)
+    //     }
+    // });
+
+    // controllers
     webserver.use('/', rootController)
     webserver.use('/', bankController)
     webserver.use('/', calculateController)
