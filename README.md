@@ -8,12 +8,12 @@
 
 ### 框架效能比較
 
-| 框架             | 語言    | 每秒請求數 | 延遲（Latency） | 吞吐量（Bytes/Sec） | 適合場景                          |
-| ---------------- | ------- | ---------- | --------------- | ------------------- | --------------------------------- |
-| **Hyper-Express**| Node.js | ~93,000    | 127 ms          | 29.9 MB/s            | 高併發、I/O 密集型操作            |
-| **FastAPI**      | Python  | ~50,000    | 150-200 ms      | 20-25 MB/s           | API 應用、非同步任務處理           |
-| **ASP.NET Core** | C#      | ~90,000    | 100-120 ms      | 30 MB/s              | 企業應用、大規模系統               |
-| **Spring Boot**  | Java    | ~80,000    | 110-150 ms      | 28 MB/s              | 大型企業應用、複雜後端服務         |
+| 語言     | 框架            | 延遲 (毫秒) | 吞吐量 (RPS)    | 記憶體使用 (MB)  | CPU 使用 (%) | 參考資料                                                                                       |
+|----------|-----------------|--------------|-----------------|------------------|---------------|-------------------------------------------------------------------------------------------------|
+| Node.js  | Hyper-Express    | 8.0          | 40,000          | 65               | 35            | [TechEmpower](https://www.techempower.com/benchmarks/), [Okami Blog](https://blog.okami101.io/)  |
+| C#       | ASP.NET Core     | 10.0         | 37,500          | 125              | 40            | [ASP.NET Benchmarks](https://github.com/aspnet/Benchmarks), [TechEmpower](https://www.techempower.com/benchmarks/) |
+| Java     | Vert.x           | 15.0         | 32,500          | 75               | 50            | [TechEmpower](https://www.techempower.com/benchmarks/), [Okami Blog](https://blog.okami101.io/)  |
+| Python   | FastAPI          | 30.0         | 4,831           | 83               | ~40           | [Okami Blog](https://blog.okami101.io/), [FastAPI Benchmarks](https://fastapi.tiangolo.com/)     |
 
 ### 評語
 
@@ -31,14 +31,6 @@
 4. **框架與驅動層 (Frameworks & Drivers Layer)**：包含了抓取外部資料的爬蟲、存取 Firestore 的機制，以及套件的管理。
 
 這種分層設計確保了高內聚、低耦合，並且達到框架獨立性和高測試性。
-
-## 開發登入須知
-
-<https://cloud.google.com/docs/authentication/provide-credentials-adc>
-
-```js
-gcloud auth application-default login
-```
 
 ## 核心模組
 
@@ -69,3 +61,11 @@ gcloud auth application-default login
 ### Jsdom 爬蟲
 
 [JSDOM](https://github.com/jsdom/jsdom) 是一個模擬瀏覽器 DOM 的 JavaScript 環境，使得我們能夠在伺服器端操作 HTML 文件和執行 DOM 操作。這在需要抓取或解析網頁資料、或是對 HTML 進行動態渲染時特別有用。本 API 伺服器利用 JSDOM 進行資料抓取與處理，為部落格提供必要的資料。
+
+## 開發登入須知
+
+<https://cloud.google.com/docs/authentication/provide-credentials-adc>
+
+```js
+gcloud auth application-default login
+```
