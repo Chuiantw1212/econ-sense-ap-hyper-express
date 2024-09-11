@@ -8,12 +8,13 @@
 
 ### 框架效能比較
 
-| 語言     | 框架            | 延遲 (毫秒) | 吞吐量 (RPS)    | 記憶體使用 (MB)  | CPU 使用 (%) | 參考資料                                                                                       |
-|----------|-----------------|--------------|-----------------|------------------|---------------|-------------------------------------------------------------------------------------------------|
-| Node.js  | Hyper-Express    | 8.0          | 40,000          | 65               | 35            | [TechEmpower](https://www.techempower.com/benchmarks/), [Okami Blog](https://blog.okami101.io/)  |
-| C#       | ASP.NET Core     | 10.0         | 37,500          | 125              | 40            | [ASP.NET Benchmarks](https://github.com/aspnet/Benchmarks), [TechEmpower](https://www.techempower.com/benchmarks/) |
-| Java     | Vert.x           | 15.0         | 32,500          | 75               | 50            | [TechEmpower](https://www.techempower.com/benchmarks/), [Okami Blog](https://blog.okami101.io/)  |
-| Python   | FastAPI          | 30.0         | 4,831           | 83               | ~40           | [Okami Blog](https://blog.okami101.io/), [FastAPI Benchmarks](https://fastapi.tiangolo.com/)     |
+| 框架              | 語言                | 每秒請求數  | 延遲（Latency） | 吞吐量（Bytes/Sec）  | 適合場景                          |
+| ----------------- | ------------------- | ---------- | --------------- | ------------------- | --------------------------------- |
+| **Hyper-Express**  | Node.js             | ~93,000    | 115 ms          | 29.9 MB/s            | 高併發、I/O 密集型應用             |
+| **ASP.NET Core**   | C#                  | ~85,000    | 80 ms           | 28.0 MB/s            | 微服務架構、企業應用，與 .NET 整合  |
+| **Vert.x**         | Java                | ~85,000    | 90 ms           | 28.7 MB/s            | 高效處理並發的分散式系統           |
+| **FastAPI**        | Python (Starlette)  | ~50,000    | 160 ms          | 18.0 MB/s            | 快速開發、API 驅動應用             |
+         |
 
 ### 評語
 
