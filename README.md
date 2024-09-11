@@ -17,13 +17,13 @@
 
 ### 評語
 
-**Hyper-Express** 的高效能主要來自於它建立在 **uWebSocket** 之上。**uWebSocket** 是一個以 C++ 編寫的超高效能 HTTP 和 WebSocket 庫，專門針對極低延遲和高併發進行優化。由於 **uWebSocket** 本身使用了 C 語言 和 C++，它能夠在非常低的層級操作網路請求，並充分利用現代 CPU 的性能，達到極高的效率。
+**Hyper-Express** 的高效能主要來自於它建立在 [**uWebSocket**](https://github.com/uNetworking/uWebSockets) 之上。**uWebSocket** 是一個以 C++ 編寫的超高效能 HTTP 和 WebSocket 庫，專門針對極低延遲和高併發進行優化。由於 **uWebSocket** 本身使用了 C 語言 和 C++，它能夠在非常低的層級操作網路請求，並充分利用現代 CPU 的性能，達到極高的效率。
 
 整體來看，**Hyper-Express** 在處理高併發和 I/O 密集型任務時表現出色，與其他常見的伺服器框架相比，它具有更低的延遲和更高的每秒請求處理能力，是構建高效能應用的理想選擇。
 
 ## Clean Architecture
 
-這個專案符合 Uncle Bob 的 Clean Architecture，因為它將系統分為清楚的層次：
+這個專案符合 Uncle Bob 的 [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)，因為它將系統分為清楚的層次：
 
 1. **實體層 (Entities Layer)**：負責定義跨專案的核心商業規則，比如檢查用戶是否為公司員工，但由於本專案並沒有跨專案的商業邏輯，因此這個資料夾目前是空的。
 2. **用例層 (Use Case Layer)**：負責具體的商業邏輯操作，比如檢查用戶是否有登入本應用的權限，但由於本專案的商業邏輯大多數放在前端，因此這個資料夾也是空的。
