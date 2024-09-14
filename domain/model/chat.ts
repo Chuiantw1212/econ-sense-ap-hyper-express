@@ -1,4 +1,4 @@
-import { ChatGptPlugin } from "../plugins/chatGpt"
+import { ChatGptPlugin } from "../../drivers/plugins/chatGpt"
 export class ChatModel {
     chatGptInstance: ChatGptPlugin | any = null
     initialize(chatGptInstance: any) {
@@ -29,7 +29,7 @@ export class ChatModel {
             const emptyResult = labels.map(() => '')
             return emptyResult
         }
-        return options.map(label=>{
+        return options.map(label => {
             return String(label).trim()
         })
     }

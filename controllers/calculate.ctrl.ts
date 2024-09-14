@@ -1,6 +1,6 @@
 import HyperExpress from 'hyper-express'
-import ndcModel from '../drivers/repositories/ndc'
-import jcicModel from '../drivers/repositories/jcic'
+import ndcModel from '../domain/model/ndc'
+import jcicModel from '../domain/model/jcic'
 const router = new HyperExpress.Router()
 router.post('/calculate/lifeExpectancy', async function (req, res) {
     try {
