@@ -2,7 +2,7 @@
 
 個人理財的商業邏輯不是什麼機密，網路上都找得到，也沒有理由透過ap運算，所以我放[前端](https://github.com/Chuiantw1212/econ-sense-vitepress/tree/econ-sense-vite-press/components/calculator)去了，這也是為什麼這個資料夾是空的。
 
-# Use Cases
+# Use Cases / Domain Services
 
 The software in this layer contains application specific business rules. It encapsulates and implements all of the use cases of the system. These use cases orchestrate the flow of data to and from the entities, and direct those entities to use their enterprise wide business rules to achieve the goals of the use case.
 
