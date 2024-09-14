@@ -11,7 +11,8 @@
     "dotenv": "^16.4.5",
     "firebase-admin": "^12.1.0",
     "hyper-express": "^6.16.4",
-    "jsdom": "^24.0.0"
+    "jsdom": "^24.0.0",
+    "module-alias": "^2.2.3"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
