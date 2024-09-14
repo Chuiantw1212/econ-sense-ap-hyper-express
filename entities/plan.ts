@@ -1,5 +1,3 @@
-
-import type { IPlan } from '../drivers/interfaces/plan'
 class PlanEntity {
     id = ''
     uid = ''
@@ -93,7 +91,4 @@ class PlanEntity {
         loanTerm: 0,
     }
 }
-export default function getPlanEntity() {
-    const planEntity: IPlan = new PlanEntity()
-    return planEntity
-}
+export default PlanEntity
