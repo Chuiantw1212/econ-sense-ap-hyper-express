@@ -215,13 +215,13 @@ export class PlanModel {
             throw '資料重複'
         }
         const docRef = this.collection.doc()
-        const planForm: IPlan = this.getPlanForm()
+        const planForm: IPlan = this.getPlanEntity()
         planForm.id = docRef.id
         planForm.uid = uid // IMPORTANT 否則新資料會是null
         this.collection.doc(planForm.id).set(planForm)
         return planForm
     }
-    getPlanForm() {
+    getPlanEntity() {
         const planForm: IPlan = {
             id: '',
             uid: '',
