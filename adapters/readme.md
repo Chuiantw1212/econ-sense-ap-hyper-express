@@ -1,5 +1,7 @@
 # 資料交換與格式轉換
-可能的資料夾名稱有 controllers/gateways/presenters
+可能的資料夾名稱有 controllers/gateways/presenters。
+
+但是因為專案本身採用前後端分離，沒有區分controllers以及presenters的必要性，所以一率採用了controllers(ctrl)
 
 # Middleware
 
