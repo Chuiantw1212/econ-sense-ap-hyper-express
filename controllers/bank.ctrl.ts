@@ -1,5 +1,5 @@
 import HyperExpress from 'hyper-express'
-import bankModel from '../drivers/models/bank'
+import bankModel from '../drivers/repositories/bank'
 const router = new HyperExpress.Router()
 router.get('/bank/config/interestRate', async function (req, res) {
     try {

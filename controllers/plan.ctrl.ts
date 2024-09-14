@@ -1,7 +1,7 @@
 import HyperExpress from 'hyper-express'
-import planModel from '../drivers/models/plan'
+import planModel from '../drivers/repositories/plan'
 import firebase from '../drivers/plugins/firebase'
-import bankModel from '../drivers/models/bank'
+import bankModel from '../drivers/repositories/bank'
 import getPlanEntity from '../entities/plan'
 import type { IPlan } from '../drivers/interfaces/plan'
 const router = new HyperExpress.Router()
