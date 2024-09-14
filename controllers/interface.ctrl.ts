@@ -1,9 +1,9 @@
 import HyperExpress from 'hyper-express'
-import PlanEntity from '../entities/plan'
+import GetPlanInterfaceService from '../domain/service/GetPlanInterface'
 const router = new HyperExpress.Router()
 router.get('/interface/plan', async function (req, res) {
     try {
-        const planForm = await new PlanEntity()
+        const planForm = await GetPlanInterfaceService.getPlanInterface()
         res.json(planForm)
     } catch (error: any) {
         res.send(error.message || error)
