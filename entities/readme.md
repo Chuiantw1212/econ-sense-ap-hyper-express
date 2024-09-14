@@ -3,6 +3,8 @@
 企業層級，跨專案的商業邏輯、演算法什麼的，比如說用戶權限管理。但是因為我的專案就這麼一個，所以這只放商業用途的物件。
 商業邏輯不動，物件本身就不動。
 
+按照乾淨架構，當我這個層級並非為企業服務而是單一應用時，這裡放商業物件。以個人理財為例，或許就是個人理財的"規劃"。
+
 # Entities
 Entities encapsulate Enterprise wide business rules. An entity can be an object with methods, or it can be a set of data structures and functions. It doesn’t matter so long as the entities could be used by many different applications in the enterprise.
 
