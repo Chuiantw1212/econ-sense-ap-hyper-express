@@ -2,6 +2,7 @@ import HyperExpress from 'hyper-express'
 import planModel from '../drivers/models/plan'
 import firebase from '../drivers/plugins/firebase'
 import bankModel from '../drivers/models/bank'
+import getPlanEntity from '../entities/plan'
 import type { IPlan } from '../drivers/interfaces/plan'
 const router = new HyperExpress.Router()
 
@@ -118,7 +119,8 @@ router.put('/plan/security', async function (req, res) {
 
 router.post('/plan/new', async function (req, res) {
     try {
-        const planForm: IPlan = await planModel.addNewPlan(req.locals.user.uid)
+        const planEntity = getPlanEntity()
+        const planForm: IPlan = await planModel.addNewPlan(req.locals.user.uid, planEntity)
         const interestRate = await bankModel.getInterestRate()
         if (planForm.estate) {
             planForm.estate.interestRate = interestRate
