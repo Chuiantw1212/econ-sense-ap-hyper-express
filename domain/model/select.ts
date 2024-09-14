@@ -1,4 +1,4 @@
-import type { IOptionsItem, ISelectMap, ISelectDocData } from '../../interfaces/select'
+import type { IOptionsItem, ISelectMap, ISelectDocData } from '../../entities/select'
 import { Query, QuerySnapshot, CollectionReference, DocumentReference, DocumentData, Firestore } from 'firebase-admin/firestore'
 
 export class SelectModel {
