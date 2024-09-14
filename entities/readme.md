@@ -1,6 +1,7 @@
 # 企業共用層
 
-企業層級，跨專案的商業邏輯、演算法什麼的，比如說用戶權限管理。但是因為我的專案就這麼一個，所以這個資料夾是空的。
+企業層級，跨專案的商業邏輯、演算法什麼的，比如說用戶權限管理。但是因為我的專案就這麼一個，所以這只放商業用途的物件。
+商業邏輯不動，物件本身就不動。
 
 # Entities
 Entities encapsulate Enterprise wide business rules. An entity can be an object with methods, or it can be a set of data structures and functions. It doesn’t matter so long as the entities could be used by many different applications in the enterprise.
