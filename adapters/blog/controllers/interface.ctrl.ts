@@ -1,5 +1,5 @@
 import HyperExpress from 'hyper-express'
-import GetPlanInterfaceService from '../domain/service/GetPlanInterface'
+import GetPlanInterfaceService from '../../../domain/services/GetPlanInterface'
 const router = new HyperExpress.Router()
 router.get('/interface/plan', async function (req, res) {
     try {
