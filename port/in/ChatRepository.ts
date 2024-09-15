@@ -1,4 +1,7 @@
-export default interface ChatRepopsitory {
-    makeStory: (arg0: string) => string
-    translate: (arg0: string[]) => string[]
+export interface MakeStoryUseCase {
+    makeStory: (arg0: string) => Promise<string>
+}
+
+export interface translateUseCase {
+    translate: (arg0: string[]) => Promise<string[]>
 }

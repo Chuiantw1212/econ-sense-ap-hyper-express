@@ -5,9 +5,9 @@ config()
 import HyperExpress from 'hyper-express';
 import cors, { type CorsOptions } from 'cors'
 // plugins
-import firebase from './others/firebase'
-import googleCloud from './others/googleCloud'
-import chatGpt from './others/chatGpt'
+import firebase from './adapters/firebase.out'
+import googleCloud from './adapters/googleCloud.out'
+import chatGpt from './adapters/chatGpt.out'
 // models
 import chatModel from './domain/model/chat'
 import selectModel from './domain/model/select'
