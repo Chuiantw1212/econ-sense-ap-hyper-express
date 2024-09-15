@@ -22,17 +22,17 @@ interface ChatMessage {
     conversationId?: string;
 }
 export class ChatGptAdapter implements SendMessagePort {
-    instance: any
+    chatRepository: any // chatRepository
     async initializeSync(apiKey: string) {
         try {
             const { ChatGPTAPI } = await import('chatgpt')
-            const instance: any = new ChatGPTAPI({
+            const chatRepository: any = new ChatGPTAPI({
                 apiKey,
                 // completionParams: {
                 //     "model": "gpt-4o",
                 // }
             })
-            this.instance = instance
+            this.chatRepository = chatRepository
         } catch (error: any) {
             console.log(error.message || error)
         }
@@ -41,7 +41,7 @@ export class ChatGptAdapter implements SendMessagePort {
         const sendMessageOptions: SendMessageOptions = {
             timeoutMs: 15 * 1000
         }
-        const res: ChatMessage = await this.instance.sendMessage(message, sendMessageOptions)
+        const res: ChatMessage = await this.chatRepository.sendMessage(message, sendMessageOptions)
         return res.text
     }
 }

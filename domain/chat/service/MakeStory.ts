@@ -1,6 +1,9 @@
-import type { MakeStoryUseCase } from '../../port/in/ChatUseCases'
+import type { MakeStoryUseCase } from '../../../port/in/ChatUseCases'
 class MakeStoryService implements MakeStoryUseCase {
     chatGptInstance: any
+    initialize(chatGptInstance: any) {
+        this.chatGptInstance = chatGptInstance
+    }
     async makeStory(story: string) {
         if (!this.chatGptInstance) {
             throw 'ChatGpt初始化失敗！'

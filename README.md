@@ -14,6 +14,7 @@
 | **ASP.NET Core**   | C#                  | ~85,000    | 80 ms           | 28.0 MB/s            | 微服務架構、企業應用，與 .NET 整合  |
 | **Vert.x**         | Java                | ~85,000    | 90 ms           | 28.7 MB/s            | 高效處理並發的分散式系統           |
 | **FastAPI**        | Python (Starlette)  | ~50,000    | 160 ms          | 18.0 MB/s            | 快速開發、API 驅動應用             |
+
          |
 
 ### 評語

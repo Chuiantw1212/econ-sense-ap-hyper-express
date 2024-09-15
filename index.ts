@@ -4,12 +4,13 @@ import { config } from 'dotenv'
 config()
 import HyperExpress from 'hyper-express';
 import cors, { type CorsOptions } from 'cors'
-// plugins
+// adapters
 import firebase from './adapters/firebase.out'
 import googleCloud from './adapters/googleCloud.out'
 import chatGpt from './adapters/chatGpt.out'
-// models
-import chatModel from './domain/model/chat'
+// services & models
+import MakeStoryService from './domain/chat/service/MakeStory';
+import TranslateOccupationService from './domain/chat/service/TranslateOccupation';
 import selectModel from './domain/model/select'
 import bankModel from './domain/model/bank'
 import jcicModel from './domain/model/jcic'
@@ -49,9 +50,14 @@ import interfaceController from './adapters/blog/interface.ctrl'
     const firestore = await firebase.initializeSync(FIREBASE_SERVICE_ACCOUNT_KEY_JSON)
 
     /**
+     * Services
+     */
+    MakeStoryService.initialize(chatGpt)
+    TranslateOccupationService.initialize(chatGpt)
+    /**
      * models
      */
-    chatModel.initialize(chatGpt)
+    // chatModel.initialize(chatGpt)
     selectModel.initialize(firestore)
     locationModel.initialize(firestore)
     bankModel.initialize({
