@@ -1,8 +1,6 @@
-import type { MakeStoryUseCase } from '../../port/in/ChatRepository'
-import PlanEntity from '../../entities/plan'
+import type { MakeStoryUseCase } from '../../port/in/ChatUseCases'
 class MakeStoryService implements MakeStoryUseCase {
-
-    
+    chatGptInstance: any
     async makeStory(story: string) {
         if (!this.chatGptInstance) {
             throw 'ChatGpt初始化失敗！'
@@ -18,19 +16,5 @@ class MakeStoryService implements MakeStoryUseCase {
         text = text.trim()
         return text
     }
-    // async translate(labels: string[]) {
-    //     const labelStrings = labels.join('||')
-    //     const res: string = await this.chatGptInstance.sendMessage(`Translate english by Taiwanese. Ensure translations contains only the common naming convention in Taiwan and fully translated into zh-TW. \n\n
-    //         ${labelStrings}`
-    //     )
-    //     const options = res.split('||')
-    //     if (labels.length !== options.length) {
-    //         const emptyResult = labels.map(() => '')
-    //         return emptyResult
-    //     }
-    //     return options.map(label => {
-    //         return String(label).trim()
-    //     })
-    // }
 }
 export default new MakeStoryService()

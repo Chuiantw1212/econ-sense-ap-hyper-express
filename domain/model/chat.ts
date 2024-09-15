@@ -1,6 +1,6 @@
-import { ChatGptPlugin } from "../../adapters/chatGpt.out"
+import { ChatGptAdapter } from "../../adapters/chatGpt.out"
 export class ChatModel {
-    chatGptInstance: ChatGptPlugin | any = null
+    chatGptInstance: ChatGptAdapter = null as any
     initialize(chatGptInstance: any) {
         this.chatGptInstance = chatGptInstance
     }
