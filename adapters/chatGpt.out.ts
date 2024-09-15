@@ -9,7 +9,6 @@ interface SendMessageOptions {
     timeoutMs?: number;
     abortSignal?: AbortSignal;
 };
-// const { ChatGPTAPI } = import('chatgpt')
 type Role = 'user' | 'assistant' | 'system';
 interface ChatMessage {
     id: string;

@@ -7,7 +7,9 @@
 按照 Clean Architecture 架構圖，
 這邊應該要包含 Use Case Input Port / Use Case Interactor / Use Case output port
 
-簡而言之就是各種Interface
+簡而言之就是各種Interface。
+
+本資料夾規範，in一律用useCases，out一律用repositories
 
 ## Use Cases / Domain Services / Repository / Interface
 
