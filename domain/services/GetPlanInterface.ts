@@ -1,10 +1,11 @@
-import type GetPlanUseCase from '../../useCases/GetPlanUseCase'
+import type GetPlanUseCase from '../../port/in/GetPlanUseCase'
 import PlanEntity from '../../entities/plan'
 class GetPlanInterfaceService implements GetPlanUseCase {
-    async getPlanInterface() {
+    port = null; // if any
+    getPlanInterface() {
         // 驗證業務規則，與驗證輸入資料不相同
         // 操作模型(model)狀態
-        const planForm = await new PlanEntity()
+        const planForm = new PlanEntity()
         // 回傳
         return planForm
     }
