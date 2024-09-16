@@ -9,4 +9,18 @@ router.get('/meta/plan', async function (req, res) {
         res.send(error.message || error)
     }
 })
+router.get('/meta/select', async function (req, res) {
+    try {
+        const locals = req.app.locals as any
+        const countiesAndTownMap = await locals.GetTaiwanLocationService.getTaiwanLocations()
+        const selectOptionsMap = await locals.GetOptionsService.getOptionsMap()
+        const result = {
+            ...countiesAndTownMap,
+            ...selectOptionsMap,
+        }
+        res.json(result)
+    } catch (error: any) {
+        res.send(error.message || error)
+    }
+})
 export default router

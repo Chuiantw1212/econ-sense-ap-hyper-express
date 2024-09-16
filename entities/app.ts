@@ -3,7 +3,9 @@ import TranslateOccupationService from "../domain/chat.service/TranslateOccupati
 import GetBackedInterestRateService from "../domain/finance.service/GetBackedInterestRate"
 import GetPortfolioIRRService from "../domain/finance.service/GetPortfolioIRR"
 import GetLifeExpectancyService from "../domain/finance.service/GetLifeExpectancy"
-import GetEstateUnitPrice from "../domain/finance.service/GetEstateUnitPrice"
+import GetEstateUnitPriceService from "../domain/finance.service/GetEstateUnitPrice"
+import GetOptionsService from "../domain/meta.service/GetOptions"
+import GetTaiwanLocationService from "../domain/meta.service/GetTaiwanLocations"
 
 export interface ILocals {
     startupTime?: number,
@@ -12,7 +14,9 @@ export interface ILocals {
     GetBackedInterestRateService: GetBackedInterestRateService,
     GetPortfolioIRRService: GetPortfolioIRRService,
     GetLifeExpectancyService: GetLifeExpectancyService,
-    GetEstateUnitPrice: GetEstateUnitPrice,
+    GetEstateUnitPriceService: GetEstateUnitPriceService,
+    GetOptionsService: GetOptionsService,
+    GetTaiwanLocationService: GetTaiwanLocationService,
 }
 
 export interface IApp {

@@ -1,4 +1,4 @@
-import { Firestore, CollectionReference, Query, DocumentSnapshot, DocumentData } from 'firebase-admin/firestore'
+import { Firestore, CollectionReference, } from 'firebase-admin/firestore'
 import type {
     IPlanProfile,
     IPlanCareer,
@@ -12,9 +12,9 @@ import type {
     IPlan,
 } from '../entities/plan'
 
-export class PlanModel {
+export default class PlanModel {
     collection: CollectionReference = null as any
-    initialize(firestore: Firestore) {
+    constructor(firestore: Firestore) {
         this.collection = firestore.collection('plans')
     }
     async mergeProfile(uid: string, data: any = {}) {
@@ -222,6 +222,3 @@ export class PlanModel {
         return planForm
     }
 }
-
-const planModel = new PlanModel()
-export default planModel

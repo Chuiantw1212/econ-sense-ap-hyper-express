@@ -19,7 +19,7 @@ rootController.get('/', async (request, response) => {
             [key]: `${valueInMB.toLocaleString()}Mb`
         })
     }
-    const locals: ILocals = request.app.locals
+    const locals = request.app.locals as ILocals
     response.json({
         memoryUsage: memoryUsageInMB,
         startupTime: `${locals.startupTime}s`,

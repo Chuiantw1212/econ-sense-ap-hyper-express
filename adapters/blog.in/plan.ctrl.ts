@@ -1,12 +1,12 @@
 import HyperExpress from 'hyper-express'
-import planModel from '../../domain/plan.model'
+import planModel from '../../domain/Plan.model'
 import firebase from '../firebase.out'
 import PlanEntity from '../../entities/plan'
 import type { IPlan } from '../../entities/plan'
 const router = new HyperExpress.Router()
 
 /**
- * Middleware用法
+ * 這邊示範Middleware用法
  * https://github.com/kartikk221/hyper-express/blob/master/docs/Middlewares.md
  */
 router.use('/plan', async (req, res, next) => {

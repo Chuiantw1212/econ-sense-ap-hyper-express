@@ -13,9 +13,9 @@ import ishares from './adapters/ishares.out'
 // models
 import SelectModel from './domain/select.model'
 import LifeExpectancyModel from './domain/LifeExpectancy.model';
-import jcicModel from './domain/EstateContract.model'
-// import locationModel from './domain/location.model'
-import planModel from './domain/plan.model';
+import EstateContractModel from './domain/EstateContract.model'
+import LocationModel from './domain/Location.model';
+import PlanModel from './domain/Plan.model';
 // services
 import { ILocals } from './entities/app';
 import MakeStoryService from './domain/chat.service/MakeStory';
@@ -24,6 +24,8 @@ import GetBackedInterestRateService from './domain/finance.service/GetBackedInte
 import GetPortfolioIRRService from './domain/finance.service/GetPortfolioIRR';
 import GetOptionsService from './domain/meta.service/GetOptions';
 import GetLifeExpectancyService from './domain/finance.service/GetLifeExpectancy';
+import GetEstateUnitPriceService from './domain/finance.service/GetEstateUnitPrice';
+import GetTaiwanLocationService from './domain/meta.service/GetTaiwanLocations';
 // controllers
 import rootController from './adapters/blog.in/root.ctrl'
 import bankController from './adapters/blog.in/bank.ctrl'
@@ -32,7 +34,6 @@ import chatController from './adapters/blog.in/chat.ctrl'
 import selectController from './adapters/blog.in/select.ctrl'
 import planController from './adapters/blog.in/plan.ctrl'
 import interfaceController from './adapters/blog.in/interface.ctrl'
-import LocationModel from './domain/Location.model';
 // 初始化server
 (async () => {
     const webserver = new HyperExpress.Server()
@@ -62,15 +63,10 @@ import LocationModel from './domain/Location.model';
 
     const selectModel = new SelectModel(firestore)
     const lifeExpectancyModel = new LifeExpectancyModel(firestore)
+    const estateContractModel = new EstateContractModel(firestore)
     const locationModel = new LocationModel(firestore)
-    planModel.initialize(firestore)
+    const planModel = new PlanModel(firestore)
 
-    // jcicModel.initialize({
-    //     selectModel,
-    //     firestore,
-    //     locationModel
-    // })
-    // ndcModel.initialize(firestore)
     /**
      * Services
      */
@@ -90,6 +86,13 @@ import LocationModel from './domain/Location.model';
         }),
         GetLifeExpectancyService: new GetLifeExpectancyService({
             model: lifeExpectancyModel,
+        }),
+        GetEstateUnitPriceService: new GetEstateUnitPriceService({
+            estateContractsModel: estateContractModel,
+            locationModel: locationModel
+        }),
+        GetTaiwanLocationService: new GetTaiwanLocationService({
+            model: locationModel
         })
     }
     Object.assign(webserver.locals, {

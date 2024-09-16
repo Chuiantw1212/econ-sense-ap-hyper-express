@@ -6,11 +6,12 @@ interface Idependency {
     locationModel: LocationModel
 }
 
-export default class GetEstateUnitPrice implements GetEstateUnitPriceUseCase {
+export default class GetEstateUnitPriceService implements GetEstateUnitPriceUseCase {
     estateContractsModel: EstateContractsModel = null as any
     locationModel: LocationModel = null as any
     constructor(dependency: Idependency) {
         this.estateContractsModel = dependency.estateContractsModel
+        this.locationModel = dependency.locationModel
     }
     async getEstateUnitPrice(query: IPriceTableItem) {
         if (query.county) {

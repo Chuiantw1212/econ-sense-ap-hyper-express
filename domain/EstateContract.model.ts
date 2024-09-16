@@ -1,3 +1,8 @@
+/**
+ * 個人購置房屋契約價格資料
+ * https://www.jcic.org.tw/main_ch/download_page.aspx?uid=213&pid=213
+ */
+
 import { Firestore, Query, QuerySnapshot, CollectionReference, DocumentData, AggregateField, } from 'firebase-admin/firestore'
 
 interface IPriceTableRawItem {
@@ -22,14 +27,10 @@ interface IPriceTableItem {
     hasParking?: boolean,
 }
 
-interface IInit {
-    firestore: Firestore
-}
-
 export default class EstateContractsModel {
     collectionContracts: CollectionReference = null as any
-    constructor(payload: IInit) {
-        this.collectionContracts = payload.firestore.collection('jcicContracts')
+    constructor(firestore: Firestore) {
+        this.collectionContracts = firestore.collection('jcicContracts')
     }
     async calculateUnitPrice(query: IPriceTableItem) {
         let contractQuery: Query = this.collectionContracts
@@ -83,38 +84,7 @@ export default class EstateContractsModel {
             average
         }
     }
-    async getMortgageLocation() {
-        let resultData = []
-        try {
-            resultData = require('./ContractPrice_TABLE_C_2023')
-            if (!resultData) {
-                const result = await fetch('https://www.jcic.org.tw/openapi/api/ContractPriceTableC2023', {
-                    signal: AbortSignal.timeout(300)
-                })
-                const resultJson = await result.json()
-                resultData = resultJson
-            }
-        } catch (error: any) {
-            console.log(`getMortgageLocation`, error.message || error)
-            throw error
-        }
-    }
-    async getContractPriceTable() {
-        let resultData = []
-        try {
-            resultData = require('./ContractPrice_TABLE_C_2023')
-            if (!resultData) {
-                const result = await fetch('https://www.jcic.org.tw/openapi/api/ContractPriceTableC2023', {
-                    signal: AbortSignal.timeout(300)
-                })
-                const resultJson = await result.json()
-                resultData = resultJson
-            }
-        } catch (error: any) {
-            console.log(`getContractPriceTable`, error.message || error)
-            throw error
-        }
-
+    async uploadContract(resultData: IPriceTableRawItem[]) {
         const countData: DocumentData = await this.collectionContracts.count().get()
         const count: number = countData.data().count
         const contractPriceTableRawItems: IPriceTableRawItem[] = resultData

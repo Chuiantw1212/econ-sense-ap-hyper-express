@@ -2,7 +2,6 @@ import admin from "firebase-admin"
 import { getAuth, Auth } from 'firebase-admin/auth'
 import { getFirestore, Firestore } from 'firebase-admin/firestore'
 import { getStorage, Storage, } from 'firebase-admin/storage'
-// import { GetCollectionPort } from '../port/out/FirebasePorts'
 export class FirebaseAdapter {
     firestore: Firestore = null as any
     auth: Auth = null as any
