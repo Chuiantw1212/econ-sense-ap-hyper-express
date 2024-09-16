@@ -12,7 +12,6 @@ import centralBank from './adapters/centralBank.out'
 import ishares from './adapters/ishares.out'
 // models
 import SelectModel from './domain/select.model'
-import BankModel from './domain/bank.model'
 import jcicModel from './domain/jcic.model'
 import locationModel from './domain/location.model'
 import planModel from './domain/plan.model';
@@ -61,9 +60,6 @@ import interfaceController from './adapters/blog.in/interface.ctrl'
     const selectModel = new SelectModel(firestore)
     // selectModel.initialize(firestore)
     locationModel.initialize(firestore)
-    const bankModel = new BankModel({
-        selectModel
-    })
     planModel.initialize(firestore)
     jcicModel.initialize({
         selectModel,

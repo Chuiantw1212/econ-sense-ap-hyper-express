@@ -1,7 +1,6 @@
 import HyperExpress from 'hyper-express'
 import planModel from '../../domain/plan.model'
 import firebase from '../firebase.out'
-import bankModel from '../../domain/bank.model'
 import PlanEntity from '../../entities/plan'
 import type { IPlan } from '../../entities/plan'
 const router = new HyperExpress.Router()
