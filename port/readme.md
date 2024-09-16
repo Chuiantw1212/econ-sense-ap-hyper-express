@@ -8,6 +8,8 @@
 ## Clean Architecture 在整潔的架構上弄髒你的手
 
 但是在實作篇，這邊僅放interface，實作交給了services/adapters。
+UseCase對應到in、Port/Repository對應到out。
+我實在對class implements interface的做法很無感，其實看不出來這樣做有何好處，所以這邊的覆蓋率沒到100%。
 
 ## Clean Architecture 英文原文
 
