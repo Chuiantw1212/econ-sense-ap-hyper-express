@@ -1,5 +1,5 @@
-import LifeExpectancyModel from '../LifeExpectancy.model'
-import type { GetLifeExpectancyUseCase, ILifeExpectancyItem } from '../../port/in/FinanceUseCases.tsa'
+import LifeExpectancyModel from '../LifeExpectancy.model.tsa'
+import type { GetLifeExpectancyUseCase, ILifeExpectancyItem } from '../../port/in/FinanceUseCases.ts'
 interface Idependency {
     model: LifeExpectancyModel
 }

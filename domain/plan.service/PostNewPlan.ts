@@ -1,4 +1,4 @@
-import PlanModel from "../Plan.model.tsa"
+import PlanModel from "../Plan.model.ts"
 import { IPlan } from "../../entities/plan"
 export default class PostNewPlanService {
     planModel: PlanModel = null as any

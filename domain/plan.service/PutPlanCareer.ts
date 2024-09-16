@@ -1,4 +1,4 @@
-import PlanModel from "../Plan.model.tsa"
+import PlanModel from "../Plan.model.ts"
 import { IPlanCareer } from "../../entities/plan"
 export default class PutCareerService {
     planModel: PlanModel = null as any
