@@ -17,15 +17,8 @@ export default class PlanModel {
     constructor(firestore: Firestore) {
         this.collection = firestore.collection('plans')
     }
-    async mergeProfile(uid: string, data: any = {}) {
+    async mergeProfile(uid: string, profile: IPlanProfile) {
         const singleDocSnapshot = await this.checkSingleDoc(uid)
-        const profile: IPlanProfile = {
-            gender: data.gender || '',
-            yearOfBirth: data.yearOfBirth || '',
-            careerInsuranceType: data.careerInsuranceType || '',
-            yearOfMarriage: data.yearOfMarriage || '',
-            story: data.story || '',
-        }
         const user: IPlan = {
             id: singleDocSnapshot.id,
             uid,
@@ -33,16 +26,8 @@ export default class PlanModel {
         }
         singleDocSnapshot.ref.update({ ...user })
     }
-    async mergeSpouse(uid: string, data: any = {}) {
+    async mergeSpouse(uid: string, spouse: IPlanSpouse) {
         const singleDocSnapshot = await this.checkSingleDoc(uid)
-        const spouse: IPlanSpouse = {
-            yearOfBirth: data.yearOfBirth || '',
-            yearOfMarriage: data.yearOfMarriage || '',
-            marriageLength: data.marriageLength || 0,
-            weddingExpense: data.weddingExpense || 0,
-            monthlyNetPay: data.monthlyNetPay || 0,
-            monthlyExpense: data.monthlyExpense || 0,
-        }
         const user: IPlan = {
             id: singleDocSnapshot.id,
             uid,
@@ -50,26 +35,8 @@ export default class PlanModel {
         }
         singleDocSnapshot.ref.update({ ...user })
     }
-    async mergeCareer(uid: string, data: any = {}) {
+    async mergeCareer(uid: string, career: IPlanCareer) {
         const singleDocSnapshot = await this.checkSingleDoc(uid)
-        const career: IPlanCareer = {
-            // 勞保
-            headCount: data.headCount || 0,
-            insuredUnit: data.insuredUnit || '',
-            // 公保
-            payPoint: data.payPoint || 0,
-            supervisorRank: data.supervisorRank || '',
-            professionalRank: data.professionalRank || '',
-            regionalAllowance: data.regionalAllowance || 0,
-            // 共同
-            monthlyBasicSalary: data.monthlyBasicSalary || 0,
-            pension: {
-                rate: data.pension.rate || 0,
-                monthlyContributionSelf: data.pension.monthlyContributionSelf || 0
-            },
-            monthlyNetPay: data.monthlyNetPay || 0,
-            monthlyExpense: data.monthlyExpense || 0
-        }
         const user: IPlan = {
             id: singleDocSnapshot.id,
             uid,
@@ -149,7 +116,6 @@ export default class PlanModel {
             totalPriceEstimated: data.totalPriceEstimated || 0,
             downpay: data.downpay || 0,
             downpayGoal: data.downpayGoal || 0,
-
         }
         const user: IPlan = {
             id: singleDocSnapshot.id,

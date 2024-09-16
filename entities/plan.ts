@@ -55,7 +55,7 @@ export interface IPlanSpouse {
     monthlyNetPay: number,
     monthlyExpense: number,
     weddingExpense: number,
-    yearOfBirth: number,
+    yearOfBirth: number | string,
 }
 
 export interface IPlanParenting {
