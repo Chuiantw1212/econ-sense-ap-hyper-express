@@ -1,6 +1,6 @@
 import Adapter from '../../adapters/chatGpt.out'
 import type { MakeStoryUseCase } from '../../port/in/ChatUseCases'
-class MakeStoryService implements MakeStoryUseCase {
+class GetNewStoryService implements MakeStoryUseCase {
     adapter: typeof Adapter = null as any
     constructor(adapter: typeof Adapter) {
         this.adapter = adapter
@@ -21,4 +21,4 @@ class MakeStoryService implements MakeStoryUseCase {
         return text
     }
 }
-export default MakeStoryService
+export default GetNewStoryService
