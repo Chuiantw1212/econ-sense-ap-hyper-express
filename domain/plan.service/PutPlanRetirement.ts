@@ -1,6 +1,6 @@
 import PlanModel from "../Plan.model"
 import { IPlanRetirement } from "../../entities/plan"
-export default class PutProfileService {
+export default class PutRetirementService {
     planModel: PlanModel = null as any
     constructor(model: PlanModel) {
         this.planModel = model

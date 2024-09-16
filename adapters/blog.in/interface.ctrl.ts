@@ -8,7 +8,7 @@ const router = new HyperExpress.Router()
 router.get('/interface/plan', async function (req, res) {
     try {
         const locals = req.app.locals as ILocals
-        const planForm = await locals.GetPlanInterfaceService.getPlanInterface()
+        const planForm = await locals.GetPlanInterfaceService.getPlanEntity()
         res.json(planForm)
     } catch (error: any) {
         res.send(error.message || error)

@@ -2,7 +2,7 @@ import PlanEntity from '../../entities/plan'
 import type { ISelectMap, IOptionsItem } from '../../entities/select'
 
 export interface GetPlanInterfaceUseCase {
-    getPlanInterface: () => PlanEntity
+    getPlanEntity: () => PlanEntity
 }
 
 export interface GetOptionsUseCase {

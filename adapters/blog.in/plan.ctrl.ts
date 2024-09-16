@@ -3,6 +3,7 @@ import planModel from '../../domain/Plan.model'
 import firebase from '../firebase.out'
 import PlanEntity from '../../entities/plan'
 import type { IPlan } from '../../entities/plan'
+import { ILocals } from '../../entities/app'
 const router = new HyperExpress.Router()
 
 /**
@@ -28,8 +29,9 @@ router.use('/plan', async (req, res, next) => {
 
 router.put('/plan/profile', async function (req, res) {
     try {
+        const { PutProfileService } = req.app.locals as ILocals
         const userPart = await req.json()
-        await planModel.mergeProfile(req.locals.user.uid, userPart)
+        await PutProfileService.mergeProfile(req.locals.user.uid, userPart)
         res.send()
     } catch (error: any) {
         res.send(error.message || error)
@@ -38,8 +40,9 @@ router.put('/plan/profile', async function (req, res) {
 
 router.put('/plan/career', async function (req, res) {
     try {
+        const { PutCareerService } = req.app.locals as ILocals
         const userPart = await req.json()
-        await planModel.mergeCareer(req.locals.user.uid, userPart)
+        await PutCareerService.mergeCareer(req.locals.user.uid, userPart)
         res.send()
     } catch (error: any) {
         res.send(error.message || error)
@@ -48,8 +51,9 @@ router.put('/plan/career', async function (req, res) {
 
 router.put('/plan/retirement', async function (req, res) {
     try {
+        const { PutRetirementService } = req.app.locals as ILocals
         const userPart = await req.json()
-        await planModel.mergeRetirement(req.locals.user.uid, userPart)
+        await PutRetirementService.mergeRetirement(req.locals.user.uid, userPart)
         res.send()
     } catch (error: any) {
         res.send(error.message || error)
@@ -58,8 +62,9 @@ router.put('/plan/retirement', async function (req, res) {
 
 router.put('/plan/estatePrice', async function (req, res) {
     try {
+        const { PutEstatePriceService } = req.app.locals as ILocals
         const userPart = await req.json()
-        await planModel.mergeEstatePrice(req.locals.user.uid, userPart)
+        await PutEstatePriceService.mergeEstatePrice(req.locals.user.uid, userPart)
         res.send()
     } catch (error: any) {
         res.send(error.message || error)
@@ -68,8 +73,9 @@ router.put('/plan/estatePrice', async function (req, res) {
 
 router.put('/plan/estateSize', async function (req, res) {
     try {
+        const { PutEstateSizeService } = req.app.locals as ILocals
         const userPart = await req.json()
-        await planModel.mergeEstateSize(req.locals.user.uid, userPart)
+        await PutEstateSizeService.mergeEstateSize(req.locals.user.uid, userPart)
         res.send()
     } catch (error: any) {
         res.send(error.message || error)
@@ -78,8 +84,9 @@ router.put('/plan/estateSize', async function (req, res) {
 
 router.put('/plan/estate', async function (req, res) {
     try {
+        const { PutMortgageService } = req.app.locals as ILocals
         const userPart = await req.json()
-        await planModel.mergeMortgage(req.locals.user.uid, userPart)
+        await PutMortgageService.mergeMortgage(req.locals.user.uid, userPart)
         res.send()
     } catch (error: any) {
         res.send(error.message || error)
@@ -88,8 +95,9 @@ router.put('/plan/estate', async function (req, res) {
 
 router.put('/plan/spouse', async function (req, res) {
     try {
+        const { PutSpouseService } = req.app.locals as ILocals
         const userPart = await req.json()
-        await planModel.mergeSpouse(req.locals.user.uid, userPart)
+        await PutSpouseService.mergeSpouse(req.locals.user.uid, userPart)
         res.send()
     } catch (error: any) {
         res.send(error.message || error)
@@ -98,8 +106,9 @@ router.put('/plan/spouse', async function (req, res) {
 
 router.put('/plan/parenting', async function (req, res) {
     try {
+        const { PutParentingService } = req.app.locals as ILocals
         const userPart = await req.json()
-        await planModel.mergeParenting(req.locals.user.uid, userPart)
+        await PutParentingService.mergeParenting(req.locals.user.uid, userPart)
         res.send()
     } catch (error: any) {
         res.send(error.message || error)
@@ -108,8 +117,9 @@ router.put('/plan/parenting', async function (req, res) {
 
 router.put('/plan/security', async function (req, res) {
     try {
+        const { PutSecurityService } = req.app.locals as ILocals
         const userPart = await req.json()
-        await planModel.mergeInvestment(req.locals.user.uid, userPart)
+        await PutSecurityService.mergeSecurity(req.locals.user.uid, userPart)
         res.send()
     } catch (error: any) {
         res.send(error.message || error)

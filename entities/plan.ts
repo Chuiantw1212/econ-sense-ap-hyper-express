@@ -99,6 +99,7 @@ export interface IPlanMortgage {
 }
 
 export interface IPlan {
+    [key: string]: any
     uid: string,
     id: string, // document id
     profile?: IPlanProfile,

@@ -7,6 +7,15 @@ import GetEstateUnitPriceService from "../domain/finance.service/GetEstateUnitPr
 import GetOptionsService from "../domain/meta.service/GetOptions"
 import GetTaiwanLocationService from "../domain/meta.service/GetTaiwanLocations"
 import GetPlanInterfaceService from "../domain/plan.service/GetPlanInterface"
+import PutCareerService from "../domain/plan.service/PutPlanCareer"
+import PutEstatePriceService from "../domain/plan.service/PutPlanEstatePrice"
+import PutEstateSizeService from "../domain/plan.service/PutPlanEstateSize"
+import PutMortgageService from "../domain/plan.service/PutPlanMortagage"
+import PutParentingService from "../domain/plan.service/PutPlanParenting"
+import PutProfileService from "../domain/plan.service/PutPlanProfile"
+import PutRetirementService from "../domain/plan.service/PutPlanRetirement"
+import PutSecurityService from "../domain/plan.service/PutPlanSecurity"
+import PutSpouseService from "../domain/plan.service/PutPlanSpouse"
 
 export interface ILocals {
     startupTime?: number,
@@ -19,6 +28,15 @@ export interface ILocals {
     GetOptionsService: GetOptionsService,
     GetTaiwanLocationService: GetTaiwanLocationService,
     GetPlanInterfaceService: GetPlanInterfaceService,
+    PutCareerService: PutCareerService,
+    PutEstatePriceService: PutEstatePriceService,
+    PutMortgageService: PutMortgageService,
+    PutParentingService: PutParentingService,
+    PutProfileService: PutProfileService,
+    PutRetirementService: PutRetirementService,
+    PutSecurityService: PutSecurityService,
+    PutSpouseService: PutSpouseService,
+    PutEstateSizeService: PutEstateSizeService,
 }
 
 export interface IApp {
