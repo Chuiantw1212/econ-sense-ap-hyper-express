@@ -1,29 +1,12 @@
 
 import { Firestore, Query, CollectionReference, DocumentData } from 'firebase-admin/firestore'
-
-interface INdcLifeExpectancyRawItem {
-    '項次': string,
-    '西元年': string,
-    '民國年': string,
-    '性別': string,
-    '年齡': string,
-    '預期壽命': string
-}
-
-interface INdcLifeExpectancyItem {
-    ceYear?: number,
-    rocYear?: number,
-    gender?: string,
-    age?: number,
-    lifeExpectancy?: number
-}
-
-export class NdcModel {
+import { ILifeExpectancyItem, INdcLifeExpectancyRawItem } from '../port/in/FinanceUseCases'
+export default class LifeExpectancyModel {
     collectionLifeExpectancy: CollectionReference = null as any
-    initialize(firestore: Firestore) {
+    constructor(firestore: Firestore) {
         this.collectionLifeExpectancy = firestore.collection('lifeExpectancies')
     }
-    async calculateLifeExpectancy(query: INdcLifeExpectancyItem): Promise<number> {
+    async queryLifeExpectancy(query: ILifeExpectancyItem): Promise<number> {
         let lifeExpQuery: Query = this.collectionLifeExpectancy
         if (query.ceYear) {
             lifeExpQuery = lifeExpQuery.where('ceYear', '==', query.ceYear)
@@ -36,7 +19,7 @@ export class NdcModel {
         }
         const lifeExpSnapshot = await lifeExpQuery.limit(1).get()
         if (lifeExpSnapshot.size) {
-            const lifeExpDocData: INdcLifeExpectancyItem = lifeExpSnapshot.docs[0].data()
+            const lifeExpDocData: ILifeExpectancyItem = lifeExpSnapshot.docs[0].data()
             return lifeExpDocData.lifeExpectancy as number
         } else {
             return 0
@@ -50,7 +33,7 @@ export class NdcModel {
 
         const countData: DocumentData = await this.collectionLifeExpectancy.count().get()
         const count: number = countData.data().count
-        const items: INdcLifeExpectancyItem[] = hasGenderItem.slice(count, hasGenderItem.length).map(item => {
+        const items: ILifeExpectancyItem[] = hasGenderItem.slice(count, hasGenderItem.length).map(item => {
             const genderMap: { [key: string]: string } = {
                 "男性": "M",
                 "女性": "F"
@@ -73,5 +56,3 @@ export class NdcModel {
         }, 100)
     }
 }
-const ndcModel = new NdcModel()
-export default ndcModel

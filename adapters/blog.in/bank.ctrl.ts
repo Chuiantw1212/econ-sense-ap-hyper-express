@@ -1,8 +1,9 @@
 import HyperExpress from 'hyper-express'
+import { ILocals } from '../../entities/app'
 const router = new HyperExpress.Router()
 router.get('/bank/config/interestRate', async function (req, res) {
     try {
-        const locals = req.app.locals as any
+        const locals = req.app.locals as ILocals
         const interestRate: number = await locals.GetBackedInterestRateService.getBackedInterestRate()
         res.json(interestRate)
     } catch (error: any) {
@@ -12,7 +13,7 @@ router.get('/bank/config/interestRate', async function (req, res) {
 })
 router.get('/bank/config/portfolioIrr', async function (req, res) {
     try {
-        const locals = req.app.locals as any
+        const locals = req.app.locals as ILocals
         const portfolioIRR = await locals.GetPortfolioIRRService.getPortfolioIRR()
         res.json(portfolioIRR)
     } catch (error: any) {

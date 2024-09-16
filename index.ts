@@ -12,10 +12,10 @@ import centralBank from './adapters/centralBank.out'
 import ishares from './adapters/ishares.out'
 // models
 import SelectModel from './domain/select.model'
+import LifeExpectancyModel from './domain/lifeExpectancy.model';
 import jcicModel from './domain/jcic.model'
 import locationModel from './domain/location.model'
 import planModel from './domain/plan.model';
-import ndcModel from './domain/lifeExpectancy.model';
 // services
 import MakeStoryService from './domain/chat.service/MakeStory';
 import TranslateOccupationService from './domain/chat.service/TranslateOccupation';
@@ -58,7 +58,7 @@ import interfaceController from './adapters/blog.in/interface.ctrl'
      */
 
     const selectModel = new SelectModel(firestore)
-    // selectModel.initialize(firestore)
+    const lifeExpectancyModel = new LifeExpectancyModel(firestore)
     locationModel.initialize(firestore)
     planModel.initialize(firestore)
     jcicModel.initialize({
@@ -66,7 +66,7 @@ import interfaceController from './adapters/blog.in/interface.ctrl'
         firestore,
         locationModel
     })
-    ndcModel.initialize(firestore)
+    // ndcModel.initialize(firestore)
     /**
      * Services
      */
