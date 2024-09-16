@@ -12,7 +12,7 @@ import centralBank from './adapters/centralBank.out'
 import ishares from './adapters/ishares.out'
 // models
 import SelectModel from './domain/Select.model'
-import LifeExpectancyModel from './domain/LifeExpectancy.model.tsa';
+import LifeExpectancyModel from './domain/LifeExpectancy.model.ts';
 import EstateContractModel from './domain/EstateContract.model'
 import LocationModel from './domain/Location.model.ts';
 import PlanModel from './domain/Plan.model.ts';
