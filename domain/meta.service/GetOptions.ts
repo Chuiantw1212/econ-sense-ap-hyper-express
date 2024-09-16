@@ -1,6 +1,6 @@
 import type { ISelectMap, ISelectDocData } from '../../entities/select'
 import type { GetOptionsUseCase } from '../../port/in/MetaUseCases'
-import SelectModel from '../select.model'
+import SelectModel from '../Select.model'
 interface Idependency {
     model: SelectModel
 }

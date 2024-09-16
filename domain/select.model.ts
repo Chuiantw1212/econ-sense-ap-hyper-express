@@ -5,7 +5,7 @@ export default class SelectModel {
     collection: CollectionReference = null as any
     constructor(firestore: Firestore) {
         this.collection = firestore.collection('selects')
-    }
+    } 
     async getOptionsByKey(key: string,): Promise<IOptionsItem[]> {
         const keyQuery: Query = this.collection.where('key', '==', key).limit(1)
         const snapshot: QuerySnapshot = await keyQuery.get()

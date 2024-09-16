@@ -11,7 +11,7 @@ import chatGpt from './adapters/chatGpt.out'
 import centralBank from './adapters/centralBank.out'
 import ishares from './adapters/ishares.out'
 // models
-import SelectModel from './domain/select.model'
+import SelectModel from './domain/Select.model'
 import LifeExpectancyModel from './domain/LifeExpectancy.model';
 import EstateContractModel from './domain/EstateContract.model'
 import LocationModel from './domain/Location.model';

@@ -1,5 +1,5 @@
 import HyperExpress from 'hyper-express'
-import GetPlanInterfaceService from '../../domain/meta.service/GetPlanInterface'
+import GetPlanInterfaceService from '../../domain/plan.service/GetPlanInterface'
 const router = new HyperExpress.Router()
 /**
  * Deprecated, 合併到meta

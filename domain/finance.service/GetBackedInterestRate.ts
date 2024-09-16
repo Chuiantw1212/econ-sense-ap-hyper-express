@@ -1,5 +1,5 @@
 import CentralBankAdapter from '../../adapters/centralBank.out'
-import SelectModel from '../select.model'
+import SelectModel from '../Select.model'
 import type { GetBackedInterestRateUseCase } from '../../port/in/FinanceUseCases'
 interface Idependency {
     adapter: typeof CentralBankAdapter,
