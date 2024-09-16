@@ -1,5 +1,5 @@
 import HyperExpress from 'hyper-express'
-import locationModel from '../../domain/location.model'
+import locationModel from '../../domain/Location.model'
 import selectModel from '../../domain/select.model'
 const router = new HyperExpress.Router()
 /**

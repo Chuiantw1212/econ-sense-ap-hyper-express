@@ -1,6 +1,4 @@
 import { Firestore, Query, QuerySnapshot, CollectionReference, DocumentData, AggregateField, } from 'firebase-admin/firestore'
-import SelectModel from './select.model'
-import { LocationModel } from './location.model'
 
 interface IPriceTableRawItem {
     '縣市名稱': string;
@@ -25,30 +23,20 @@ interface IPriceTableItem {
 }
 
 interface IInit {
-    selectModel: SelectModel
-    locationModel: LocationModel
     firestore: Firestore
 }
 
 export default class EstateContractsModel {
-    selectModel: SelectModel = null as any
-    locationModel: LocationModel = null as any
     collectionContracts: CollectionReference = null as any
-    initialize(payload: IInit) {
-        this.selectModel = payload.selectModel
-        this.locationModel = payload.locationModel
+    constructor(payload: IInit) {
         this.collectionContracts = payload.firestore.collection('jcicContracts')
     }
     async calculateUnitPrice(query: IPriceTableItem) {
         let contractQuery: Query = this.collectionContracts
         if (query.county) {
-            let countyLabel = this.locationModel.getCountyLabel(query.county)
-            contractQuery = contractQuery.where('county', '==', countyLabel)
+            contractQuery = contractQuery.where('county', '==', query.county)
             if (query.town) {
-                const townLabel = this.locationModel.getTownLabel(query.county, query.town)
-                if (townLabel) {
-                    contractQuery = contractQuery.where('town', '==', townLabel)
-                }
+                contractQuery = contractQuery.where('town', '==', query.town)
             }
         }
         if (query.buildingAge) {

@@ -2,11 +2,11 @@ import { Firestore, CollectionReference, DocumentSnapshot, DocumentData } from '
 import type { IOptionsItem, ICounty, ITown, ISelectMap, } from '../entities/select'
 import { XMLParser } from 'fast-xml-parser'
 
-export class LocationModel {
+export default class LocationModel {
     counties: IOptionsItem[] = []
     townMap: ISelectMap = {}
     collection: CollectionReference = null as any
-    initialize(firestore: Firestore) {
+    constructor(firestore: Firestore) {
         this.collection = firestore.collection('locations')
     }
     getTownLabel(countyValue: string, townValue: string) {
@@ -104,5 +104,3 @@ export class LocationModel {
         }
     }
 }
-const locationModel = new LocationModel()
-export default locationModel

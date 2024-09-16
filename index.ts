@@ -12,16 +12,18 @@ import centralBank from './adapters/centralBank.out'
 import ishares from './adapters/ishares.out'
 // models
 import SelectModel from './domain/select.model'
-import LifeExpectancyModel from './domain/lifeExpectancy.model';
-import jcicModel from './domain/jcic.model'
-import locationModel from './domain/location.model'
+import LifeExpectancyModel from './domain/LifeExpectancy.model';
+import jcicModel from './domain/EstateContract.model'
+// import locationModel from './domain/location.model'
 import planModel from './domain/plan.model';
 // services
+import { ILocals } from './entities/app';
 import MakeStoryService from './domain/chat.service/MakeStory';
 import TranslateOccupationService from './domain/chat.service/TranslateOccupation';
-import GetBackedInterestRateService from './domain/finance.service/GetBackedInterestRate'
-import GetPortfolioIRRService from './domain/finance.service/GetPortfolioIRR'
+import GetBackedInterestRateService from './domain/finance.service/GetBackedInterestRate';
+import GetPortfolioIRRService from './domain/finance.service/GetPortfolioIRR';
 import GetOptionsService from './domain/meta.service/GetOptions';
+import GetLifeExpectancyService from './domain/finance.service/GetLifeExpectancy';
 // controllers
 import rootController from './adapters/blog.in/root.ctrl'
 import bankController from './adapters/blog.in/bank.ctrl'
@@ -30,6 +32,7 @@ import chatController from './adapters/blog.in/chat.ctrl'
 import selectController from './adapters/blog.in/select.ctrl'
 import planController from './adapters/blog.in/plan.ctrl'
 import interfaceController from './adapters/blog.in/interface.ctrl'
+import LocationModel from './domain/Location.model';
 // 初始化server
 (async () => {
     const webserver = new HyperExpress.Server()
@@ -59,18 +62,19 @@ import interfaceController from './adapters/blog.in/interface.ctrl'
 
     const selectModel = new SelectModel(firestore)
     const lifeExpectancyModel = new LifeExpectancyModel(firestore)
-    locationModel.initialize(firestore)
+    const locationModel = new LocationModel(firestore)
     planModel.initialize(firestore)
-    jcicModel.initialize({
-        selectModel,
-        firestore,
-        locationModel
-    })
+
+    // jcicModel.initialize({
+    //     selectModel,
+    //     firestore,
+    //     locationModel
+    // })
     // ndcModel.initialize(firestore)
     /**
      * Services
      */
-    Object.assign(webserver.locals, {
+    const allServices: ILocals = {
         MakeStoryService: new MakeStoryService(chatGpt),
         TranslateOccupationService: new TranslateOccupationService(chatGpt),
         GetBackedInterestRateService: new GetBackedInterestRateService({
@@ -83,7 +87,13 @@ import interfaceController from './adapters/blog.in/interface.ctrl'
         }),
         GetOptionsService: new GetOptionsService({
             model: selectModel
+        }),
+        GetLifeExpectancyService: new GetLifeExpectancyService({
+            model: lifeExpectancyModel,
         })
+    }
+    Object.assign(webserver.locals, {
+        ...allServices
     })
     /**
      * middlewares
