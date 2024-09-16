@@ -9,7 +9,7 @@ router.get('/select', async function (req, res) {
     try {
         const locals = req.app.locals as any
         const countiesAndTownMap = await locationModel.getCountiesAndTowns()
-        const selectOptionsMap = await selectModel.getOptionsMap()
+        const selectOptionsMap = await locals.GetOptionsService.getOptionsMap()
         const result = {
             ...countiesAndTownMap,
             ...selectOptionsMap,

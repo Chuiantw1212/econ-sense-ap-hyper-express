@@ -22,6 +22,7 @@ import MakeStoryService from './domain/chat.service/MakeStory';
 import TranslateOccupationService from './domain/chat.service/TranslateOccupation';
 import GetBackedInterestRateService from './domain/finance.service/GetBackedInterestRate'
 import GetPortfolioIRRService from './domain/finance.service/GetPortfolioIRR'
+import GetOptionsService from './domain/meta.service/GetOptions';
 // controllers
 import rootController from './adapters/blog.in/root.ctrl'
 import bankController from './adapters/blog.in/bank.ctrl'
@@ -83,6 +84,9 @@ import interfaceController from './adapters/blog.in/interface.ctrl'
         GetPortfolioIRRService: new GetPortfolioIRRService({
             adapter: ishares,
             model: selectModel,
+        }),
+        GetOptionsService: new GetOptionsService({
+            model: selectModel
         })
     })
     /**

@@ -1,6 +1,6 @@
-import type GetPlanUseCase from '../../port/in/MetaUseCases'
+import type { GetPlanInterfaceUseCase } from '../../port/in/MetaUseCases'
 import PlanEntity from '../../entities/plan'
-class GetPlanInterfaceService implements GetPlanUseCase {
+class GetPlanInterfaceService implements GetPlanInterfaceUseCase {
     getPlanInterface() {
         // 驗證業務規則，與驗證輸入資料不相同
         // 操作模型(model)狀態

@@ -1,36 +1,10 @@
-import type { IOptionsItem, ISelectMap, ISelectDocData } from '../entities/select'
+import type { IOptionsItem, } from '../entities/select'
 import { Query, QuerySnapshot, CollectionReference, DocumentReference, DocumentData, Firestore } from 'firebase-admin/firestore'
 
 export default class SelectModel {
     collection: CollectionReference = null as any
-    optionsMap: ISelectMap = {}
-    optionKeys: string[] = ['floorSizes', 'buildingAges', 'buildingTypes', 'genders', 'retirementQuartile', 'insuranceTypes']
     constructor(firestore: Firestore) {
         this.collection = firestore.collection('selects')
-    }
-    // initialize(firestore: Firestore) {
-    //     this.collection = firestore.collection('selects')
-    // }
-    async getOptionsMap() {
-        // 如有現成就用現成
-        const promises = this.optionKeys.map(async (key: string) => {
-            let options = this.optionsMap[key]
-            if (!options?.length) {
-                options = await this.getOptionsByKey(key)
-                this.optionsMap[key] = options
-            }
-            const selectDocData: ISelectDocData = {
-                key: key,
-                options
-            }
-            return selectDocData
-        })
-        const docDatas: ISelectDocData[] = await Promise.all(promises)
-        const selectMap: ISelectMap = {}
-        docDatas.forEach(docData => {
-            selectMap[docData.key] = docData.options
-        })
-        return selectMap
     }
     async getOptionsByKey(key: string,): Promise<IOptionsItem[]> {
         const keyQuery: Query = this.collection.where('key', '==', key).limit(1)

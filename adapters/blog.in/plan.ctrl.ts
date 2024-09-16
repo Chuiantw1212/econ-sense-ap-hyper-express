@@ -119,9 +119,10 @@ router.put('/plan/security', async function (req, res) {
 
 router.post('/plan/new', async function (req, res) {
     try {
+        const locals = req.app.locals as any
         const planEntity = new PlanEntity()
         const planForm: IPlan = await planModel.addNewPlan(req.locals.user.uid, planEntity)
-        const interestRate = await bankModel.getInterestRate()
+        const interestRate = await locals.GetBackedInterestRateService.getInterestRate()
         if (planForm.estate) {
             planForm.estate.interestRate = interestRate
         }
