@@ -6,7 +6,7 @@ export interface GetPlanInterfaceUseCase {
 }
 
 export interface GetOptionsUseCase {
-    getOptions: () => Promise<ISelectMap>
+    getOptionsMap: () => Promise<ISelectMap>
 }
 
 export interface GetTaiwanLocation {

@@ -12,7 +12,7 @@ export default class GetOptionsService implements GetOptionsUseCase {
         const { model } = dependency
         this.selectModel = model
     }
-    async getOptions() {
+    async getOptionsMap() {
         // 如有現成就用現成
         const promises = this.optionKeys.map(async (key: string) => {
             let options = this.optionsMap[key]
