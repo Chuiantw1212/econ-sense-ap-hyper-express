@@ -49,16 +49,9 @@ import interfaceController from './adapters/blog.in/interface.ctrl'
         FIREBASE_SERVICE_ACCOUNT_KEY_JSON = require("./FIREBASE_SERVICE_ACCOUNT_KEY_JSON.json");
     }
     const firestore = await firebase.initializeSync(FIREBASE_SERVICE_ACCOUNT_KEY_JSON)
-
-    /**
-     * Services
-     */
-    MakeStoryService.initialize(chatGpt)
-    TranslateOccupationService.initialize(chatGpt)
     /**
      * models
      */
-    // chatModel.initialize(chatGpt)
     selectModel.initialize(firestore)
     locationModel.initialize(firestore)
     bankModel.initialize({
@@ -71,7 +64,15 @@ import interfaceController from './adapters/blog.in/interface.ctrl'
         locationModel
     })
     ndcModel.initialize(firestore)
-
+    /**
+     * Services
+     */
+    MakeStoryService.initialize(chatGpt)
+    TranslateOccupationService.initialize(chatGpt)
+    Object.assign(webserver.locals, {
+        MakeStoryService,
+        TranslateOccupationService
+    })
     /**
      * middlewares
      */
