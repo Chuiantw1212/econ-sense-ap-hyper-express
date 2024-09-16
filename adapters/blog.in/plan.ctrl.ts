@@ -1,7 +1,5 @@
 import HyperExpress from 'hyper-express'
-import planModel from '../../domain/Plan.model'
 import firebase from '../firebase.out'
-import PlanEntity from '../../entities/plan'
 import type { IPlan } from '../../entities/plan'
 import { ILocals } from '../../entities/app'
 const router = new HyperExpress.Router()
@@ -128,10 +126,10 @@ router.put('/plan/security', async function (req, res) {
 
 router.post('/plan/new', async function (req, res) {
     try {
-        const locals = req.app.locals as any
-        const planEntity = new PlanEntity()
-        const planForm: IPlan = await planModel.addNewPlan(req.locals.user.uid, planEntity)
-        const interestRate = await locals.GetBackedInterestRateService.getInterestRate()
+        const { GetPlanEntityService, PostNewPlanService, GetBackedInterestRateService } = req.app.locals as ILocals
+        const planEntity = GetPlanEntityService.getPlanEntity()
+        const planForm: IPlan = await PostNewPlanService.addNewPlan(req.locals.user.uid, planEntity)
+        const interestRate = await GetBackedInterestRateService.getBackedInterestRate()
         if (planForm.estate) {
             planForm.estate.interestRate = interestRate
         }
@@ -143,7 +141,8 @@ router.post('/plan/new', async function (req, res) {
 
 router.get('/plan', async function (req, res) {
     try {
-        const planForm = await planModel.getPlan(req.locals.user.uid)
+        const { GetUserPlanService } = req.app.locals as ILocals
+        const planForm = await GetUserPlanService.getPlan(req.locals.user.uid)
         res.json(planForm)
     } catch (error: any) {
         res.send(error.message || error)
