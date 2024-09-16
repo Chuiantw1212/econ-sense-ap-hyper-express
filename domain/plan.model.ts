@@ -44,24 +44,8 @@ export default class PlanModel {
         }
         singleDocSnapshot.ref.update({ ...user })
     }
-    async mergeRetirement(uid: string, data: any = {}) {
+    async mergeRetirement(uid: string, retirement: IPlanRetirement) {
         const singleDocSnapshot = await this.checkSingleDoc(uid)
-        const retirement: IPlanRetirement = {
-            age: data.age || 0,
-            insurance: {
-                presentSeniority: data.insurance.presentSeniority || 0,
-            },
-            pension: {
-                employerContribution: data.pension.employerContribution || 0,
-                employerContributionIncome: data.pension.employerContributionIncome || 0,
-                employeeContrubution: data.pension.employeeContrubution || 0,
-                employeeContrubutionIncome: data.pension.employeeContrubutionIncome || 0,
-                irrOverDecade: data.pension.irrOverDecade || 0,
-                requestType: data.pension.requestType || ''
-            },
-            qualityLevel: data.qualityLevel,
-            percentileRank: data.percentileRank,
-        }
         const user: IPlan = {
             id: singleDocSnapshot.id,
             uid,
@@ -69,16 +53,8 @@ export default class PlanModel {
         }
         singleDocSnapshot.ref.update({ ...user })
     }
-    async mergeEstatePrice(uid: string, data: any = {}) {
+    async mergeEstatePrice(uid: string, estatePrice: IPlanEstatePrice) {
         const singleDocSnapshot = await this.checkSingleDoc(uid)
-        const estatePrice: IPlanEstatePrice = {
-            county: data.county || '',
-            town: data.town || '',
-            buildingType: data.buildingType || '',
-            buildingAge: data.buildingAge || '',
-            hasParking: data.hasParking || '',
-            unitPrice: data.unitPrice || 0,
-        }
         const user: IPlan = {
             id: singleDocSnapshot.id,
             uid,
