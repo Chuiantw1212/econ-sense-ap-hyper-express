@@ -1,5 +1,5 @@
 import { GetTaiwanLocation } from '../../port/in/MetaUseCases'
-import LocationModel from '../Location.model'
+import LocationModel from '../Location.model.tsa'
 interface Idependency {
     model: LocationModel
 }

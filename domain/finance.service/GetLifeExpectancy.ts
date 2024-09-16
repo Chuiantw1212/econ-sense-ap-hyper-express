@@ -1,5 +1,5 @@
 import LifeExpectancyModel from '../LifeExpectancy.model'
-import type { GetLifeExpectancyUseCase, ILifeExpectancyItem } from '../../port/in/FinanceUseCases'
+import type { GetLifeExpectancyUseCase, ILifeExpectancyItem } from '../../port/in/FinanceUseCases.tsa'
 interface Idependency {
     model: LifeExpectancyModel
 }

@@ -1,4 +1,4 @@
-import PlanModel from "../Plan.model"
+import PlanModel from "../Plan.model.tsa"
 import { IPlanMortgage } from "../../entities/plan"
 export default class PutMortgageService {
     planModel: PlanModel = null as any

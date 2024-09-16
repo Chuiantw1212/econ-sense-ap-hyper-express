@@ -14,8 +14,8 @@ import ishares from './adapters/ishares.out'
 import SelectModel from './domain/Select.model'
 import LifeExpectancyModel from './domain/LifeExpectancy.model';
 import EstateContractModel from './domain/EstateContract.model'
-import LocationModel from './domain/Location.model';
-import PlanModel from './domain/Plan.model';
+import LocationModel from './domain/Location.model.tsa';
+import PlanModel from './domain/Plan.model.tsa';
 // services.others
 import { ILocals } from './entities/app';
 import MakeStoryService from './domain/chat.service/MakeStory';
