@@ -67,11 +67,9 @@ import interfaceController from './adapters/blog.in/interface.ctrl'
     /**
      * Services
      */
-    MakeStoryService.initialize(chatGpt)
-    TranslateOccupationService.initialize(chatGpt)
     Object.assign(webserver.locals, {
-        MakeStoryService,
-        TranslateOccupationService
+        MakeStoryService: new MakeStoryService(chatGpt),
+        TranslateOccupationService: new TranslateOccupationService(chatGpt)
     })
     /**
      * middlewares

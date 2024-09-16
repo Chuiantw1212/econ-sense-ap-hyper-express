@@ -2,7 +2,7 @@ import Adapter from '../../adapters/chatGpt.out'
 import type { MakeStoryUseCase } from '../../port/in/ChatUseCases'
 class MakeStoryService implements MakeStoryUseCase {
     adapter: typeof Adapter = null as any
-    initialize(adapter: typeof Adapter) {
+    constructor(adapter: typeof Adapter) {
         this.adapter = adapter
     }
     async makeStory(story: string) {
@@ -21,4 +21,4 @@ class MakeStoryService implements MakeStoryUseCase {
         return text
     }
 }
-export default new MakeStoryService()
+export default MakeStoryService
