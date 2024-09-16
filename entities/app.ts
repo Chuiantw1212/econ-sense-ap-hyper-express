@@ -29,16 +29,17 @@ export interface ILocals {
     GetEstateUnitPriceService: GetEstateUnitPriceService,
     GetOptionsService: GetOptionsService,
     GetTaiwanLocationService: GetTaiwanLocationService,
+    // Plan
     GetPlanEntityService: GetPlanEntityService,
     PutCareerService: PutCareerService,
     PutEstatePriceService: PutEstatePriceService,
+    PutEstateSizeService: PutEstateSizeService,
     PutMortgageService: PutMortgageService,
     PutParentingService: PutParentingService,
     PutProfileService: PutProfileService,
     PutRetirementService: PutRetirementService,
     PutSecurityService: PutSecurityService,
     PutSpouseService: PutSpouseService,
-    PutEstateSizeService: PutEstateSizeService,
     PostNewPlanService: PostNewPlanService,
     GetUserPlanService: GetUserPlanService,
 }

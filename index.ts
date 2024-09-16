@@ -16,17 +16,27 @@ import LifeExpectancyModel from './domain/LifeExpectancy.model';
 import EstateContractModel from './domain/EstateContract.model'
 import LocationModel from './domain/Location.model';
 import PlanModel from './domain/Plan.model';
-// services
+// services.others
 import { ILocals } from './entities/app';
 import MakeStoryService from './domain/chat.service/MakeStory';
 import TranslateOccupationService from './domain/chat.service/TranslateOccupation';
 import GetBackedInterestRateService from './domain/finance.service/GetBackedInterestRate';
+import GetTaiwanLocationService from './domain/meta.service/GetTaiwanLocations';
 import GetPortfolioIRRService from './domain/finance.service/GetPortfolioIRR';
 import GetOptionsService from './domain/meta.service/GetOptions';
 import GetLifeExpectancyService from './domain/finance.service/GetLifeExpectancy';
 import GetEstateUnitPriceService from './domain/finance.service/GetEstateUnitPrice';
-import GetTaiwanLocationService from './domain/meta.service/GetTaiwanLocations';
+// services.plan
+import PutEstatePriceService from './domain/plan.service/PutPlanEstatePrice';
 import GetPlanEntityService from './domain/plan.service/GetPlanEntity';
+import PutCareerService from './domain/plan.service/PutPlanCareer';
+import PutEstateSizeService from './domain/plan.service/PutPlanEstateSize';
+import PutMortgageService from './domain/plan.service/PutPlanMortagage';
+import PutParentingService from './domain/plan.service/PutPlanParenting';
+import PutProfileService from './domain/plan.service/PutPlanProfile';
+import PutRetirementService from './domain/plan.service/PutPlanRetirement';
+import PutSecurityService from './domain/plan.service/PutPlanSecurity';
+import PutSpouseService from './domain/plan.service/PutPlanSpouse';
 import PostNewPlanService from './domain/plan.service/PostNewPlan';
 import GetUserPlanService from './domain/plan.service/GetUserPlan';
 // controllers
@@ -97,9 +107,19 @@ import interfaceController from './adapters/blog.in/interface.ctrl'
         GetTaiwanLocationService: new GetTaiwanLocationService({
             model: locationModel
         }),
+        // Plan
         GetPlanEntityService: new GetPlanEntityService(),
         PostNewPlanService: new PostNewPlanService(planModel),
-        GetUserPlanService: new GetUserPlanService(planModel)
+        GetUserPlanService: new GetUserPlanService(planModel),
+        PutCareerService: new PutCareerService(planModel),
+        PutEstateSizeService: new PutEstateSizeService(planModel),
+        PutMortgageService: new PutMortgageService(planModel),
+        PutParentingService: new PutParentingService(planModel),
+        PutProfileService: new PutProfileService(planModel),
+        PutRetirementService: new PutRetirementService(planModel),
+        PutSecurityService: new PutSecurityService(planModel),
+        PutSpouseService: new PutSpouseService(planModel),
+        PutEstatePriceService: new PutEstatePriceService(planModel),
     }
     Object.assign(webserver.locals, {
         ...allServices
