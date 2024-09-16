@@ -11,7 +11,7 @@ rootController.get('/', async (request, response) => {
         external: 0,
     }
     const currentMemoryUsage: any = memoryUsage()
-    for (let key in memoryUsageInMB) {
+    for (const key in memoryUsageInMB) {
         const mb: number = Math.floor(1024 * 1024)
         const value: number = currentMemoryUsage[key]
         const valueInMB: number = Math.floor(value / mb)

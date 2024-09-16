@@ -20,47 +20,36 @@ export default class LocationModel {
     async fetchCountiesAndTowns() {
         const parser = new XMLParser();
         // Set counties from https://data.gov.tw/dataset/101905
-        try {
-            const result = await fetch('https://api.nlsc.gov.tw/other/ListCounty', {
+        const result = await fetch('https://api.nlsc.gov.tw/other/ListCounty', {
+            signal: AbortSignal.timeout(300)
+        })
+        const resultText = await result.text()
+        const jsonResult = parser.parse(resultText);
+        const countyItems = jsonResult.countyItems.countyItem
+        this.counties = countyItems.map((item: ICounty) => {
+            return {
+                value: item.countycode,
+                label: item.countyname,
+            }
+        })
+        // Set townMap from https://data.gov.tw/dataset/102011
+        const promises = this.counties.map(async (county: IOptionsItem) => {
+            const promise = await fetch(`https://api.nlsc.gov.tw/other/ListTown1/${county.value}`, {
                 signal: AbortSignal.timeout(300)
             })
-            const resultText = await result.text()
-            const jsonResult = parser.parse(resultText);
-            const countyItems = jsonResult.countyItems.countyItem
-            this.counties = countyItems.map((item: ICounty) => {
+            const promiseText = await promise.text()
+            const jsonResult = parser.parse(promiseText).townItems.townItem
+            return jsonResult
+        })
+        const townResults = await Promise.all(promises)
+        this.counties.forEach((county: IOptionsItem, index) => {
+            this.townMap[county.value] = townResults[index].map((item: ITown) => {
                 return {
-                    value: item.countycode,
-                    label: item.countyname,
+                    label: item.townname,
+                    value: item.towncode,
                 }
             })
-        } catch (error: any) {
-            console.log(`fetchCountiesAndTowns`, error.message || error)
-            throw error
-        }
-        // Set townMap from https://data.gov.tw/dataset/102011
-        try {
-            const promises = this.counties.map(async (county: IOptionsItem) => {
-                console.log(county.value)
-                const promise = await fetch(`https://api.nlsc.gov.tw/other/ListTown1/${county.value}`, {
-                    signal: AbortSignal.timeout(300)
-                })
-                const promiseText = await promise.text()
-                const jsonResult = parser.parse(promiseText).townItems.townItem
-                return jsonResult
-            })
-            const townResults = await Promise.all(promises)
-            this.counties.forEach((county: IOptionsItem, index) => {
-                this.townMap[county.value] = townResults[index].map((item: ITown) => {
-                    return {
-                        label: item.townname,
-                        value: item.towncode,
-                    }
-                })
-            })
-        } catch (error: any) {
-            console.log(`fetchCountiesAndTowns`, error.message || error)
-            throw error
-        }
+        })
     }
     async getCountiesAndTowns() {
         if (!this.counties.length) {
@@ -86,21 +75,17 @@ export default class LocationModel {
         })
     }
     async putAllItems(selectMap: ISelectMap) {
-        try {
-            const snapshots = await this.collection.get()
-            const promises = snapshots.docs.map((doc: DocumentSnapshot) => {
-                return this.collection.doc(doc.id).delete()
+        const snapshots = await this.collection.get()
+        const promises = snapshots.docs.map((doc: DocumentSnapshot) => {
+            return this.collection.doc(doc.id).delete()
+        })
+        await Promise.all(promises)
+        for (const key in selectMap) {
+            const options = selectMap[key]
+            await this.collection.add({
+                key,
+                options
             })
-            await Promise.all(promises)
-            for (let key in selectMap) {
-                const options = selectMap[key]
-                await this.collection.add({
-                    key,
-                    options
-                })
-            }
-        } catch (error) {
-            throw error
         }
     }
 }

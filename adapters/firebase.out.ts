@@ -30,19 +30,15 @@ export class FirebaseAdapter {
         return firestore
     }
     async verifyIdToken(idToken: string) {
-        try {
-            if (!idToken) {
-                throw 'idToken is not given.'
-            }
-            const replacedToken = idToken.replace('Bearer ', '')
-            const decodedToken = await this.auth.verifyIdToken(replacedToken)
-            if (!decodedToken) {
-                throw '未知的用戶'
-            }
-            return decodedToken
-        } catch (error) {
-            throw error
+        if (!idToken) {
+            throw 'idToken is not given.'
         }
+        const replacedToken = idToken.replace('Bearer ', '')
+        const decodedToken = await this.auth.verifyIdToken(replacedToken)
+        if (!decodedToken) {
+            throw '未知的用戶'
+        }
+        return decodedToken
     }
 }
 const firebase = new FirebaseAdapter()

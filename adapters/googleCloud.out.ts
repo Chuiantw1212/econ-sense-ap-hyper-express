@@ -32,7 +32,7 @@ export class GoogleCloudPlugin {
     async grantAccess(privateKeys: any) {
         const member = 'user:chuiantw1212@gmail.com'
 
-        for (let key in privateKeys) {
+        for (const key in privateKeys) {
             const secretResource = privateKeys[key]
             // Get the current IAM policy.
             const [policy] = await this.sercertManagerServiceClient.getIamPolicy({

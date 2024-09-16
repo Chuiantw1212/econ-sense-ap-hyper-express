@@ -1,6 +1,5 @@
 import HyperExpress from 'hyper-express'
 import { ILocals } from '../../entities/app'
-import GetPlanInterfaceService from '../../domain/plan.service/GetPlanEntity'
 
 const router = new HyperExpress.Router()
 router.get('/meta/plan', async function (req, res) {

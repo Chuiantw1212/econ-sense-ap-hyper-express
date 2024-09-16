@@ -3,8 +3,8 @@ class JcicAdapter implements GetEstateContractPort {
     async getContractPriceTable() {
         let resultData = []
         try {
-            resultData = require('./ContractPrice_TABLE_C_2023')
-            if (!resultData) {
+            // resultData = require('./ContractPrice_TABLE_C_2023')
+            if (!resultData?.length) {
                 const result = await fetch('https://www.jcic.org.tw/openapi/api/ContractPriceTableC2023', {
                     signal: AbortSignal.timeout(300)
                 })

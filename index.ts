@@ -57,7 +57,7 @@ import interfaceController from './adapters/blog.in/interface.ctrl'
     let OPENAI_API_KEY: string = ''
     try {
         OPENAI_API_KEY = await googleCloud.accessSecret('OPENAI_API_KEY')
-    } catch (error: any) {
+    } catch {
         // 這段讀不到就算了
         OPENAI_API_KEY = require("./OPEN_API_KEY.json");
     }
@@ -66,7 +66,7 @@ import interfaceController from './adapters/blog.in/interface.ctrl'
     let FIREBASE_SERVICE_ACCOUNT_KEY_JSON = null
     try {
         FIREBASE_SERVICE_ACCOUNT_KEY_JSON = await googleCloud.accessSecret('FIREBASE_SERVICE_ACCOUNT_KEY_JSON')
-    } catch (error) {
+    } catch {
         FIREBASE_SERVICE_ACCOUNT_KEY_JSON = require("./FIREBASE_SERVICE_ACCOUNT_KEY_JSON.json");
     }
     const firestore = await firebase.initializeSync(FIREBASE_SERVICE_ACCOUNT_KEY_JSON)

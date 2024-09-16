@@ -14,7 +14,7 @@ export default class GetBackedInterestRateService implements GetBackedInterestRa
         this.selectModel = dependency.model
     }
     async getBackedInterestRate() {
-        let options = await this.selectModel.getOptionsByKey('interestRate')
+        const options = await this.selectModel.getOptionsByKey('interestRate')
         if (options.length) {
             return Number(options[0].value)
         } else {
