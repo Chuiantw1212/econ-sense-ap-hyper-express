@@ -26,6 +26,7 @@ import GetOptionsService from './domain/meta.service/GetOptions';
 import GetLifeExpectancyService from './domain/finance.service/GetLifeExpectancy';
 import GetEstateUnitPriceService from './domain/finance.service/GetEstateUnitPrice';
 import GetTaiwanLocationService from './domain/meta.service/GetTaiwanLocations';
+import GetPlanInterfaceService from './domain/plan.service/GetPlanInterface';
 // controllers
 import rootController from './adapters/blog.in/root.ctrl'
 import bankController from './adapters/blog.in/bank.ctrl'
@@ -93,7 +94,8 @@ import interfaceController from './adapters/blog.in/interface.ctrl'
         }),
         GetTaiwanLocationService: new GetTaiwanLocationService({
             model: locationModel
-        })
+        }),
+        GetPlanInterfaceService: new GetPlanInterfaceService()
     }
     Object.assign(webserver.locals, {
         ...allServices

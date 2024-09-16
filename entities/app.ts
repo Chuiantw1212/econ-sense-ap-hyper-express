@@ -6,6 +6,7 @@ import GetLifeExpectancyService from "../domain/finance.service/GetLifeExpectanc
 import GetEstateUnitPriceService from "../domain/finance.service/GetEstateUnitPrice"
 import GetOptionsService from "../domain/meta.service/GetOptions"
 import GetTaiwanLocationService from "../domain/meta.service/GetTaiwanLocations"
+import GetPlanInterfaceService from "../domain/plan.service/GetPlanInterface"
 
 export interface ILocals {
     startupTime?: number,
@@ -17,6 +18,7 @@ export interface ILocals {
     GetEstateUnitPriceService: GetEstateUnitPriceService,
     GetOptionsService: GetOptionsService,
     GetTaiwanLocationService: GetTaiwanLocationService,
+    GetPlanInterfaceService: GetPlanInterfaceService,
 }
 
 export interface IApp {
