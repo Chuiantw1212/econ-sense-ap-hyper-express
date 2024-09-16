@@ -2,8 +2,12 @@ import HyperExpress from 'hyper-express'
 import locationModel from '../../domain/location.model'
 import selectModel from '../../domain/select.model'
 const router = new HyperExpress.Router()
+/**
+ * Deprecated, 合併到meta
+ */
 router.get('/select', async function (req, res) {
     try {
+        const locals = req.app.locals as any
         const countiesAndTownMap = await locationModel.getCountiesAndTowns()
         const selectOptionsMap = await selectModel.getOptionsMap()
         const result = {

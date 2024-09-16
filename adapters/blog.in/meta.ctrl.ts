@@ -1,10 +1,7 @@
 import HyperExpress from 'hyper-express'
 import GetPlanInterfaceService from '../../domain/meta.service/GetPlanInterface'
 const router = new HyperExpress.Router()
-/**
- * Deprecated, 合併到meta
- */
-router.get('/interface/plan', async function (req, res) {
+router.get('/meta/plan', async function (req, res) {
     try {
         const planForm = await GetPlanInterfaceService.getPlanInterface()
         res.json(planForm)

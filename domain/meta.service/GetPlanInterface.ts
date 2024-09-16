@@ -1,4 +1,4 @@
-import type GetPlanUseCase from '../../port/in/GetPlanUseCase'
+import type GetPlanUseCase from '../../port/in/MetaUseCases'
 import PlanEntity from '../../entities/plan'
 class GetPlanInterfaceService implements GetPlanUseCase {
     getPlanInterface() {
