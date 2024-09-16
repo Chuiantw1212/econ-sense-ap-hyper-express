@@ -1,4 +1,4 @@
-import PlanModel from "../Plan.model.ts"
+import PlanModel from "../Plan.model"
 import { IPlanSecurity } from "../../entities/plan"
 export default class PutSecurityService {
     planModel: PlanModel = null as any

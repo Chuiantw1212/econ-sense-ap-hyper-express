@@ -1,4 +1,4 @@
-import PlanModel from "../Plan.model.ts"
+import PlanModel from "../Plan.model"
 import { IPlanParenting } from "../../entities/plan"
 export default class PutParentingService {
     planModel: PlanModel = null as any

@@ -1,4 +1,4 @@
-import PlanModel from "../Plan.model.ts"
+import PlanModel from "../Plan.model"
 import { IPlanSpouse } from "../../entities/plan"
 export default class PutSpouseService {
     planModel: PlanModel = null as any

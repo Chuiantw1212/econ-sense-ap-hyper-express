@@ -1,6 +1,6 @@
 import EstateContractsModel from '../EstateContract.model'
-import LocationModel from '../Location.model.ts'
-import type { GetEstateUnitPriceUseCase, IPriceTableItem } from '../../port/in/FinanceUseCases.ts'
+import LocationModel from '../Location.model'
+import type { GetEstateUnitPriceUseCase, IPriceTableItem } from '../../port/in/FinanceUseCases'
 interface Idependency {
     estateContractsModel: EstateContractsModel,
     locationModel: LocationModel
