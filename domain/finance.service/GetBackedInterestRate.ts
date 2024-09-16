@@ -14,7 +14,17 @@ export default class GetBackedInterestRateService implements GetBackedInterestRa
         this.selectModel = dependency.model
     }
     async getBackedInterestRate() {
-        this.adapter.crawBackedlInterestRate()
-        return 0
+        let options = await this.selectModel.getOptionsByKey('interestRate')
+        if (options.length) {
+            return Number(options[0].value)
+        } else {
+            const interestRate = await this.adapter.crawBackedlInterestRate()
+            const newOption = {
+                label: 'interestRate',
+                value: interestRate
+            }
+            this.selectModel.replaceByKey('interestRate', [newOption])
+            return interestRate
+        }
     }
 }

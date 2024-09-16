@@ -1,5 +1,4 @@
 import HyperExpress from 'hyper-express'
-import ndcModel from '../../domain/lifeExpectancy.model'
 import jcicModel from '../../domain/jcic.model'
 import { ILocals } from '../../entities/app'
 

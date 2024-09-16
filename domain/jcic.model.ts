@@ -30,7 +30,7 @@ interface IInit {
     firestore: Firestore
 }
 
-export class JcicModel {
+export default class EstateContractsModel {
     selectModel: SelectModel = null as any
     locationModel: LocationModel = null as any
     collectionContracts: CollectionReference = null as any
@@ -156,5 +156,3 @@ export class JcicModel {
         }, 100)
     }
 }
-const jcicModel = new JcicModel()
-export default jcicModel

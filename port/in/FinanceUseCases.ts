@@ -17,6 +17,16 @@ export interface INdcLifeExpectancyRawItem {
     '預期壽命': string
 }
 
+export interface IPriceTableItem {
+    county?: string,
+    town?: string,
+    contractYear?: string,
+    buildingType?: string,
+    unitPrice?: number,
+    floorSize?: string,
+    buildingAge?: string,
+    hasParking?: boolean,
+}
 
 export interface GetBackedInterestRateUseCase {
     getBackedInterestRate: () => Promise<number>
@@ -28,4 +38,13 @@ export interface GetPortfolioIRRUseCase {
 
 export interface GetLifeExpectancyUseCase {
     getLifeExpectancy: (arg0: ILifeExpectancyItem) => Promise<number>
+}
+
+export interface GetEstateUnitPriceUseCase {
+    getEstateUnitPrice: (arg0: IPriceTableItem) => Promise<{
+        count: number,
+        pr25: number,
+        pr75: number,
+        average: number
+    }>
 }
