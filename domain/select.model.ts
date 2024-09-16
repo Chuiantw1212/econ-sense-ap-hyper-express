@@ -1,13 +1,16 @@
 import type { IOptionsItem, ISelectMap, ISelectDocData } from '../entities/select'
 import { Query, QuerySnapshot, CollectionReference, DocumentReference, DocumentData, Firestore } from 'firebase-admin/firestore'
 
-export class SelectModel {
+export default class SelectModel {
     collection: CollectionReference = null as any
     optionsMap: ISelectMap = {}
     optionKeys: string[] = ['floorSizes', 'buildingAges', 'buildingTypes', 'genders', 'retirementQuartile', 'insuranceTypes']
-    initialize(firestore: Firestore) {
+    constructor(firestore: Firestore) {
         this.collection = firestore.collection('selects')
     }
+    // initialize(firestore: Firestore) {
+    //     this.collection = firestore.collection('selects')
+    // }
     async getOptionsMap() {
         // 如有現成就用現成
         const promises = this.optionKeys.map(async (key: string) => {
@@ -67,5 +70,3 @@ export class SelectModel {
         }
     }
 }
-const selectModel = new SelectModel()
-export default selectModel

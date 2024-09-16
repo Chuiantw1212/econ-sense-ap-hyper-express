@@ -1,13 +1,10 @@
 import { JSDOM } from 'jsdom'
 import type { IOptionsItem, } from '../entities/select'
-import { SelectModel } from './select.model'
-
-export class BankModel {
+import SelectModel from './select.model'
+export default class BankModel {
     selectModel: SelectModel = null as any
-    initialize(payload: any) {
+    constructor(payload: any) {
         this.selectModel = payload.selectModel
-        // this.fetchInterestRate()
-        // this.fetchCoreSeriesIRR()
     }
     async getInterestRate(): Promise<number> {
         const interestRateOptions: IOptionsItem[] = await this.getConfigByKey('interestRate')
@@ -127,6 +124,3 @@ export class BankModel {
         return 0
     }
 }
-
-const bankModel = new BankModel()
-export default bankModel

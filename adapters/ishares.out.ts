@@ -36,3 +36,5 @@ class IsharesAdapter {
         }
     }
 }
+
+export default new IsharesAdapter()

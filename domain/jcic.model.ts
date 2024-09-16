@@ -1,5 +1,5 @@
 import { Firestore, Query, QuerySnapshot, CollectionReference, DocumentData, AggregateField, } from 'firebase-admin/firestore'
-import { SelectModel } from './select.model'
+import SelectModel from './select.model'
 import { LocationModel } from './location.model'
 
 interface IPriceTableRawItem {

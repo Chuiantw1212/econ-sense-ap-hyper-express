@@ -8,9 +8,11 @@ import cors, { type CorsOptions } from 'cors'
 import firebase from './adapters/firebase.out'
 import googleCloud from './adapters/googleCloud.out'
 import chatGpt from './adapters/chatGpt.out'
+import centralBank from './adapters/centralBank.out'
+import ishares from './adapters/ishares.out'
 // models
-import selectModel from './domain/select.model'
-import bankModel from './domain/bank.model'
+import SelectModel from './domain/select.model'
+import BankModel from './domain/bank.model'
 import jcicModel from './domain/jcic.model'
 import locationModel from './domain/location.model'
 import planModel from './domain/plan.model';
@@ -18,6 +20,8 @@ import ndcModel from './domain/lifeExpectancy.model';
 // services
 import MakeStoryService from './domain/chat.service/MakeStory';
 import TranslateOccupationService from './domain/chat.service/TranslateOccupation';
+import GetBackedInterestRateService from './domain/finance.service/GetBackedInterestRate'
+import GetPortfolioIRRService from './domain/finance.service/GetPortfolioIRR'
 // controllers
 import rootController from './adapters/blog.in/root.ctrl'
 import bankController from './adapters/blog.in/bank.ctrl'
@@ -52,9 +56,11 @@ import interfaceController from './adapters/blog.in/interface.ctrl'
     /**
      * models
      */
-    selectModel.initialize(firestore)
+
+    const selectModel = new SelectModel(firestore)
+    // selectModel.initialize(firestore)
     locationModel.initialize(firestore)
-    bankModel.initialize({
+    const bankModel = new BankModel({
         selectModel
     })
     planModel.initialize(firestore)
@@ -69,7 +75,15 @@ import interfaceController from './adapters/blog.in/interface.ctrl'
      */
     Object.assign(webserver.locals, {
         MakeStoryService: new MakeStoryService(chatGpt),
-        TranslateOccupationService: new TranslateOccupationService(chatGpt)
+        TranslateOccupationService: new TranslateOccupationService(chatGpt),
+        GetBackedInterestRateService: new GetBackedInterestRateService({
+            adapter: centralBank,
+            model: selectModel,
+        }),
+        GetPortfolioIRRService: new GetPortfolioIRRService({
+            adapter: ishares,
+            model: selectModel,
+        })
     })
     /**
      * middlewares
