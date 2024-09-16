@@ -18,13 +18,13 @@ import locationModel from './domain/model/location'
 import planModel from './domain/model/plan';
 import ndcModel from './domain/model/ndc';
 // controllers
-import rootController from './adapters/blog/root.ctrl'
-import bankController from './adapters/blog/bank.ctrl'
-import calculateController from './adapters/blog/calculate.ctrl'
-import chatController from './adapters/blog/chat.ctrl'
-import selectController from './adapters/blog/select.ctrl'
-import planController from './adapters/blog/plan.ctrl'
-import interfaceController from './adapters/blog/interface.ctrl'
+import rootController from './adapters/blog.in/root.ctrl'
+import bankController from './adapters/blog.in/bank.ctrl'
+import calculateController from './adapters/blog.in/calculate.ctrl'
+import chatController from './adapters/blog.in/chat.ctrl'
+import selectController from './adapters/blog.in/select.ctrl'
+import planController from './adapters/blog.in/plan.ctrl'
+import interfaceController from './adapters/blog.in/interface.ctrl'
 // 初始化server
 (async () => {
     const webserver = new HyperExpress.Server()

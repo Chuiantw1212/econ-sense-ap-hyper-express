@@ -1,4 +1,4 @@
-import { SendMessagePort } from '../port/out/ChatPorts'
+import { SendMessagePort } from '../port/out/ChatGptPorts'
 interface SendMessageOptions {
     /** The name of a user in a multi-user chat. */
     name?: string;
