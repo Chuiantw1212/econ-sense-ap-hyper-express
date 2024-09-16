@@ -1,5 +1,5 @@
-import type { translateUseCase } from '../../../port/in/ChatUseCases'
-import ChatGptAdapter from '../../../adapters/chatGpt.out'
+import type { translateUseCase } from '../../port/in/ChatUseCases'
+import ChatGptAdapter from '../../adapters/chatGpt.out'
 class TranslateOccupationService implements translateUseCase {
     chatGptInstance: typeof ChatGptAdapter = null as any
     initialize(chatGptInstance: any) {

@@ -1,6 +1,6 @@
 import HyperExpress from 'hyper-express'
-import MakeStoryService from '../../domain/chat/service/MakeStory'
-import TranslateOccupationService from '../../domain/chat/service/TranslateOccupation'
+import MakeStoryService from '../../domain/chat.service/MakeStory'
+import TranslateOccupationService from '../../domain/chat.service/TranslateOccupation'
 const router = new HyperExpress.Router()
 router.post('/chat/story', async function (req, res) {
     try {

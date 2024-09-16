@@ -8,15 +8,16 @@ import cors, { type CorsOptions } from 'cors'
 import firebase from './adapters/firebase.out'
 import googleCloud from './adapters/googleCloud.out'
 import chatGpt from './adapters/chatGpt.out'
-// services & models
-import MakeStoryService from './domain/chat/service/MakeStory';
-import TranslateOccupationService from './domain/chat/service/TranslateOccupation';
-import selectModel from './domain/model/select'
-import bankModel from './domain/model/bank'
-import jcicModel from './domain/model/jcic'
-import locationModel from './domain/model/location'
-import planModel from './domain/model/plan';
-import ndcModel from './domain/model/ndc';
+// models
+import selectModel from './domain/select.model'
+import bankModel from './domain/bank.model'
+import jcicModel from './domain/jcic.model'
+import locationModel from './domain/location.model'
+import planModel from './domain/plan.model';
+import ndcModel from './domain/lifeExpectancy.model';
+// services
+import MakeStoryService from './domain/chat.service/MakeStory';
+import TranslateOccupationService from './domain/chat.service/TranslateOccupation';
 // controllers
 import rootController from './adapters/blog.in/root.ctrl'
 import bankController from './adapters/blog.in/bank.ctrl'

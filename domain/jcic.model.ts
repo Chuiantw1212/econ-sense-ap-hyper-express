@@ -1,6 +1,6 @@
 import { Firestore, Query, QuerySnapshot, CollectionReference, DocumentData, AggregateField, } from 'firebase-admin/firestore'
-import { SelectModel } from './select'
-import { LocationModel } from './location'
+import { SelectModel } from './select.model'
+import { LocationModel } from './location.model'
 
 interface IPriceTableRawItem {
     '縣市名稱': string;

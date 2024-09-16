@@ -10,7 +10,7 @@ import type {
     IPlanEstateSize,
     IPlanMortgage,
     IPlan,
-} from '../../entities/plan'
+} from '../entities/plan'
 
 export class PlanModel {
     collection: CollectionReference = null as any
