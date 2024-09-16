@@ -39,6 +39,7 @@ import PutSecurityService from './domain/plan.service/PutPlanSecurity';
 import PutSpouseService from './domain/plan.service/PutPlanSpouse';
 import PostNewPlanService from './domain/plan.service/PostNewPlan';
 import GetUserPlanService from './domain/plan.service/GetUserPlan';
+import VerifyIdTokenService from './domain/auth.service';
 // controllers
 import rootController from './adapters/blog.in/root.ctrl'
 import bankController from './adapters/blog.in/bank.ctrl'
@@ -120,6 +121,7 @@ import interfaceController from './adapters/blog.in/interface.ctrl'
         PutSecurityService: new PutSecurityService(planModel),
         PutSpouseService: new PutSpouseService(planModel),
         PutEstatePriceService: new PutEstatePriceService(planModel),
+        VerifyIdTokenService: new VerifyIdTokenService(firebase)
     }
     Object.assign(webserver.locals, {
         ...allServices
