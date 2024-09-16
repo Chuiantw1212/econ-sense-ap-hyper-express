@@ -2,8 +2,9 @@ import HyperExpress from 'hyper-express'
 const router = new HyperExpress.Router()
 router.post('/chat/story', async function (req, res) {
     try {
+        const locals = req.app.locals as any
         const input = await req.text()
-        const output = await req.locals.MakeStoryService.makeStory(input)
+        const output = await locals.MakeStoryService.makeStory(input)
         res.send(output)
     } catch (error: any) {
         console.log(error.message || error)
@@ -12,8 +13,9 @@ router.post('/chat/story', async function (req, res) {
 })
 router.post('/chat/translate', async function (req, res) {
     try {
+        const locals = req.app.locals as any
         const input = await req.json()
-        const output = await req.locals.TranslateOccupationService.translate(input)
+        const output = await locals.TranslateOccupationService.translate(input)
         res.json(output)
     } catch (error: any) {
         console.log(error.message || error)
