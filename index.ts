@@ -18,14 +18,15 @@ import LocationModel from './domain/Location.model';
 import PlanModel from './domain/Plan.model';
 // services.others
 import { ILocals } from './entities/app';
-import MakeStoryService from './domain/chat.service/MakeStory';
-import TranslateOccupationService from './domain/chat.service/TranslateOccupation';
+import GetNewStoryService from './domain/chat.service/GetNewStory';
+import GetTranslationService from './domain/chat.service/GetTranslation';
 import GetBackedInterestRateService from './domain/finance.service/GetBackedInterestRate';
 import GetTaiwanLocationService from './domain/meta.service/GetTaiwanLocations';
 import GetPortfolioIRRService from './domain/finance.service/GetPortfolioIRR';
 import GetOptionsService from './domain/meta.service/GetOptions';
 import GetLifeExpectancyService from './domain/finance.service/GetLifeExpectancy';
 import GetEstateUnitPriceService from './domain/finance.service/GetEstateUnitPrice';
+import VerifyIdTokenService from './domain/auth.service';
 // services.plan
 import PutEstatePriceService from './domain/plan.service/PutPlanEstatePrice';
 import GetPlanEntityService from './domain/plan.service/GetPlanEntity';
@@ -84,8 +85,8 @@ import interfaceController from './adapters/blog.in/interface.ctrl'
      * Services
      */
     const allServices: ILocals = {
-        MakeStoryService: new MakeStoryService(chatGpt),
-        TranslateOccupationService: new TranslateOccupationService(chatGpt),
+        GetNewStoryService: new GetNewStoryService(chatGpt),
+        GetTranslationService: new GetTranslationService(chatGpt),
         GetBackedInterestRateService: new GetBackedInterestRateService({
             adapter: centralBank,
             model: selectModel,
@@ -120,6 +121,7 @@ import interfaceController from './adapters/blog.in/interface.ctrl'
         PutSecurityService: new PutSecurityService(planModel),
         PutSpouseService: new PutSpouseService(planModel),
         PutEstatePriceService: new PutEstatePriceService(planModel),
+        VerifyIdTokenService: new VerifyIdTokenService(firebase)
     }
     Object.assign(webserver.locals, {
         ...allServices

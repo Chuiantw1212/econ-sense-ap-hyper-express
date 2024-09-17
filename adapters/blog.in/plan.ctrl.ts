@@ -1,5 +1,5 @@
 import HyperExpress from 'hyper-express'
-import firebase from '../firebase.out'
+// import firebase from '../firebase.out'
 import type { IPlan } from '../../entities/plan'
 import { ILocals } from '../../entities/app'
 const router = new HyperExpress.Router()
@@ -10,8 +10,9 @@ const router = new HyperExpress.Router()
  */
 router.use('/plan', async (req, res, next) => {
     try {
+        const { VerifyIdTokenService } = req.app.locals as ILocals
         const idToken = req.headers.authorization || ''
-        const user = await firebase.verifyIdToken(idToken)
+        const user = await VerifyIdTokenService.verifyIdToken(idToken)
 
         /**
          * req.locals。非Node.js/HyperExpress/Express官方的用法，而是撰寫Node.js約定俗成的做法。

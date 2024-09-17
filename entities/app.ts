@@ -1,5 +1,5 @@
-import MakeStoryService from "../domain/chat.service/MakeStory"
-import TranslateOccupationService from "../domain/chat.service/TranslateOccupation"
+import GetNewStoryService from "../domain/chat.service/GetNewStory"
+import GetTranslationService from "../domain/chat.service/GetTranslation"
 import GetBackedInterestRateService from "../domain/finance.service/GetBackedInterestRate"
 import GetPortfolioIRRService from "../domain/finance.service/GetPortfolioIRR"
 import GetLifeExpectancyService from "../domain/finance.service/GetLifeExpectancy"
@@ -18,17 +18,19 @@ import PutSecurityService from "../domain/plan.service/PutPlanSecurity"
 import PutSpouseService from "../domain/plan.service/PutPlanSpouse"
 import PostNewPlanService from "../domain/plan.service/PostNewPlan"
 import GetUserPlanService from "../domain/plan.service/GetUserPlan"
+import VerifyIdTokenService from "../domain/auth.service"
 
 export interface ILocals {
     startupTime?: number,
-    MakeStoryService: MakeStoryService,
-    TranslateOccupationService: TranslateOccupationService,
+    GetNewStoryService: GetNewStoryService,
+    GetTranslationService: GetTranslationService,
     GetBackedInterestRateService: GetBackedInterestRateService,
     GetPortfolioIRRService: GetPortfolioIRRService,
     GetLifeExpectancyService: GetLifeExpectancyService,
     GetEstateUnitPriceService: GetEstateUnitPriceService,
     GetOptionsService: GetOptionsService,
     GetTaiwanLocationService: GetTaiwanLocationService,
+    VerifyIdTokenService: VerifyIdTokenService,
     // Plan
     GetPlanEntityService: GetPlanEntityService,
     PutCareerService: PutCareerService,

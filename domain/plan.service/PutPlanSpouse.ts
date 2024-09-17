@@ -14,6 +14,6 @@ export default class PutSpouseService {
             monthlyNetPay: data.monthlyNetPay || 0,
             monthlyExpense: data.monthlyExpense || 0,
         }
-        this.planModel.mergeSpouse(uid, spouse)
+        this.planModel.mergeDocField(uid, 'spouse', spouse)
     }
 }

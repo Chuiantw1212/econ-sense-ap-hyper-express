@@ -1,101 +1,18 @@
 import { Firestore, CollectionReference, } from 'firebase-admin/firestore'
-import type {
-    IPlanProfile,
-    IPlanCareer,
-    IPlanRetirement,
-    IPlanSecurity,
-    IPlanSpouse,
-    IPlanParenting,
-    IPlanEstatePrice,
-    IPlanEstateSize,
-    IPlanMortgage,
-    IPlan,
-} from '../entities/plan'
+import type { IPlan, } from '../entities/plan'
 
 export default class PlanModel {
     collection: CollectionReference = null as any
     constructor(firestore: Firestore) {
         this.collection = firestore.collection('plans')
     }
-    async mergeProfile(uid: string, profile: IPlanProfile) {
+    async mergeDocField(uid: string, field: string, data: IPlan[keyof IPlan]) {
         const singleDocSnapshot = await this.checkSingleDoc(uid)
         const user: IPlan = {
             id: singleDocSnapshot.id,
             uid,
-            profile,
         }
-        singleDocSnapshot.ref.update(user)
-    }
-    async mergeSpouse(uid: string, spouse: IPlanSpouse) {
-        const singleDocSnapshot = await this.checkSingleDoc(uid)
-        const user: IPlan = {
-            id: singleDocSnapshot.id,
-            uid,
-            spouse,
-        }
-        singleDocSnapshot.ref.update(user)
-    }
-    async mergeCareer(uid: string, career: IPlanCareer) {
-        const singleDocSnapshot = await this.checkSingleDoc(uid)
-        const user: IPlan = {
-            id: singleDocSnapshot.id,
-            uid,
-            career,
-        }
-        singleDocSnapshot.ref.update(user)
-    }
-    async mergeRetirement(uid: string, retirement: IPlanRetirement) {
-        const singleDocSnapshot = await this.checkSingleDoc(uid)
-        const user: IPlan = {
-            id: singleDocSnapshot.id,
-            uid,
-            retirement,
-        }
-        singleDocSnapshot.ref.update(user)
-    }
-    async mergeEstatePrice(uid: string, estatePrice: IPlanEstatePrice) {
-        const singleDocSnapshot = await this.checkSingleDoc(uid)
-        const user: IPlan = {
-            id: singleDocSnapshot.id,
-            uid,
-            estatePrice,
-        }
-        singleDocSnapshot.ref.update(user)
-    }
-    async mergeEstateSize(uid: string, estateSize: IPlanEstateSize) {
-        const singleDocSnapshot = await this.checkSingleDoc(uid)
-        const user: IPlan = {
-            id: singleDocSnapshot.id,
-            uid,
-            estateSize,
-        }
-        singleDocSnapshot.ref.update(user)
-    }
-    async mergeMortgage(uid: string, estate: IPlanMortgage) {
-        const singleDocSnapshot = await this.checkSingleDoc(uid)
-        const user: IPlan = {
-            id: singleDocSnapshot.id,
-            uid,
-            estate,
-        }
-        singleDocSnapshot.ref.update(user)
-    }
-    async mergeParenting(uid: string, parenting: IPlanParenting) {
-        const singleDocSnapshot = await this.checkSingleDoc(uid)
-        const user: IPlan = {
-            id: singleDocSnapshot.id,
-            uid,
-            parenting,
-        }
-        singleDocSnapshot.ref.update(user)
-    }
-    async mergeSecurity(uid: string, security: IPlanSecurity) {
-        const singleDocSnapshot = await this.checkSingleDoc(uid)
-        const user: IPlan = {
-            id: singleDocSnapshot.id,
-            uid,
-            security,
-        }
+        user[field] = data
         singleDocSnapshot.ref.update(user)
     }
     async checkSingleDoc(uid: string) {

@@ -1,6 +1,6 @@
 import type { translateUseCase } from '../../port/in/ChatUseCases'
 import Adapter from '../../adapters/chatGpt.out'
-class TranslateOccupationService implements translateUseCase {
+class GetTranslationService implements translateUseCase {
     adapter: typeof Adapter = null as any
     constructor(adapter: typeof Adapter) {
         this.adapter = adapter
@@ -20,4 +20,4 @@ class TranslateOccupationService implements translateUseCase {
         })
     }
 }
-export default TranslateOccupationService
+export default GetTranslationService

@@ -16,6 +16,6 @@ export default class PutMortgageService {
             downpay: data.downpay || 0,
             downpayGoal: data.downpayGoal || 0,
         }
-        this.planModel.mergeMortgage(uid, estate)
+        this.planModel.mergeDocField(uid, 'estate', estate)
     }
 }
