@@ -14,6 +14,8 @@
 | **Vert.x**         | Java                | 89,492    | 12 ms           | 81.7 MB/s            | 高效處理並發的分散式系統           |
 | **Express**         | Node.js                | 12,830    | 17 ms           | 33.7 MB/s            | Node.js給人印象緩慢的來源           |
 
+更多Node.js框架效能比較，可參考[Elysia作者的評測](https://github.com/SaltyAom/bun-http-framework-benchmark)
+
 ### 評語
 
 **Hyper-Express** 的高效能主要來自於它建立在 [**uWebSocket**](https://github.com/uNetworking/uWebSockets) 之上。**uWebSocket** 是一個以 C++ 編寫的超高效能 HTTP 和 WebSocket 庫，專門針對極低延遲和高併發進行優化。由於 **uWebSocket** 本身使用了 C 語言 和 C++，它能夠在非常低的層級操作網路請求，並充分利用現代 CPU 的性能，達到極高的效率。
