@@ -1,8 +1,9 @@
 {
   "scripts": {
     "dev": "gcloud config configurations activate econ && nodemon index.ts",
-    "build": "tsc -p tsconfig.json",
     "login": "firebase login:use chuiantw1212@gmail.com",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js",
     "benchmark": "autocannon -c 2500 -d 30 -p 4 http://localhost:8080"
   },
   "type": "module",
