@@ -1,5 +1,4 @@
 import HyperExpress from 'hyper-express'
-// import firebase from '../firebase.out.js'
 import type { IPlan } from '../../entities/plan.js'
 import { ILocals } from '../../entities/app.js'
 const router = new HyperExpress.Router()
