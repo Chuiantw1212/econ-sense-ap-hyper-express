@@ -1,5 +1,4 @@
-import { GetEstateContractPort } from '../port/out/CrawlerPorts'
-class JcicAdapter implements GetEstateContractPort {
+class JcicAdapter {
     async getContractPriceTable() {
         let resultData = []
         try {

@@ -1,5 +1,5 @@
-import PlanModel from "../Plan.model"
-import { IPlanSpouse } from "../../entities/plan"
+import PlanModel from "../Plan.model.js"
+import { IPlanSpouse } from "../../entities/plan.js"
 export default class PutSpouseService {
     planModel: PlanModel = null as any
     constructor(model: PlanModel) {

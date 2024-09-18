@@ -1,7 +1,6 @@
 import { JSDOM } from 'jsdom'
-import { CrawInterestRatePort } from '../port/out/CrawlerPorts'
 
-class CentralBankAdapter implements CrawInterestRatePort {
+class CentralBankAdapter {
     async crawBackedlInterestRate(): Promise<number> {
         try {
             const result = await fetch('https://www.cbc.gov.tw/tw/lp-370-1.html', {

@@ -1,5 +1,5 @@
 import { Firestore, CollectionReference, } from 'firebase-admin/firestore'
-import type { IPlan, } from '../entities/plan'
+import type { IPlan, } from '../entities/plan.js'
 
 export default class PlanModel {
     collection: CollectionReference = null as any

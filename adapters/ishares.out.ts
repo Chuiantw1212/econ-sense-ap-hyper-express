@@ -1,5 +1,5 @@
 import { JSDOM } from 'jsdom'
-import type { IOptionsItem, } from '../entities/select'
+import type { IOptionsItem, } from '../entities/select.js'
 
 class IsharesAdapter {
     async fetchCoreSeriesIRR(): Promise<IOptionsItem[]> {

@@ -1,6 +1,6 @@
 
 import { Firestore, Query, CollectionReference, } from 'firebase-admin/firestore'
-import { ILifeExpectancyItem, } from '../port/in/FinanceUseCases'
+import { ILifeExpectancyItem, } from '../port/in/FinanceUseCases.js'
 export default class LifeExpectancyModel {
     collectionLifeExpectancy: CollectionReference = null as any
     constructor(firestore: Firestore) {

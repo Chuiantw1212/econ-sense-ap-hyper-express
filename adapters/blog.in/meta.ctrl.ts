@@ -1,8 +1,8 @@
 import HyperExpress from 'hyper-express'
-import { ILocals } from '../../entities/app'
+import { ILocals } from '../../entities/app.js'
 
 const router = new HyperExpress.Router()
-router.get('/meta/plan', async function (req, res) {
+router.get('/meta/plan.js', async function (req, res) {
     try {
         const { GetPlanEntityService } = req.app.locals as ILocals
         const planForm = await GetPlanEntityService.getPlanEntity()
@@ -11,7 +11,7 @@ router.get('/meta/plan', async function (req, res) {
         res.send(error.message || error)
     }
 })
-router.get('/meta/select', async function (req, res) {
+router.get('/meta/select.js', async function (req, res) {
     try {
         const locals = req.app.locals as ILocals
         const countiesAndTownMap = await locals.GetTaiwanLocationService.getTaiwanLocations()

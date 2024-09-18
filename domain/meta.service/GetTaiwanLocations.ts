@@ -1,5 +1,5 @@
-import { GetTaiwanLocation } from '../../port/in/MetaUseCases'
-import LocationModel from '../Location.model'
+import { GetTaiwanLocation } from '../../port/in/MetaUseCases.js'
+import LocationModel from '../Location.model.js'
 interface Idependency {
     model: LocationModel
 }

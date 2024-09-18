@@ -1,12 +1,11 @@
-import CentralBankAdapter from '../../adapters/centralBank.out'
-import SelectModel from '../Select.model'
-import type { GetBackedInterestRateUseCase } from '../../port/in/FinanceUseCases'
+import CentralBankAdapter from '../../adapters/centralBank.out.js'
+import SelectModel from '../Select.model.js'
 interface Idependency {
     adapter: typeof CentralBankAdapter,
     model: SelectModel
 }
 
-export default class GetBackedInterestRateService implements GetBackedInterestRateUseCase {
+export default class GetBackedInterestRateService {
     adapter: typeof CentralBankAdapter = null as any
     selectModel: SelectModel = null as any
     constructor(dependency: Idependency) {

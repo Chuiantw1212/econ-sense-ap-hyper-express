@@ -1,6 +1,5 @@
-import type { translateUseCase } from '../../port/in/ChatUseCases'
-import Adapter from '../../adapters/chatGpt.out'
-class GetTranslationService implements translateUseCase {
+import Adapter from '../../adapters/chatGpt.out.js'
+class GetTranslationService {
     adapter: typeof Adapter = null as any
     constructor(adapter: typeof Adapter) {
         this.adapter = adapter

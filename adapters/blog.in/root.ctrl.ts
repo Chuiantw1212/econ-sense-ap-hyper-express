@@ -1,6 +1,6 @@
 import HyperExpress from 'hyper-express'
 import { memoryUsage } from 'node:process'
-import { ILocals } from '../../entities/app'
+import { ILocals } from '../../entities/app.js'
 const rootController = new HyperExpress.Router()
 rootController.get('/', async (request, response) => {
     const memoryUsageInMB: ReturnType<typeof memoryUsage> = {

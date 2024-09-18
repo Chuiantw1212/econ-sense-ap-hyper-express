@@ -1,4 +1,4 @@
-import { IPriceTableItem } from "../in/FinanceUseCases";
+import { IPriceTableItem } from "../in/FinanceUseCases.js";
 
 export interface CrawInterestRatePort {
     crawBackedlInterestRate: () => Promise<number>
