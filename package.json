@@ -6,7 +6,6 @@
     "start": "node dist/index.js",
     "benchmark": "autocannon -c 2500 -d 30 -p 4 http://localhost:8080"
   },
-  "type": "module",
   "dependencies": {
     "@google-cloud/secret-manager": "^5.5.0",
     "chatgpt": "^5.2.5",
