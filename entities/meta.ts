@@ -1,5 +1,5 @@
-import PlanEntity from '../../entities/plan.js'
-import type { ISelectMap, IOptionsItem } from '../../entities/select.js'
+import PlanEntity from './plan.js'
+import type { ISelectMap, IOptionsItem } from './select.js'
 
 export interface GetPlanInterfaceUseCase {
     getPlanEntity: () => PlanEntity

@@ -4,7 +4,7 @@ const router = new HyperExpress.Router()
 /**
  * Deprecated, 合併到meta
  */
-router.get('/select.js', async function (req, res) {
+router.get('/select', async function (req, res) {
     try {
         const { GetTaiwanLocationService, GetOptionsService } = req.app.locals as ILocals
         const countiesAndTownMap = await GetTaiwanLocationService.getTaiwanLocations()

@@ -1,4 +1,4 @@
-import type { IOptionsItem, } from '../../entities/select.js'
+import type { IOptionsItem, } from './select.js'
 
 export interface ILifeExpectancyItem {
     ceYear?: number,

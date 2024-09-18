@@ -1,5 +1,5 @@
 import LifeExpectancyModel from '../LifeExpectancy.model.js'
-import type { ILifeExpectancyItem } from '../../port/in/FinanceUseCases.js'
+import type { ILifeExpectancyItem } from '../../entities/finance.js'
 interface Idependency {
     model: LifeExpectancyModel
 }

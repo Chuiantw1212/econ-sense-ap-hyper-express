@@ -8,7 +8,7 @@ const router = new HyperExpress.Router()
  * 這邊示範Middleware用法
  * https://github.com/kartikk221/hyper-express/blob/master/docs/Middlewares.md
  */
-router.use('/plan.js', async (req, res, next) => {
+router.use('/plan', async (req, res, next) => {
     try {
         const { VerifyIdTokenService } = req.app.locals as ILocals
         const idToken = req.headers.authorization || ''
@@ -140,7 +140,7 @@ router.post('/plan/new', async function (req, res) {
     }
 })
 
-router.get('/plan.js', async function (req, res) {
+router.get('/plan', async function (req, res) {
     try {
         const { GetUserPlanService } = req.app.locals as ILocals
         const planForm = await GetUserPlanService.getPlan(req.locals.user.uid)
