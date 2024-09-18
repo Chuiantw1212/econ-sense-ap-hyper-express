@@ -1,6 +1,6 @@
 import EstateContractsModel from '../EstateContract.model.js'
 import LocationModel from '../Location.model.js'
-import type { IPriceTableItem } from '../../port/in/FinanceUseCases.js'
+import type { IPriceTableItem } from '../../entities/finance.js'
 interface Idependency {
     estateContractsModel: EstateContractsModel,
     locationModel: LocationModel

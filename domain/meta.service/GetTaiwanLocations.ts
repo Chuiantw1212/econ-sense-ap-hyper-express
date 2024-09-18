@@ -1,4 +1,4 @@
-import { GetTaiwanLocation } from '../../port/in/MetaUseCases.js'
+import { GetTaiwanLocation } from '../../entities/meta.js'
 import LocationModel from '../Location.model.js'
 interface Idependency {
     model: LocationModel
