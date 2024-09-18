@@ -3,6 +3,7 @@
     "predev": "gcloud config configurations activate econ",
     "dev": "tsx watch ./index.ts",
     "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js",
     "benchmark": "autocannon -c 2500 -d 30 -p 4 http://localhost:8080"
   },
   "type": "module",
@@ -19,6 +20,7 @@
     "@types/jsdom": "^21.1.6",
     "autocannon": "^7.15.0",
     "tslib": "^2.7.0",
-    "tsx": "^4.19.1"
+    "tsx": "^4.19.1",
+    "typescript": "^5.6.2"
   }
 }
