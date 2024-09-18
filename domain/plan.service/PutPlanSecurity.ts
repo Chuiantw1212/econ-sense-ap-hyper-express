@@ -1,5 +1,5 @@
-import PlanModel from "../Plan.model"
-import { IPlanSecurity } from "../../entities/plan"
+import PlanModel from "../Plan.model.js"
+import { IPlanSecurity } from "../../entities/plan.js"
 export default class PutSecurityService {
     planModel: PlanModel = null as any
     constructor(model: PlanModel) {

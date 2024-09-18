@@ -1,4 +1,3 @@
-import { SendMessagePort } from '../port/out/ChatGptPorts'
 interface SendMessageOptions {
     /** The name of a user in a multi-user chat. */
     name?: string;
@@ -21,7 +20,7 @@ interface ChatMessage {
     parentMessageId?: string;
     conversationId?: string;
 }
-export class ChatGptAdapter implements SendMessagePort {
+export class ChatGptAdapter {
     chatGptApi: any
     async initializeSync(apiKey: string) {
         try {

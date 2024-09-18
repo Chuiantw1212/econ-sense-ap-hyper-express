@@ -1,6 +1,6 @@
-import type { ISelectMap, ISelectDocData } from '../../entities/select'
-import type { GetOptionsUseCase } from '../../port/in/MetaUseCases'
-import SelectModel from '../Select.model'
+import type { ISelectMap, ISelectDocData } from '../../entities/select.js'
+import type { GetOptionsUseCase } from '../../port/in/MetaUseCases.js'
+import SelectModel from '../Select.model.js'
 interface Idependency {
     model: SelectModel
 }

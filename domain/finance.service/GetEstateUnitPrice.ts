@@ -1,12 +1,12 @@
-import EstateContractsModel from '../EstateContract.model'
-import LocationModel from '../Location.model'
-import type { GetEstateUnitPriceUseCase, IPriceTableItem } from '../../port/in/FinanceUseCases'
+import EstateContractsModel from '../EstateContract.model.js'
+import LocationModel from '../Location.model.js'
+import type { IPriceTableItem } from '../../port/in/FinanceUseCases.js'
 interface Idependency {
     estateContractsModel: EstateContractsModel,
     locationModel: LocationModel
 }
 
-export default class GetEstateUnitPriceService implements GetEstateUnitPriceUseCase {
+export default class GetEstateUnitPriceService {
     estateContractsModel: EstateContractsModel = null as any
     locationModel: LocationModel = null as any
     constructor(dependency: Idependency) {

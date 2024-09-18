@@ -1,11 +1,13 @@
 {
   "scripts": {
-    "dev": "gcloud config configurations activate econ && nodemon index.ts",
     "login": "firebase login:use chuiantw1212@gmail.com",
+    "predev": "gcloud config configurations activate econ",
+    "dev": "tsx watch ./index.ts",
     "build": "tsc -p tsconfig.json",
     "start": "node dist/index.js",
     "benchmark": "autocannon -c 2500 -d 30 -p 4 http://localhost:8080"
   },
+  "type": "module",
   "dependencies": {
     "@google-cloud/secret-manager": "^5.5.0",
     "chatgpt": "^5.2.5",
@@ -17,11 +19,9 @@
   "devDependencies": {
     "@types/cors": "^2.8.17",
     "@types/jsdom": "^21.1.6",
-    "@types/node": "^20.12.12",
     "autocannon": "^7.15.0",
-    "eslint": "^9.10.0",
-    "globals": "^15.9.0",
-    "nodemon": "^3.1.0",
-    "typescript": "^5.4.5"
+    "tslib": "^2.7.0",
+    "tsx": "^4.19.1",
+    "typescript": "^5.6.2"
   }
 }

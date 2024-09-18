@@ -1,5 +1,5 @@
-import PlanModel from "../Plan.model"
-import { IPlanEstatePrice, } from "../../entities/plan"
+import PlanModel from "../Plan.model.js"
+import { IPlanEstatePrice, } from "../../entities/plan.js"
 export default class PutEstatePriceService {
     planModel: PlanModel = null as any
     constructor(model: PlanModel) {

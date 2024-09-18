@@ -1,6 +1,6 @@
-import ISharesAdapter from '../../adapters/ishares.out'
-import SelectModel from '../Select.model'
-import type { GetPortfolioIRRUseCase } from '../../port/in/FinanceUseCases'
+import ISharesAdapter from '../../adapters/ishares.out.js'
+import SelectModel from '../Select.model.js'
+import type { GetPortfolioIRRUseCase } from '../../port/in/FinanceUseCases.js'
 interface Idependency {
     adapter: typeof ISharesAdapter,
     model: SelectModel

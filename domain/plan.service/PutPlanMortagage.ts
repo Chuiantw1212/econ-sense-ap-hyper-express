@@ -1,5 +1,5 @@
-import PlanModel from "../Plan.model"
-import { IPlanMortgage } from "../../entities/plan"
+import PlanModel from "../Plan.model.js"
+import { IPlanMortgage } from "../../entities/plan.js"
 export default class PutMortgageService {
     planModel: PlanModel = null as any
     constructor(model: PlanModel) {

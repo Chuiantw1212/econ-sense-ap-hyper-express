@@ -3,49 +3,49 @@ const time = new Date().getTime()
 import HyperExpress from 'hyper-express';
 import cors, { type CorsOptions } from 'cors'
 // adapters
-import firebase from './adapters/firebase.out'
-import googleCloud from './adapters/googleCloud.out'
-import chatGpt from './adapters/chatGpt.out'
-import centralBank from './adapters/centralBank.out'
-import ishares from './adapters/ishares.out'
+import firebase from './adapters/firebase.out.js'
+import googleCloud from './adapters/googleCloud.out.js'
+import chatGpt from './adapters/chatGpt.out.js'
+import centralBank from './adapters/centralBank.out.js'
+import ishares from './adapters/ishares.out.js'
 // models
-import SelectModel from './domain/Select.model'
-import LifeExpectancyModel from './domain/LifeExpectancy.model';
-import EstateContractModel from './domain/EstateContract.model'
-import LocationModel from './domain/Location.model';
-import PlanModel from './domain/Plan.model';
+import SelectModel from './domain/Select.model.js'
+import LifeExpectancyModel from './domain/LifeExpectancy.model.js';
+import EstateContractModel from './domain/EstateContract.model.js'
+import LocationModel from './domain/Location.model.js';
+import PlanModel from './domain/Plan.model.js';
 // services.others
-import { ILocals } from './entities/app';
-import GetNewStoryService from './domain/chat.service/GetNewStory';
-import GetTranslationService from './domain/chat.service/GetTranslation';
-import GetBackedInterestRateService from './domain/finance.service/GetBackedInterestRate';
-import GetTaiwanLocationService from './domain/meta.service/GetTaiwanLocations';
-import GetPortfolioIRRService from './domain/finance.service/GetPortfolioIRR';
-import GetOptionsService from './domain/meta.service/GetOptions';
-import GetLifeExpectancyService from './domain/finance.service/GetLifeExpectancy';
-import GetEstateUnitPriceService from './domain/finance.service/GetEstateUnitPrice';
-import VerifyIdTokenService from './domain/auth.service';
+import { ILocals } from './entities/app.js';
+import GetNewStoryService from './domain/chat.service/GetNewStory.js';
+import GetTranslationService from './domain/chat.service/GetTranslation.js';
+import GetBackedInterestRateService from './domain/finance.service/GetBackedInterestRate.js';
+import GetTaiwanLocationService from './domain/meta.service/GetTaiwanLocations.js';
+import GetPortfolioIRRService from './domain/finance.service/GetPortfolioIRR.js';
+import GetOptionsService from './domain/meta.service/GetOptions.js';
+import GetLifeExpectancyService from './domain/finance.service/GetLifeExpectancy.js';
+import GetEstateUnitPriceService from './domain/finance.service/GetEstateUnitPrice.js';
+import VerifyIdTokenService from './domain/auth.service.js';
 // services.plan
-import PutEstatePriceService from './domain/plan.service/PutPlanEstatePrice';
-import GetPlanEntityService from './domain/plan.service/GetPlanEntity';
-import PutCareerService from './domain/plan.service/PutPlanCareer';
-import PutEstateSizeService from './domain/plan.service/PutPlanEstateSize';
-import PutMortgageService from './domain/plan.service/PutPlanMortagage';
-import PutParentingService from './domain/plan.service/PutPlanParenting';
-import PutProfileService from './domain/plan.service/PutPlanProfile';
-import PutRetirementService from './domain/plan.service/PutPlanRetirement';
-import PutSecurityService from './domain/plan.service/PutPlanSecurity';
-import PutSpouseService from './domain/plan.service/PutPlanSpouse';
-import PostNewPlanService from './domain/plan.service/PostNewPlan';
-import GetUserPlanService from './domain/plan.service/GetUserPlan';
+import PutEstatePriceService from './domain/plan.service/PutPlanEstatePrice.js';
+import GetPlanEntityService from './domain/plan.service/GetPlanEntity.js';
+import PutCareerService from './domain/plan.service/PutPlanCareer.js';
+import PutEstateSizeService from './domain/plan.service/PutPlanEstateSize.js';
+import PutMortgageService from './domain/plan.service/PutPlanMortagage.js';
+import PutParentingService from './domain/plan.service/PutPlanParenting.js';
+import PutProfileService from './domain/plan.service/PutPlanProfile.js';
+import PutRetirementService from './domain/plan.service/PutPlanRetirement.js';
+import PutSecurityService from './domain/plan.service/PutPlanSecurity.js';
+import PutSpouseService from './domain/plan.service/PutPlanSpouse.js';
+import PostNewPlanService from './domain/plan.service/PostNewPlan.js';
+import GetUserPlanService from './domain/plan.service/GetUserPlan.js';
 // controllers
-import rootController from './adapters/blog.in/root.ctrl'
-import bankController from './adapters/blog.in/bank.ctrl'
-import calculateController from './adapters/blog.in/calculate.ctrl'
-import chatController from './adapters/blog.in/chat.ctrl'
-import selectController from './adapters/blog.in/select.ctrl'
-import planController from './adapters/blog.in/plan.ctrl'
-import interfaceController from './adapters/blog.in/interface.ctrl'
+import rootController from './adapters/blog.in/root.ctrl.js'
+import bankController from './adapters/blog.in/bank.ctrl.js'
+import calculateController from './adapters/blog.in/calculate.ctrl.js'
+import chatController from './adapters/blog.in/chat.ctrl.js'
+import selectController from './adapters/blog.in/select.ctrl.js'
+import planController from './adapters/blog.in/plan.ctrl.js'
+import interfaceController from './adapters/blog.in/interface.ctrl.js'
 // 初始化server
 (async () => {
     const webserver = new HyperExpress.Server()

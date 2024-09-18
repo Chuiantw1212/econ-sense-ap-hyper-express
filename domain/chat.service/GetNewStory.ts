@@ -1,6 +1,5 @@
-import Adapter from '../../adapters/chatGpt.out'
-import type { MakeStoryUseCase } from '../../port/in/ChatUseCases'
-class GetNewStoryService implements MakeStoryUseCase {
+import Adapter from '../../adapters/chatGpt.out.js'
+class GetNewStoryService {
     adapter: typeof Adapter = null as any
     constructor(adapter: typeof Adapter) {
         this.adapter = adapter

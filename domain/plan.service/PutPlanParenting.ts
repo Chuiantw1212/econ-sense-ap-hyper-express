@@ -1,5 +1,5 @@
-import PlanModel from "../Plan.model"
-import { IPlanParenting } from "../../entities/plan"
+import PlanModel from "../Plan.model.js"
+import { IPlanParenting } from "../../entities/plan.js"
 export default class PutParentingService {
     planModel: PlanModel = null as any
     constructor(model: PlanModel) {

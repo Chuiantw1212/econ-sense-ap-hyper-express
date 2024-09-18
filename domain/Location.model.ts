@@ -1,5 +1,5 @@
 import { Firestore, CollectionReference, DocumentSnapshot, DocumentData } from 'firebase-admin/firestore'
-import type { IOptionsItem, ICounty, ITown, ISelectMap, } from '../entities/select'
+import type { IOptionsItem, ICounty, ITown, ISelectMap, } from '../entities/select.js'
 import { XMLParser } from 'fast-xml-parser'
 
 export default class LocationModel {

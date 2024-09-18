@@ -1,5 +1,5 @@
 import HyperExpress from 'hyper-express'
-import { ILocals } from '../../entities/app'
+import { ILocals } from '../../entities/app.js'
 
 const router = new HyperExpress.Router()
 
