@@ -4,6 +4,7 @@
  */
 
 import { Firestore, Query, QuerySnapshot, CollectionReference, DocumentData, AggregateField, } from 'firebase-admin/firestore'
+import type { IPriceTableItem } from '../entities/finance.js'
 
 interface IPriceTableRawItem {
     '縣市名稱': string;
@@ -14,17 +15,6 @@ interface IPriceTableRawItem {
     '建坪[坪]': string;
     '屋齡[年]': string;
     '含車位價格': string;
-}
-
-interface IPriceTableItem {
-    county?: string,
-    town?: string,
-    contractYear?: string,
-    buildingType?: string,
-    unitPrice?: number,
-    floorSize?: string,
-    buildingAge?: string,
-    hasParking?: boolean,
 }
 
 export default class EstateContractsModel {
