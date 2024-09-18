@@ -130,7 +130,7 @@ import interfaceController from './adapters/blog.in/interface.ctrl'
      * middlewares
      */
     const corsConfig: CorsOptions = {
-        origin: process.env.ORIGIN || 'http://localhost:5173',
+        origin: ['https://econ-sense.com', 'http://localhost:5173'],
     }
     webserver.use(cors(corsConfig))
 
