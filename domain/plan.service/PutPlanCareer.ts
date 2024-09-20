@@ -24,6 +24,8 @@ export default class PutCareerService {
             monthlyNetPay: data.monthlyNetPay || 0,
             monthlyExpense: data.monthlyExpense || 0
         }
-        this.planModel.mergeDocField(uid, 'career', career)
+        this.planModel.mergeObject(uid, {
+            career
+        })
     }
 }

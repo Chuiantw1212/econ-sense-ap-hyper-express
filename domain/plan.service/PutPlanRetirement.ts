@@ -22,6 +22,8 @@ export default class PutRetirementService {
             qualityLevel: data.qualityLevel,
             percentileRank: data.percentileRank,
         }
-        this.planModel.mergeDocField(uid, 'retirement', retirement)
+        this.planModel.mergeObject(uid, {
+            retirement
+        })
     }
 }

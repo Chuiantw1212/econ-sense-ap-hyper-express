@@ -6,7 +6,7 @@ export default class PutMortgageService {
         this.planModel = model
     }
     async mergeMortgage(uid: string, data: IPlanMortgage) {
-        const estate: IPlanMortgage = {
+        const mortgage: IPlanMortgage = {
             downpayYear: data.downpayYear || 0,
             downpayPercent: data.downpayPercent || 0,
             interestRate: data.interestRate || 0,
@@ -16,6 +16,8 @@ export default class PutMortgageService {
             downpay: data.downpay || 0,
             downpayGoal: data.downpayGoal || 0,
         }
-        this.planModel.mergeDocField(uid, 'estate', estate)
+        this.planModel.mergeObject(uid, {
+            mortgage
+        })
     }
 }

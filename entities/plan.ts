@@ -107,19 +107,22 @@ export interface IPlanMortgage {
     interestRate: number,
 }
 
-export interface IPlan {
-    [key: string]: any
-    uid: string,
-    id: string, // document id
+export interface IPlanData {
     profile?: IPlanProfile,
     career?: IPlanCareer,
     retirement?: IPlanRetirement,
     spouse?: IPlanSpouse,
     estatePrice?: IPlanEstatePrice,
     estateSize?: IPlanEstateSize,
-    estate?: IPlanMortgage,
     parenting?: IPlanParenting,
     security?: IPlanSecurity,
+    mortgage?: IPlanMortgage,
+}
+
+export interface IPlanDoc extends IPlanData {
+    [key: string]: any
+    uid: string,
+    id: string, // document id
 }
 
 class PlanEntity {
@@ -218,7 +221,7 @@ class PlanEntity {
 
 /** 型別檢查用 */
 export function getNewPlanEntity() {
-    const entity: IPlan = new PlanEntity()
+    const entity: IPlanDoc = new PlanEntity()
     return entity
 }
 

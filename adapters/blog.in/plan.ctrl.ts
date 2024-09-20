@@ -1,5 +1,5 @@
 import HyperExpress from 'hyper-express'
-import type { IPlan } from '../../entities/plan.js'
+import type { IPlanDoc } from '../../entities/plan.js'
 import { ILocals } from '../../entities/app.js'
 const router = new HyperExpress.Router()
 
@@ -80,6 +80,18 @@ router.put('/plan/estateSize', async function (req, res) {
     }
 })
 
+router.put('/plan/mortgage', async function (req, res) {
+    try {
+        const { PutMortgageService } = req.app.locals as ILocals
+        const planPart = await req.json()
+        await PutMortgageService.mergeMortgage(req.locals.user.uid, planPart)
+        res.send()
+    } catch (error: any) {
+        res.send(error.message || error)
+    }
+})
+
+// deprecated
 router.put('/plan/estate', async function (req, res) {
     try {
         const { PutMortgageService } = req.app.locals as ILocals
@@ -128,7 +140,7 @@ router.post('/plan/new', async function (req, res) {
     try {
         const { GetPlanEntityService, PostNewPlanService, GetBackedInterestRateService } = req.app.locals as ILocals
         const planEntity = GetPlanEntityService.getPlanEntity()
-        const planForm: IPlan = await PostNewPlanService.addNewPlan(req.locals.user.uid, planEntity)
+        const planForm: IPlanDoc = await PostNewPlanService.addNewPlan(req.locals.user.uid, planEntity)
         const interestRate = await GetBackedInterestRateService.getBackedInterestRate()
         if (planForm.estate) {
             planForm.estate.interestRate = interestRate

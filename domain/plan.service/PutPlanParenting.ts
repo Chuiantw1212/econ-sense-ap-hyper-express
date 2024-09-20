@@ -14,6 +14,8 @@ export default class PutParentingService {
             spouseMonthlyContribution: data.spouseMonthlyContribution || 0,
             lifeInsurance: data.lifeInsurance || 0,
         }
-        this.planModel.mergeDocField(uid, 'parenting', parenting)
+        this.planModel.mergeObject(uid, {
+            parenting
+        })
     }
 }
