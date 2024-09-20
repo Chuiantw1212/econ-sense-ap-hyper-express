@@ -1,5 +1,13 @@
 # Entities
 
+## DDD 
+Aggregate: 數個Entity以及Value Object的集合，在商業邏輯上組成一個完整單位。
+
+以本專案為例，如果證券可以串接到證券商，地產可以串到銀行，該資料層級就會從Value Object變成Entity。那財務規劃本身就會毫無疑問變成Aggregate。
+
+Entity: 有ID可識別的資料
+Value Object: 不可識別，但該物件有完整的意義
+
 ## Clean Architecture 整潔的軟體設計與架構篇
 
 企業層級，跨專案的商業邏輯、演算法什麼的，比如說用戶權限管理。但是因為我的專案就這麼一個，所以這只放商業用途的物件。

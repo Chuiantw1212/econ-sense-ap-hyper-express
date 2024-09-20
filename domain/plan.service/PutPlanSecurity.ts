@@ -10,6 +10,6 @@ export default class PutSecurityService {
             allocationETF: data.allocationETF || '',
             presentAsset: data.presentAsset || 0,
         }
-        this.planModel.mergeDocField(uid, 'retirement', security)
+        this.planModel.mergeDocField(uid, 'security', security)
     }
 }

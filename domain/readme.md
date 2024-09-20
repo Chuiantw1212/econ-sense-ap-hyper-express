@@ -7,9 +7,11 @@
 
 ## Clean Architecture 在整潔的架構上弄髒你的手
 
-在這邊操作操作model(DB)以及adapter(外部系統)，按照書上services以及models會是兩個資料夾，但我認為目前資料夾這樣命名有同樣的效果，而且更好維護。
-個人懷疑這裡的services以及models才是Uncle Bob所意思表示的Use Cases，
-而非"Use Cases"由interface定義，service進行實作，但這樣做還可以理解是便利於區分，有應用到model就在service中組裝model，有應用到外部系統就在service中組裝adapter，如果沒有就單純service也可以。
+主張service的拆分與細緻化，比較好找。但我並不完全認同這樣的理念，因為這樣子做，取而代之的是組裝service的複雜度。但我倒是認同service拆分避免了service之間耦合的狀況，可以更輕易的搬動業務邏輯。
+
+這裡的services實作了Uncle Bob所意思表示的Use Case Interactor。在這邊操作操作model(DB)以及adapter(外部系統)，按照書上services以及models會是兩個資料夾，但我認為目前資料夾這樣命名有同樣的效果，而且更好維護。
+
+Use Case的部分我整個拿掉了，目前看不出來使用Use Cases的好處。
 
 ## DDD
 
