@@ -14,10 +14,11 @@ export default class GetEstateUnitPriceService {
         this.locationModel = dependency.locationModel
     }
     async getEstateUnitPrice(query: IPriceTableItem) {
+        const queryCountyCode = query.county as string
         if (query.county) {
-            query.county = this.locationModel.getCountyLabel(query.county)
+            query.county = await this.locationModel.getCountyLabel(query.county) // label
             if (query.county && query.town) {
-                query.town = this.locationModel.getTownLabel(query.county, query.town)
+                query.town = await this.locationModel.getTownLabel(queryCountyCode, query.town)
             }
         }
         const result = await this.estateContractsModel.calculateUnitPrice(query)
