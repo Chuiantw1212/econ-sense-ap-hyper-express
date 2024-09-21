@@ -9,11 +9,19 @@ export default class LocationModel {
     constructor(firestore: Firestore) {
         this.collection = firestore.collection('locations')
     }
-    getTownLabel(countyValue: string, townValue: string) {
+    async getTownLabel(countyValue: string, townValue: string) {
+        if (!this.counties.length) {
+            await this.setCountiesAndTowns()
+        }
+        console.log('?',this.townMap,countyValue)
+        console.log('?',this.townMap[countyValue])
         const matchedItem = this.townMap[countyValue].find(item => item.value === townValue)
         return matchedItem?.label
     }
-    getCountyLabel(countyValue: string) {
+    async getCountyLabel(countyValue: string) {
+        if (!this.counties.length) {
+            await this.setCountiesAndTowns()
+        }
         const matchedItem = this.counties.find(item => item.value === countyValue)
         return matchedItem?.label
     }
