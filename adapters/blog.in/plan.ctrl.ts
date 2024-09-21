@@ -142,8 +142,8 @@ router.post('/plan/new', async function (req, res) {
         const planEntity = GetPlanEntityService.getPlanEntity()
         const planForm: IPlanDoc = await PostNewPlanService.addNewPlan(req.locals.user.uid, planEntity)
         const interestRate = await GetBackedInterestRateService.getBackedInterestRate()
-        if (planForm.estate) {
-            planForm.estate.interestRate = interestRate
+        if (planForm.mortgage) {
+            planForm.mortgage.interestRate = interestRate
         }
         res.json(planForm)
     } catch (error: any) {
