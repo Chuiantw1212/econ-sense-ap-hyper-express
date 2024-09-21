@@ -14,6 +14,8 @@ export default class PutEstatePriceService {
             hasParking: data.hasParking || '',
             unitPrice: data.unitPrice || 0,
         }
-        this.planModel.mergeDocField(uid, 'estatePrice', estatePrice)
+        this.planModel.mergeObject(uid, {
+            estatePrice
+        })
     }
 }

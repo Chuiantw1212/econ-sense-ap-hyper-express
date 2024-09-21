@@ -16,6 +16,8 @@ export default class PutEstateSizeService {
             parkingSpace: data.parkingSpace || 0,
             floorSize: data.floorSize || 0,
         }
-        this.planModel.mergeDocField(uid, 'estateSize', estateSize)
+        this.planModel.mergeObject(uid, {
+            estateSize
+        })
     }
 }

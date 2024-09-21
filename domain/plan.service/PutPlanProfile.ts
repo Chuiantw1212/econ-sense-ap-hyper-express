@@ -13,6 +13,8 @@ export default class PutProfileService {
             yearOfMarriage: data.yearOfMarriage || '',
             story: data.story || '',
         }
-        this.planModel.mergeDocField(uid, 'profile', profile)
+        this.planModel.mergeObject(uid, {
+            profile
+        })
     }
 }
