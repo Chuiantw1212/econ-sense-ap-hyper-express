@@ -1,0 +1,5 @@
+# 過度拆解的service
+
+雖然潔淨架構傾向拆解service避免service對到repository一對多的狀況，
+但這邊的案例連CRUD都個別拆解似乎也是矯枉過正，
+不過是把service找method的複雜度轉移到index.ts的組裝服務複雜度去了。
