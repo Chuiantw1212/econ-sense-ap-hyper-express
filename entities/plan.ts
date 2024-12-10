@@ -49,8 +49,15 @@ export interface IPlanRetirement {
         // 公保
         requestType: string,
     },
-    qualityLevel: number,
-    percentileRank: number,
+    // 失能與照顧
+    monthlyLivingExpense: number,
+    disability: {
+        age: number,
+        monthlyLivingExpense: number,
+        monthlyCaringExpense: number,
+        housing: string,
+        carer: string,
+    }
 }
 
 export interface IPlanSecurity {
@@ -166,8 +173,14 @@ class PlanEntity {
             irrOverDecade: 0,
             requestType: '',
         },
-        qualityLevel: 0,
-        percentileRank: 0,
+        monthlyLivingExpense: 0,
+        disability: {
+            age: 0,
+            monthlyLivingExpense: 0,
+            monthlyCaringExpense: 0,
+            housing: "",
+            carer: "",
+        }
     }
     security = {
         allocationETF: "",

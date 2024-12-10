@@ -17,10 +17,16 @@ export default class PutRetirementService {
                 employeeContrubution: data.pension.employeeContrubution || 0,
                 employeeContrubutionIncome: data.pension.employeeContrubutionIncome || 0,
                 irrOverDecade: data.pension.irrOverDecade || 0,
-                requestType: data.pension.requestType || ''
+                requestType: data.pension.requestType || '',
             },
-            qualityLevel: data.qualityLevel,
-            percentileRank: data.percentileRank,
+            monthlyLivingExpense: data.monthlyLivingExpense || 0,
+            disability: {
+                age: data.disability.monthlyLivingExpense || 0,
+                monthlyLivingExpense: data.disability.monthlyLivingExpense || 0,
+                monthlyCaringExpense: data.disability.monthlyCaringExpense || 0,
+                housing: data.disability.housing || '',
+                carer: data.disability.carer || '',
+            }
         }
         this.planModel.mergeObject(uid, {
             retirement

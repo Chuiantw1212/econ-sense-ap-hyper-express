@@ -7,7 +7,7 @@ interface Idependency {
 export default class GetOptionsService implements GetOptionsUseCase {
     selectModel: SelectModel = null as any
     optionsMap: ISelectMap = {}
-    optionKeys: string[] = ['floorSizes', 'buildingAges', 'buildingTypes', 'genders', 'retirementQuartile', 'insuranceTypes']
+    optionKeys: string[] = ['floorSizes', 'buildingAges', 'buildingTypes', 'genders', 'retirementQuartile', 'insuranceTypes', 'disabilityHousing', 'disabilityCarer']
     constructor(dependency: Idependency) {
         const { model } = dependency
         this.selectModel = model
