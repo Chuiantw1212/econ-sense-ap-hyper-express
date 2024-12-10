@@ -13,8 +13,6 @@ export default class LocationModel {
         if (!this.counties.length) {
             await this.setCountiesAndTowns()
         }
-        console.log('?',this.townMap,countyValue)
-        console.log('?',this.townMap[countyValue])
         const matchedItem = this.townMap[countyValue].find(item => item.value === townValue)
         return matchedItem?.label
     }
