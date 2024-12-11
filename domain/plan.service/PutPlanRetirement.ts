@@ -21,7 +21,7 @@ export default class PutRetirementService {
             },
             monthlyLivingExpense: data.monthlyLivingExpense || 0,
             disability: {
-                age: data.disability.monthlyLivingExpense || 0,
+                age: data.disability.age || 0,
                 monthlyLivingExpense: data.disability.monthlyLivingExpense || 0,
                 monthlyCaringExpense: data.disability.monthlyCaringExpense || 0,
                 housing: data.disability.housing || '',
