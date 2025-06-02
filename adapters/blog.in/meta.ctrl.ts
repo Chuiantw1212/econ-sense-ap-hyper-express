@@ -13,6 +13,7 @@ router.get('/meta/plan', async function (req, res) {
 })
 router.get('/meta/select', async function (req, res) {
     try {
+         const { GetTaiwanLocationService, GetOptionsService } = req.app.locals as ILocals
         const locals = req.app.locals as ILocals
         const countiesAndTownMap = await locals.GetTaiwanLocationService.getTaiwanLocations()
         const selectOptionsMap = await locals.GetOptionsService.getOptionsMap()
