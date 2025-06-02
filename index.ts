@@ -43,8 +43,8 @@ import rootController from './adapters/blog.in/root.ctrl.js'
 import bankController from './adapters/blog.in/bank.ctrl.js'
 import calculateController from './adapters/blog.in/calculate.ctrl.js'
 import chatController from './adapters/blog.in/chat.ctrl.js'
-import selectController from './adapters/blog.in/select.ctrl.js'
 import planController from './adapters/blog.in/plan.ctrl.js'
+import metaController from './adapters/blog.in/meta.ctrl.js'
 import interfaceController from './adapters/blog.in/interface.ctrl.js'
 // 初始化server
 (async () => {
@@ -128,7 +128,7 @@ import interfaceController from './adapters/blog.in/interface.ctrl.js'
      * middlewares
      */
     const corsConfig: CorsOptions = {
-        origin: ['https://econ-sense.com', 'http://localhost:5173'],
+        origin: true,
     }
     webserver.use(cors(corsConfig))
 
@@ -137,9 +137,9 @@ import interfaceController from './adapters/blog.in/interface.ctrl.js'
      */
     webserver.use('/', rootController)
     webserver.use('/', bankController)
+    webserver.use('/', metaController)
     webserver.use('/', calculateController)
     webserver.use('/', chatController)
-    webserver.use('/', selectController)
     webserver.use('/', planController)
     webserver.use('/', interfaceController)
 
